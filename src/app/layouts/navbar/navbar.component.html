@@ -1,0 +1,6 @@
+<mat-toolbar color="primary">
+  <img ngSrc="{{icon}}" alt="Logo" height="28" width="28">
+  <span>{{title}}</span>
+  <span class="spacer"></span>
+  <button mat-button *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route">{{ menuItem.name }}</button>
+</mat-toolbar>

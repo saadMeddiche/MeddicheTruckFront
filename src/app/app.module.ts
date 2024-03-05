@@ -15,6 +15,10 @@ import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { NavbarComponent } from './layouts/navbar/navbar.component';
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatIcon} from "@angular/material/icon";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     SigninComponent,
     SignupComponent,
     UserDashboardComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,9 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     MatInput,
     MatButton,
     MatCard,
+    MatToolbar,
+    MatIcon,
+    NgOptimizedImage,
   ],
   providers: [
     provideClientHydration(),

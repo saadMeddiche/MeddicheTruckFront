@@ -1,18 +1,13 @@
+<!-- signin.component.html -->
 <div class="signin-container">
-  <mat-card class="signin-card">
-    <mat-card-header>
-      <p>Sign In</p>
-    </mat-card-header>
-    <mat-card-content>
-      <form (ngSubmit)="signin()" #signInForm="ngForm">
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Username" type="text" name="username" [(ngModel)]="credentials.username" required>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="credentials.password" required>
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!signInForm.valid">Sign In</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+  <h2>Sign In</h2>
+  <form (ngSubmit)="signin()">
+    <mat-form-field class="form-group">
+      <input matInput placeholder="Username" type="text" id="username" name="username" [(ngModel)]="credentials.username" required>
+    </mat-form-field>
+    <mat-form-field class="form-group">
+      <input matInput placeholder="Password" type="password" id="password" name="password" [(ngModel)]="credentials.password" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Sign In</button>
+  </form>
 </div>

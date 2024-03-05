@@ -1,0 +1,17 @@
+/* app.component.scss */
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+p {
+  color: #666;
+}

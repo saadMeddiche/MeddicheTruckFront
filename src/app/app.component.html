@@ -1,16 +1,6 @@
 <!-- app.component.html -->
+<app-navbar></app-navbar>
 
-<div>
-  <h1>Welcome to Your App</h1>
-  <nav>
-    <ul>
-      <li><a routerLink="/signin">Sign In</a></li>
-      <li><a routerLink="/signup">Sign Up</a></li>
-      <li><a routerLink="/userDashboard">User Dashboard</a></li>
-      <li><a routerLink="/adminDashboard">Admin Dashboard</a></li>
-      <!-- Add more navigation links as needed -->
-    </ul>
-  </nav>
+<div class="main-content">
+  <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>
