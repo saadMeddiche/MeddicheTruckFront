@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BACKEND_API} from "./configurations/api";
-import {UserInformations} from "./authentication/models/UserInformations";
-import {UsernameAndPassword} from "./authentication/models/UsernameAndPassword";
+import {BACKEND_API} from "../../configurations/api";
+import {UserInformations} from "../models/UserInformations";
+import {UsernameAndPassword} from "../models/UsernameAndPassword";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,11 @@ export class AuthService {
   constructor(private http :HttpClient) { }
 
   login(credentials : UsernameAndPassword) {
-    return this.http.post<any>(`${BACKEND_API}/signIn ` , credentials);
+    return this.http.post<any>(`${BACKEND_API}/authentication/signIn` , credentials);
   }
 
   register(user : UserInformations) {
-    return this.http.post<any>(`${BACKEND_API}/signUp ` , user);
+    return this.http.post<any>(`${BACKEND_API}/authentication/signUp ` , user);
   }
 
   logout(): void {
