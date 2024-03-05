@@ -3,4 +3,5 @@
   <span>{{title}}</span>
   <span class="spacer"></span>
   <button mat-button *ngFor="let menuItem of menuItems" [routerLink]="menuItem.route">{{ menuItem.name }}</button>
+  <button mat-button (click)="logout()" >Logout</button>
 </mat-toolbar>

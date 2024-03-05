@@ -3,13 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {BACKEND_API} from "../../configurations/api";
 import {UserInformations} from "../models/UserInformations";
 import {UsernameAndPassword} from "../models/UsernameAndPassword";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http :HttpClient) { }
+  constructor(private http :HttpClient , private router:Router) { }
 
   login(credentials : UsernameAndPassword) {
     return this.http.post<any>(`${BACKEND_API}/authentication/signIn` , credentials);
@@ -21,6 +22,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    this.router.navigate(['/signin']);
   }
 
   getToken(): string | null {
