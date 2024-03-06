@@ -21,9 +21,7 @@ export class PopupComponent {
 
     this.popupService.popupVisibility$.subscribe(isVisible => {
       this.isVisible = isVisible;
-      setTimeout(() => {
-        this.isVisible = false;
-      }, 8000); // Auto hide after 8 seconds
+
     });
 
     this.popupService.popupType$.subscribe(type => {

@@ -17,10 +17,12 @@ export class NavbarComponent {
       name: 'Register', route: '/signup', isVisible: () => !this.auth.isLoggedIn()
     },
     {
-      name: 'U-Dashboard', route: '/userDashboard', isVisible: () => this.auth.isLoggedIn() && this.auth.haveUserDashboardAccess()
+      name: 'U-Dashboard', route: '/userDashboard', isVisible: () => this.auth.isLoggedIn()
+        && (this.auth.haveUserDashboardAccess() || this.auth.haveAccessAll())
     },
     {
-      name: 'A-Dashboard', route: '/adminDashboard', isVisible: () => this.auth.isLoggedIn() && this.auth.haveAdminDashboardAccess()
+      name: 'A-Dashboard', route: '/adminDashboard', isVisible: () => this.auth.isLoggedIn()
+        && (this.auth.haveAdminDashboardAccess() || this.auth.haveAccessAll())
     },
   ];
 

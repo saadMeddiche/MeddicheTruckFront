@@ -96,4 +96,8 @@ export class AuthService {
   haveAdminDashboardAccess(): boolean {
     return this.hasPermission(Permissions.ACCESS_ADMIN_DASHBOARD);
   }
+
+  haveAccessAll(): boolean {
+    return this.hasPermission(Permissions.ACCESS_ALL);
+  }
 }
