@@ -19,6 +19,7 @@ import { NavbarComponent } from './layouts/navbar/component/navbar.component';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
 import {NgOptimizedImage} from "@angular/common";
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {NgOptimizedImage} from "@angular/common";
     SignupComponent,
     UserDashboardComponent,
     AdminDashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

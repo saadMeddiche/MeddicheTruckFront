@@ -1,0 +1,7 @@
+
+<div  *ngIf="isVisible" class="popup-container" [ngClass]="popupType">
+  <span class="close-btn" (click)="closePopup()">X</span>
+  <ul>
+    <li *ngFor="let item of popupContent">{{ item }}</li>
+  </ul>
+</div>

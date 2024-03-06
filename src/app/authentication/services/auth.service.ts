@@ -11,6 +11,8 @@ import { UsernameAndPassword } from '../models/UsernameAndPassword';
 import { Token } from '../models/Token';
 import { Permissions } from '../../enums/permissions';
 import {isPlatformBrowser} from "@angular/common";
+import {PopupType} from "../../components/popup/enums/PopupType";
+import {PopupService} from "../../components/popup/services/popup.service";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private jwtHelper: JwtHelperService,
+    private popup: PopupService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -31,12 +34,14 @@ export class AuthService {
         if (response && response.token) {
           localStorage.setItem(this.tokenName, response.token);
         }
+        this.popup.show(['You are now logged in'], PopupType.SUCCESS);
         return response;
       }),
-      catchError(error => {
-        // Handle error here
-        console.error('Login error:', error);
+      catchError(httpErrorResponse => {
+
+        this.popup.show(httpErrorResponse.error, PopupType.ERROR);
         return of(null);
+
       })
     );
   }
