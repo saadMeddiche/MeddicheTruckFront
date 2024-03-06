@@ -52,11 +52,11 @@ export class AuthService {
         if (response && response.token) {
           localStorage.setItem(this.tokenName, response.token);
         }
+        this.popup.show(['You are now registered and logged in'], PopupType.SUCCESS);
         return response;
       }),
-      catchError(error => {
-        // Handle error here
-        console.error('Registration error:', error);
+      catchError(httpErrorResponse => {
+        this.popup.show(httpErrorResponse.error, PopupType.ERROR);
         return of(null);
       })
     );
@@ -65,6 +65,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.tokenName);
     this.router.navigate(['/signin']);
+    this.popup.show(['You are now logged out'], PopupType.WARNING);
   }
 
   getToken(): string | null {
