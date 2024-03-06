@@ -33,8 +33,7 @@ export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelpe
   // Check if the user doesn't have the required permission
   if(!decodedToken || !decodedToken.authorities || !requiredPermission.some(permission => permissions.includes(permission))){
     alert("You don't have permission to access this page")
-    localStorage.removeItem('token');
-    router.navigate(['/signin']); // Redirect unauthorized users
+    auth.logout();
     return false;
   }
 

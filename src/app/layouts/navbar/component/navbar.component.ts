@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {AuthService} from "../../authentication/services/auth.service";
+import {AuthService} from "../../../authentication/services/auth.service";
+import {MenuItem} from "../models/MenuItem";
 
 @Component({
   selector: 'app-navbar',
@@ -26,9 +27,4 @@ export class NavbarComponent {
   }
 }
 
-interface MenuItem {
-  name: string;
-  route: string;
 
-
-}
