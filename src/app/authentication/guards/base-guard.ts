@@ -2,6 +2,7 @@ import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Token} from "../models/Token";
+import {Permissions} from "../../enums/permissions";
 
 export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelperService , authority:string) => {
 
@@ -27,7 +28,7 @@ export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelpe
 
   let permissions = decodedToken.authorities;
 
-  let requiredPermission = [authority , 'ACCESS_ALL'];
+  let requiredPermission = [authority , Permissions.ACCESS_ALL];
 
   // Check if the user doesn't have the required permission
   if(!decodedToken || !decodedToken.authorities || !requiredPermission.some(permission => permissions.includes(permission))){
