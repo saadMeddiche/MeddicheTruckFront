@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss'
 })
+
 export class SigninComponent {
 
   credentials :UsernameAndPassword = { username: '', password: '' };
@@ -17,12 +18,8 @@ export class SigninComponent {
   signin(): void {
 
     this.authService.login(this.credentials).subscribe(
-      (response) => {
-        localStorage.setItem('token', response.token);
+      () => {
         this.router.navigate(['/userDashboard']);
-      },
-      (error) => {
-        console.log('Login failed', error);
       }
     );
 

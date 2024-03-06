@@ -1,38 +1,93 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {BACKEND_API} from "../../configurations/api";
-import {UserInformations} from "../models/UserInformations";
-import {UsernameAndPassword} from "../models/UsernameAndPassword";
-import {Router} from "@angular/router";
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
+import { BACKEND_API } from '../../configurations/api';
+import { UserInformations } from '../models/UserInformations';
+import { UsernameAndPassword } from '../models/UsernameAndPassword';
+import { Token } from '../models/Token';
+import { Permissions } from '../../enums/permissions';
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http :HttpClient , private router:Router) { }
+  private tokenName = 'token';
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private jwtHelper: JwtHelperService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-  login(credentials : UsernameAndPassword) {
-    return this.http.post<any>(`${BACKEND_API}/authentication/signIn` , credentials);
+  login(credentials: UsernameAndPassword): Observable<any> {
+    return this.http.post<any>(`${BACKEND_API}/authentication/signIn`, credentials).pipe(
+      map(response => {
+        if (response && response.token) {
+          localStorage.setItem(this.tokenName, response.token);
+        }
+        return response;
+      }),
+      catchError(error => {
+        // Handle error here
+        console.error('Login error:', error);
+        return of(null);
+      })
+    );
   }
 
-  register(user : UserInformations) {
-    return this.http.post<any>(`${BACKEND_API}/authentication/signUp ` , user);
+  register(user: UserInformations): Observable<any> {
+    return this.http.post<any>(`${BACKEND_API}/authentication/signUp`, user).pipe(
+      map(response => {
+        if (response && response.token) {
+          localStorage.setItem(this.tokenName, response.token);
+        }
+        return response;
+      }),
+      catchError(error => {
+        // Handle error here
+        console.error('Registration error:', error);
+        return of(null);
+      })
+    );
   }
 
   logout(): void {
-    localStorage.removeItem('token');
+    localStorage.removeItem(this.tokenName);
     this.router.navigate(['/signin']);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(this.tokenName);
+    }
+    return null;
   }
 
   isLoggedIn(): boolean {
-    // !! is a trick (JavaScript idiom) to convert null to boolean , if it is null it will be false
-    return !!localStorage.getItem('token');
+    return !!this.getToken();
   }
 
+  getDecodedToken(): Token | null {
+    const token = this.getToken();
+    return token ? this.jwtHelper.decodeToken(token) as Token : null;
+  }
 
+  hasPermission(permission: Permissions): boolean {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken && decodedToken.authorities ? decodedToken.authorities.includes(permission) : false;
+  }
+
+  haveUserDashboardAccess(): boolean {
+    return this.hasPermission(Permissions.ACCESS_USER_DASHBOARD);
+  }
+
+  haveAdminDashboardAccess(): boolean {
+    return this.hasPermission(Permissions.ACCESS_ADMIN_DASHBOARD);
+  }
 }

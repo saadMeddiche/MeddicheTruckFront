@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent ,canActivate:[AccessAuthenticationPanelsGuard]},
   { path: 'userDashboard', component: UserDashboardComponent, canActivate: [AuthGuard , AccessUserDashboardGuard] },
   { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [AuthGuard , AccessAdminDashboardGuard] },
-  { path: '', redirectTo: '/signin', pathMatch: 'full' }
+  { path: '**', redirectTo: '/signin', pathMatch: 'full' }
 ];
 
 @NgModule({

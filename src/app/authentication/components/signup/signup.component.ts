@@ -3,6 +3,7 @@ import {UserInformations} from "../../models/UserInformations";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -22,16 +23,10 @@ export class SignupComponent {
 
   constructor(private auth :AuthService , private router :Router) {}
 
-
   signup(): void {
-
     this.auth.register(this.user).subscribe(
       (response) => {
-        localStorage.setItem('token', response.token);
         this.router.navigate(['/userDashboard']);
-      },
-      (error) => {
-        console.log('Signup failed', error);
       }
     );
 

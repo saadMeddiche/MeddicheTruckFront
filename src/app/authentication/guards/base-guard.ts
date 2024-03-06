@@ -4,7 +4,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {Token} from "../models/Token";
 import {Permissions} from "../../enums/permissions";
 
-export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelperService , authority:string) => {
+export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelperService , authority: Permissions) => {
 
   // Check if the user is logged in
   if(!auth.isLoggedIn()){
@@ -23,15 +23,10 @@ export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelpe
     return false;
   }
 
-  // Decode the token to get its payload
-  const decodedToken :Token = jwtHelper.decodeToken(token) as Token;
-
-  let permissions = decodedToken.authorities;
-
   let requiredPermission = [authority , Permissions.ACCESS_ALL];
 
   // Check if the user doesn't have the required permission
-  if(!decodedToken || !decodedToken.authorities || !requiredPermission.some(permission => permissions.includes(permission))){
+  if(!requiredPermission.some(permission => auth.hasPermission(permission))){
     alert("You don't have permission to access this page")
     auth.logout();
     return false;
