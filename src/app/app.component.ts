@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {IntroTourComponent} from "./components/intro-tour/intro-tour.component";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  ngOnInit(): void {
+    IntroTourComponent.startTour();
+  }
 }

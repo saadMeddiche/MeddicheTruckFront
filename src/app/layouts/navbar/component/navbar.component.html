@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
   <img ngSrc="{{icon}}" alt="Logo" height="28" width="28">
-  <span>{{title}}</span>
+  <span id="WebTitle">{{title}}</span>
   <span class="spacer"></span>
   <ng-template *ngFor="let menuItem of menuItems" [ngIf]="menuItem.isVisible()">
-    <button mat-button [routerLink]="menuItem.route">{{ menuItem.name }}</button>
+    <button mat-button [routerLink]="menuItem.route" id="{{menuItem.name}}Route">{{ menuItem.name }}</button>
   </ng-template>
   <button mat-button (click)="logout()" *ngIf="isLogoutVisible()" >Logout</button>
 </mat-toolbar>
