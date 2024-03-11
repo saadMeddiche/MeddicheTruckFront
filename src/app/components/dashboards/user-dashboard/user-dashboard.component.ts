@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {Card} from "../models/Card";
+import {Card} from "../../models/Card";
 
 @Component({
   selector: 'app-user-dashboard',

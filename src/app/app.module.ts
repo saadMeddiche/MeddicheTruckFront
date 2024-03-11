@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './authentication/components/signin/signin.component';
 import { SignupComponent } from './authentication/components/signup/signup.component';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './components/dashboards/user-dashboard/user-dashboard.component';
+import { AdminDashboardComponent } from './components/dashboards/admin-dashboard/admin-dashboard.component';
 import {FormsModule} from "@angular/forms";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
