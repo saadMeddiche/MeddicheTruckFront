@@ -9,13 +9,29 @@ import {AccessUserDashboardGuard} from "./authentication/guards/access-user-dash
 import {AccessAdminDashboardGuard} from "./authentication/guards/access-admin-dashboard.guard";
 import {AccessAuthenticationPanelsGuard} from "./authentication/guards/access-authentication-panels.guard";
 import {HomeComponent} from "./components/home/home.component";
+import {PieceComponent} from "./components/piece/piece.component";
+import {PieceAddComponent} from "./components/piece/components/piece-add/piece-add.component";
+import {PieceUpdateComponent} from "./components/piece/components/piece-update/piece-update.component";
+import {PieceListComponent} from "./components/piece/components/piece-list/piece-list.component";
 
-const routes: Routes = [
-  { path: '', component: HomeComponent },
+const pieceRoutes: Routes = [
+  {path: '/pieces' , component: PieceComponent},
+  {path: '/pieces/add' , component: PieceAddComponent},
+  {path: '/pieces/edit/:id' , component: PieceUpdateComponent},
+  {path: '/pieces/list' , component: PieceListComponent}
+];
+
+const authRoutes: Routes = [
   { path: 'signin', component: SigninComponent , canActivate:[AccessAuthenticationPanelsGuard] },
   { path: 'signup', component: SignupComponent ,canActivate:[AccessAuthenticationPanelsGuard]},
   { path: 'userDashboard', component: UserDashboardComponent, canActivate: [AuthGuard , AccessUserDashboardGuard] },
   { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [AuthGuard , AccessAdminDashboardGuard] },
+];
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  ...pieceRoutes,
+  ...authRoutes,
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
