@@ -11,30 +11,30 @@ import {Card} from "../models/Card";
 export class UserDashboardComponent {
   cards : Card[] = [
     {
-      title: 'Card 1',
-      image: 'assets/questionmark.png',
-      description: 'Description for Card 1',
+      title: 'Pieces',
+      image: 'assets/scrap.png',
+      description: 'Manage your pieces',
       url:'?test',
       flipped: false
     },
     {
-      title: 'Card 2',
-      image: 'assets/questionmark.png',
-      description: 'Description for Card 2',
+      title: 'Vehicles',
+      image: 'assets/vehicles.png',
+      description: 'Manage your vehicles',
       url:'?test',
       flipped: false
     },
     {
-      title: 'Card 3',
-      image: 'assets/questionmark.png',
-      description: 'Description for Card 3',
+      title: 'Transactions',
+      image: 'assets/transactions.png',
+      description: 'Manage your transactions',
       url:'?test',
       flipped: false
     },
     {
-      title: 'Card 4',
-      image: 'assets/questionmark.png',
-      description: 'Description for Card 4',
+      title: 'Persons',
+      image: 'assets/persons.png',
+      description: 'Manage the persons you work with',
       url:'?test',
       flipped: false
     },

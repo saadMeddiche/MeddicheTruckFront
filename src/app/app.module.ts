@@ -29,6 +29,10 @@ import {NgOptimizedImage} from "@angular/common";
 import { PopupComponent } from './components/popup/popup.component';
 import { IntroTourComponent } from './components/intro-tour/intro-tour.component';
 import { HomeComponent } from './components/home/home.component';
+import { PieceComponent } from './components/piece/piece.component';
+import { PieceListComponent } from './components/piece/components/piece-list/piece-list.component';
+import { PieceAddComponent } from './components/piece/components/piece-add/piece-add.component';
+import { PieceUpdateComponent } from './components/piece/components/piece-update/piece-update.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { HomeComponent } from './components/home/home.component';
     NavbarComponent,
     PopupComponent,
     IntroTourComponent,
-    HomeComponent
+    HomeComponent,
+    PieceComponent,
+    PieceListComponent,
+    PieceAddComponent,
+    PieceUpdateComponent
   ],
   imports: [
     BrowserModule,
