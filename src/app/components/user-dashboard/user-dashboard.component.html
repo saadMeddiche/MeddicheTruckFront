@@ -1,1 +1,9 @@
-<p>user-dashboard works!</p>
+<div class="dashboard">
+  <div class="card" *ngFor="let card of cards" (click)="navigateTo(card.url)">
+    <img [src]="card.image" alt="Card Image">
+    <div class="card-content">
+      <h3>{{ card.title }}</h3>
+      <p class="description">{{ card.description }}</p>
+    </div>
+  </div>
+</div>

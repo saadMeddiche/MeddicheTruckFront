@@ -1,0 +1,40 @@
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+
+  .card {
+    width: 200px;
+    background-color: #673AB7;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .card-content {
+      text-align: center;
+
+      h3 {
+        color: white;
+        margin-top: 10px;
+        font-size: 18px;
+      }
+
+      .description {
+        color: white;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+    }
+  }
+}

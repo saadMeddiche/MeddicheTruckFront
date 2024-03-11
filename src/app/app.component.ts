@@ -9,6 +9,6 @@ import {IntroTourComponent} from "./components/intro-tour/intro-tour.component";
 export class AppComponent {
 
   ngOnInit(): void {
-    IntroTourComponent.startTour();
+    // IntroTourComponent.startTour();
   }
 }

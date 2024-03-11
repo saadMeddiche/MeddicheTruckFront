@@ -9,7 +9,14 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import {FormsModule} from "@angular/forms";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatCard, MatCardContent, MatCardHeader} from "@angular/material/card";
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+  MatCardImage, MatCardSubtitle,
+  MatCardTitle
+} from "@angular/material/card";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
@@ -21,6 +28,7 @@ import {MatIcon} from "@angular/material/icon";
 import {NgOptimizedImage} from "@angular/common";
 import { PopupComponent } from './components/popup/popup.component';
 import { IntroTourComponent } from './components/intro-tour/intro-tour.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +39,16 @@ import { IntroTourComponent } from './components/intro-tour/intro-tour.component
     AdminDashboardComponent,
     NavbarComponent,
     PopupComponent,
-    IntroTourComponent
+    IntroTourComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatCardTitle,
+    MatCardSubtitle,
     MatCardHeader,
     MatCardContent,
     MatFormField,
@@ -47,6 +58,8 @@ import { IntroTourComponent } from './components/intro-tour/intro-tour.component
     MatToolbar,
     MatIcon,
     NgOptimizedImage,
+    MatCardActions,
+    MatCardImage,
   ],
   providers: [
     provideClientHydration(),

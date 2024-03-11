@@ -8,13 +8,15 @@ import {AdminDashboardComponent} from "./components/admin-dashboard/admin-dashbo
 import {AccessUserDashboardGuard} from "./authentication/guards/access-user-dashboard.guard";
 import {AccessAdminDashboardGuard} from "./authentication/guards/access-admin-dashboard.guard";
 import {AccessAuthenticationPanelsGuard} from "./authentication/guards/access-authentication-panels.guard";
+import {HomeComponent} from "./components/home/home.component";
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'signin', component: SigninComponent , canActivate:[AccessAuthenticationPanelsGuard] },
   { path: 'signup', component: SignupComponent ,canActivate:[AccessAuthenticationPanelsGuard]},
   { path: 'userDashboard', component: UserDashboardComponent, canActivate: [AuthGuard , AccessUserDashboardGuard] },
   { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [AuthGuard , AccessAdminDashboardGuard] },
-  { path: '**', redirectTo: '/signin', pathMatch: 'full' }
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
 @NgModule({
