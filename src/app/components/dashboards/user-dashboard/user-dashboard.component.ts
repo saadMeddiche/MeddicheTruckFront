@@ -14,7 +14,7 @@ export class UserDashboardComponent {
       title: 'Pieces',
       image: 'assets/scrap.png',
       description: 'Manage your pieces',
-      url:'?test',
+      url:'pieces',
       flipped: false
     },
     {

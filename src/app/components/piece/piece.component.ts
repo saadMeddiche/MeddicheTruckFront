@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-piece',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './piece.component.scss'
 })
 export class PieceComponent {
+
+  constructor(private router :Router) { }
+
+  goToPieceList(){
+    this.router.navigate(['pieces/list']);
+  }
 
 }
