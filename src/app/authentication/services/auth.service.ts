@@ -35,6 +35,7 @@ export class AuthService {
           localStorage.setItem(this.tokenName, response.token);
         }
         this.popup.show(['You are now logged in'], PopupType.SUCCESS);
+        this.router.navigate(['/userDashboard']);
         return response;
       }),
       catchError(httpErrorResponse => {

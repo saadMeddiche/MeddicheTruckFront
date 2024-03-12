@@ -20,7 +20,7 @@ import {
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NavbarComponent } from './layouts/navbar/component/navbar.component';
 import {MatToolbar} from "@angular/material/toolbar";
@@ -33,6 +33,7 @@ import { PieceComponent } from './components/piece/piece.component';
 import { PieceListComponent } from './components/piece/components/piece-list/piece-list.component';
 import { PieceAddComponent } from './components/piece/components/piece-add/piece-add.component';
 import { PieceUpdateComponent } from './components/piece/components/piece-update/piece-update.component';
+import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { PieceUpdateComponent } from './components/piece/components/piece-update
     provideClientHydration(),
     provideAnimationsAsync(),
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService
+    JwtHelperService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
 
   ],
   bootstrap: [AppComponent]

@@ -18,12 +18,6 @@ export class SigninComponent {
   constructor(private authService: AuthService, private router: Router , private popup:PopupService) {}
 
   signin(): void {
-
-    this.authService.login(this.credentials).subscribe(
-      () => {
-        this.router.navigate(['/userDashboard']);
-      }
-    );
-
+    this.authService.login(this.credentials).subscribe();
   }
 }
