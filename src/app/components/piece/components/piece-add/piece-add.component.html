@@ -1,1 +1,24 @@
-<p>piece-add works!</p>
+<div class="piece-add-container">
+  <form (ngSubmit)="addPiece()" #pieceForm="ngForm">
+    <div class="form-group">
+      <label for="name">Piece Name</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="piece.name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Piece Images</label>
+      <input type="file" (change)="onFileSelected($event)" id="image" accept="image/*" multiple #fileInput>
+    </div>
+
+    <div *ngIf="piece.images.length > 0" class="selected-images">
+      <div *ngFor="let image of piece.images" class="selected-image">
+        <img [src]="image.photoPath" alt="Selected Image">
+        <button class="btn btn-icon" (click)="removeImage(image)">
+          <i class="fas fa-times">x</i>
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="pieceForm.invalid || !piece.images.length">Add Piece</button>
+  </form>
+</div>

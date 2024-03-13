@@ -5,6 +5,7 @@ import {PopupService} from "../../../popup/services/popup.service";
 import {PopupType} from "../../../popup/enums/PopupType";
 import {of} from "rxjs";
 import {PaginatedPiecesResponse} from "./models/PaginatedPiecesResponse";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-piece-list',
@@ -22,11 +23,12 @@ export class PieceListComponent {
 
   totalPages: number = 0;
 
-  searchTerm: string = '';
+  searchTerm: string = "";
 
   constructor(
     private pieceService: PieceService,
-    private popup: PopupService
+    private popup: PopupService,
+    private router: Router
 
   ) {
   }
@@ -57,6 +59,10 @@ export class PieceListComponent {
         return of(null);
       }
     );
+  }
+
+  gotAddPage(){
+    this.router.navigate(['/pieces/add']);
   }
 
 }

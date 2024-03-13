@@ -17,9 +17,9 @@ import {
   MatCardImage, MatCardSubtitle,
   MatCardTitle
 } from "@angular/material/card";
-import {MatFormField} from "@angular/material/form-field";
-import {MatInput} from "@angular/material/input";
-import {MatButton} from "@angular/material/button";
+import {MatFormField, MatFormFieldControl, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
+import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatButton, MatIconButton} from "@angular/material/button";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NavbarComponent } from './layouts/navbar/component/navbar.component';
@@ -69,6 +69,10 @@ import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
     NgOptimizedImage,
     MatCardActions,
     MatCardImage,
+    MatIconButton,
+    MatLabel,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [
     provideClientHydration(),

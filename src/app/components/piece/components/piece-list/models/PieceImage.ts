@@ -1,5 +1,7 @@
 export interface PieceImage{
-  id: number;
+  id: number | null;
   name : string;
-  photoPath : string;
+  photoInBase64Format : string;
+  photoPath : string | null;
+
 }

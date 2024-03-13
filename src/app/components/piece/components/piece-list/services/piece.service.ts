@@ -21,4 +21,8 @@ export class PieceService {
   searchPieces(searchTerm: string , page: number , size: number) :Observable<PaginatedPiecesResponse>{
     return this.http.get<PaginatedPiecesResponse>(`${BACKEND_API}/pieces/search/dynamicSearch?searchTerm=${searchTerm}&page=${page}&size=${size}`);
   }
+
+  addPiece(piece: Piece) :Observable<Piece>{
+    return this.http.post<Piece>(`${BACKEND_API}/pieces`, piece);
+  }
 }
