@@ -3,7 +3,6 @@ import {Piece} from "./models/Piece";
 import {PieceService} from "./services/piece.service";
 import {PopupService} from "../../../popup/services/popup.service";
 import {PopupType} from "../../../popup/enums/PopupType";
-import {catchError, map} from "rxjs/operators";
 import {of} from "rxjs";
 import {PaginatedPiecesResponse} from "./models/PaginatedPiecesResponse";
 
@@ -17,6 +16,14 @@ export class PieceListComponent {
   host :string = "http://localhost:8080";
   pieces : Piece[] = [];
 
+  page: number = 0;
+
+  size: number = 5;
+
+  totalPages: number = 0;
+
+  searchTerm: string = '';
+
   constructor(
     private pieceService: PieceService,
     private popup: PopupService
@@ -25,15 +32,23 @@ export class PieceListComponent {
   }
 
   ngOnInit() {
-    this.getPieceList();
+    this.searchPieces();
   }
 
-  getPieceList() {
-    this.pieceService.fetchPieceList().subscribe(
+  onSearch() {
+    this.searchPieces();
+  }
+
+  onPageChange(n: number) {
+    this.page += n;
+    this.searchPieces();
+  }
+
+  searchPieces() {
+    this.pieceService.searchPieces(this.searchTerm , this.page , this.size).subscribe(
       (response: PaginatedPiecesResponse) => {
-        this.popup.show(['List fetched with success'], PopupType.SUCCESS);
-        console.log(response);
         this.pieces = response._embedded.pieces;
+        this.totalPages = response.page.totalPages;
         return response;
       },
       (httpErrorResponse) => {
