@@ -17,7 +17,8 @@ export class PieceService {
     private http: HttpClient,
     private popup: PopupService
   ) { }
-  fetchPieceList() : Observable<PaginatedPiecesResponse> {
-    return this.http.get<PaginatedPiecesResponse>(`${BACKEND_API}/pieces`);
+
+  searchPieces(searchTerm: string , page: number , size: number) :Observable<PaginatedPiecesResponse>{
+    return this.http.get<PaginatedPiecesResponse>(`${BACKEND_API}/pieces/search/dynamicSearch?searchTerm=${searchTerm}&page=${page}&size=${size}`);
   }
 }
