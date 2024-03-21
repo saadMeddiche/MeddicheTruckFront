@@ -15,7 +15,7 @@ export class PieceUpdateComponent {
 
   host :string = "http://localhost:8080";
   piece: Piece = {
-    id: -1,
+    id: null,
     name: '',
     images: []
   };
@@ -35,7 +35,7 @@ export class PieceUpdateComponent {
       return;
     }
 
-    this.pieceService.updatePiece(this.piece).subscribe(
+    this.pieceService.updateItem(this.piece).subscribe(
       () => {
         this.popupService.show(['Piece Updated Successfully'], PopupType.SUCCESS);
       },
@@ -79,7 +79,7 @@ export class PieceUpdateComponent {
   }
 
   private getPiece() {
-    this.pieceService.getPiece(this.activatedRoute.snapshot.params['id']).subscribe(
+    this.pieceService.getItem(this.activatedRoute.snapshot.params['id']).subscribe(
       (piece) => {
 
         console.log("Piece!!: "+piece.id)

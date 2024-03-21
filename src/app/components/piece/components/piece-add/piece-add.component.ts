@@ -28,7 +28,7 @@ export class PieceAddComponent {
       return;
     }
 
-    this.pieceService.addPiece(this.piece).subscribe(
+    this.pieceService.addItem(this.piece).subscribe(
       () => {
         this.popupService.show(['Piece Added Successfully'], PopupType.SUCCESS);
       },

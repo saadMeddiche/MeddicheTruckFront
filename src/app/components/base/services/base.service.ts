@@ -8,16 +8,15 @@ import {BaseModel} from "../models/BaseModel";
 @Injectable({
   providedIn: 'root'
 })
-export abstract class BaseService<I extends BaseModel> {
+export abstract class BaseService<I extends BaseModel , K extends string> {
 
-  abstract url: string;
-
+  abstract key: string ;
   protected constructor(
     private http: HttpClient
   ) { }
 
-  searchItems(searchTerm: string , page: number , size: number) :Observable<PaginatedResponse<I>>{
-    return this.http.get<PaginatedResponse<I>>(`${BACKEND_API}/${this.url}/search/dynamicSearch?searchTerm=${searchTerm}&page=${page}&size=${size}`);
+  searchItems(searchTerm: string , page: number , size: number) :Observable<PaginatedResponse<I,K>>{
+    return this.http.get<PaginatedResponse<I ,K>>(`${BACKEND_API}/${this.key}/search/dynamicSearch?searchTerm=${searchTerm}&page=${page}&size=${size}`);
   }
 
   addItem(item: I) :Observable<I>{

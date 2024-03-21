@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {PopupService} from "../../popup/services/popup.service";
 import {Router} from "@angular/router";
 import {PaginatedResponse} from "../../../interfaces/PaginatedResponse";
@@ -6,13 +6,12 @@ import {PopupType} from "../../popup/enums/PopupType";
 import {of} from "rxjs";
 import {BaseModel} from "../models/BaseModel";
 import {BaseService} from "../services/base.service";
+import {ID} from "../../../types/entities";
 
 @Component({
-  selector: 'app-base-list',
-  templateUrl: './base-list.component.html',
-  styleUrl: './base-list.component.scss'
+  template: ''
 })
-export abstract class BaseListComponent<I extends BaseModel, S extends BaseService<I>> {
+export abstract class BaseListComponent<I extends BaseModel, K extends string, S extends BaseService<I , K>> {
 
   host :string = "http://localhost:8080";
 
@@ -27,33 +26,34 @@ export abstract class BaseListComponent<I extends BaseModel, S extends BaseServi
   searchTerm: string = "";
 
   protected constructor(
-    private itemService: S,
-    private popup: PopupService,
-    private router: Router
+    @Inject(BaseService) protected itemService: S,
+    protected popup: PopupService,
+    protected router: Router
   ) {
   }
 
   ngOnInit() {
-    this.searchPieces();
-  }
-
-  ngAfterViewInit() {
-    this.searchPieces();
+    this.searchItems();
   }
 
   onSearch() {
-    this.searchPieces();
+    this.searchItems();
   }
 
   onPageChange(n: number) {
     this.page += n;
-    this.searchPieces();
+    this.searchItems();
   }
 
-  searchPieces() {
+  searchItems() {
     this.itemService.searchItems(this.searchTerm , this.page , this.size).subscribe(
-      (response: PaginatedResponse<I>) => {
-        this.items = response._embedded.items;
+      (response: PaginatedResponse<I ,K>) => {
+        for (const key in response._embedded) {
+          if (Object.prototype.hasOwnProperty.call(response._embedded, key)) {
+            this.items = response._embedded[key];
+            break;
+          }
+        }
         this.totalPages = response.page.totalPages;
         return response;
       },
@@ -65,11 +65,11 @@ export abstract class BaseListComponent<I extends BaseModel, S extends BaseServi
     );
   }
 
-  gotAddPage(){
-    this.router.navigate([`/${this.itemService.url}/add`]);
+  gotoAddPage(){
+    this.router.navigate([`/${this.itemService.key}/add`]);
   }
 
-  editPiece(pieceId: number){
-    this.router.navigate([`/${this.itemService.url}/edit/${pieceId}`]);
+  editItem(itemID: ID){
+    this.router.navigate([`/${this.itemService.key}/edit/${itemID}`]);
   }
 }

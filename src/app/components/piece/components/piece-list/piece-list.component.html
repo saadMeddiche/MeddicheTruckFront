@@ -1,7 +1,7 @@
 <div class="search-bar">
   <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()" />
   <button (click)="onSearch()">Search</button>
-  <button (click)="gotAddPage()">Add</button>
+  <button (click)="gotoAddPage()">Add</button>
 </div>
 
 <div class="pagination">
@@ -11,10 +11,10 @@
 </div>
 
 <div class="piece-list">
-  <div class="piece" *ngFor="let piece of pieces" (click)="editPiece(piece.id)">
-    <h2>{{ piece.name }}</h2>
+  <div class="piece" *ngFor="let item of items" (click)="editItem(item.id)">
+    <h2>{{ item.name }}</h2>
     <div class="piece-images">
-      <div class="piece-image" *ngFor="let image of piece.images">
+      <div class="piece-image" *ngFor="let image of item.images">
         <img [src]="host + image.photoPath" alt="{{ image.name }}">
       </div>
     </div>

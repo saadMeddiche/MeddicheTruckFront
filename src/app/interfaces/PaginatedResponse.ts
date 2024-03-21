@@ -1,6 +1,6 @@
-export interface PaginatedResponse<R> {
+export interface PaginatedResponse<I , K extends string> {
   _embedded :{
-    items: R[];
+    [key in K]: I[];
   },
   page : {
     size: number,
