@@ -11,7 +11,7 @@
 </div>
 
 <div class="piece-list">
-  <div class="piece" *ngFor="let piece of pieces">
+  <div class="piece" *ngFor="let piece of pieces" (click)="editPiece(piece.id)">
     <h2>{{ piece.name }}</h2>
     <div class="piece-images">
       <div class="piece-image" *ngFor="let image of piece.images">

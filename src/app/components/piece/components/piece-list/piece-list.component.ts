@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {Piece} from "./models/Piece";
-import {PieceService} from "./services/piece.service";
+import {Piece} from "../../models/Piece";
+import {PieceService} from "../../services/piece.service";
 import {PopupService} from "../../../popup/services/popup.service";
 import {PopupType} from "../../../popup/enums/PopupType";
 import {of} from "rxjs";
-import {PaginatedPiecesResponse} from "./models/PaginatedPiecesResponse";
+
 import {Router} from "@angular/router";
+import {PaginatedResponse} from "../../../../interfaces/PaginatedResponse";
 
 @Component({
   selector: 'app-piece-list',
@@ -15,6 +16,7 @@ import {Router} from "@angular/router";
 export class PieceListComponent {
 
   host :string = "http://localhost:8080";
+
   pieces : Piece[] = [];
 
   page: number = 0;
@@ -37,6 +39,10 @@ export class PieceListComponent {
     this.searchPieces();
   }
 
+  ngAfterViewInit() {
+    this.searchPieces();
+  }
+
   onSearch() {
     this.searchPieces();
   }
@@ -48,7 +54,7 @@ export class PieceListComponent {
 
   searchPieces() {
     this.pieceService.searchPieces(this.searchTerm , this.page , this.size).subscribe(
-      (response: PaginatedPiecesResponse) => {
+      (response: PaginatedResponse<Piece>) => {
         this.pieces = response._embedded.pieces;
         this.totalPages = response.page.totalPages;
         return response;
@@ -63,6 +69,10 @@ export class PieceListComponent {
 
   gotAddPage(){
     this.router.navigate(['/pieces/add']);
+  }
+
+  editPiece(pieceId: number){
+    this.router.navigate([`/pieces/edit/${pieceId}`]);
   }
 
 }

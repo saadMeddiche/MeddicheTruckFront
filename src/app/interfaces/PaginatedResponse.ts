@@ -1,8 +1,6 @@
-import {Piece} from "./Piece";
-
-export interface PaginatedPiecesResponse {
+export interface PaginatedResponse<R> {
   _embedded :{
-    pieces: Piece[];
+    pieces: R[];
   },
   page : {
     size: number,

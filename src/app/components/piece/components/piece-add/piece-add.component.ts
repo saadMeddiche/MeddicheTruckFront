@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Piece } from '../piece-list/models/Piece';
-import { PieceImage } from '../piece-list/models/PieceImage';
+import { Piece } from '../../models/Piece';
+import { PieceImage } from '../../models/PieceImage';
 import { PopupService } from '../../../popup/services/popup.service';
-import { PieceService } from '../piece-list/services/piece.service';
+import { PieceService } from '../../services/piece.service';
 import { PopupType } from '../../../popup/enums/PopupType';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-piece-add',
@@ -12,12 +13,13 @@ import { PopupType } from '../../../popup/enums/PopupType';
 })
 export class PieceAddComponent {
   piece: Piece = {
-    id: null,
+    id: -1,
     name: '',
     images: []
   };
 
-  constructor(private pieceService: PieceService, private popupService: PopupService) {}
+  constructor(private pieceService: PieceService, private popupService: PopupService ,
+              private router: Router) {}
 
   addPiece() {
     if (this.piece.images.length === 0) {
@@ -66,5 +68,9 @@ export class PieceAddComponent {
     if (index !== -1) {
       this.piece.images.splice(index, 1);
     }
+  }
+
+  gotoListPiece(){
+    this.router.navigate(['/pieces/list']);
   }
 }
