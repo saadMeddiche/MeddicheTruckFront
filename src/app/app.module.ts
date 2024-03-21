@@ -34,6 +34,7 @@ import { PieceListComponent } from './components/piece/components/piece-list/pie
 import { PieceAddComponent } from './components/piece/components/piece-add/piece-add.component';
 import { PieceUpdateComponent } from './components/piece/components/piece-update/piece-update.component';
 import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
+import { BaseListComponent } from './components/base/base-list/base-list.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
     PieceComponent,
     PieceListComponent,
     PieceAddComponent,
-    PieceUpdateComponent
+    PieceUpdateComponent,
+    BaseListComponent
   ],
   imports: [
     BrowserModule,

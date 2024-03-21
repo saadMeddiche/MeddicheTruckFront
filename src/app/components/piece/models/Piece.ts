@@ -1,8 +1,7 @@
 import {PieceImage} from "./PieceImage";
-import {ID} from "../../../types/entities";
+import {BaseModel} from "../../base/models/BaseModel";
 
-export interface Piece{
-  id: ID;
+export interface Piece extends BaseModel {
   name : string;
   images: PieceImage[] ;
 }

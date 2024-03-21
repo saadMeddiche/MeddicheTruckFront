@@ -12,8 +12,9 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./piece-add.component.scss']
 })
 export class PieceAddComponent {
+
   piece: Piece = {
-    id: -1,
+    id: null,
     name: '',
     images: []
   };
@@ -56,7 +57,7 @@ export class PieceAddComponent {
         id: null,
         name: file.name.split('.')[0],
         photoInBase64Format: (reader.result as string).split(',')[1],
-        photoPath: reader.result as string
+        photoPath: null
       };
 
       this.piece.images.push(pieceImage);

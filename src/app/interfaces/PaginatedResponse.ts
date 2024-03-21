@@ -1,6 +1,6 @@
 export interface PaginatedResponse<R> {
   _embedded :{
-    pieces: R[];
+    items: R[];
   },
   page : {
     size: number,
