@@ -72,4 +72,18 @@ export abstract class BaseListComponent<I extends BaseModel, K extends string, S
   editItem(itemID: ID){
     this.router.navigate([`/${this.itemService.key}/edit/${itemID}`]);
   }
+
+  deleteItem(itemID: ID){
+    alert("Are you sure you want to delete this item?");
+    this.itemService.deleteItem(itemID).subscribe(
+      () => {
+        this.popup.show([`Record Deleted Successfully`], PopupType.SUCCESS);
+        this.searchItems();
+      },
+      (httpErrorResponse) => {
+        console.error(httpErrorResponse);
+        this.popup.show(httpErrorResponse.error, PopupType.ERROR);
+      }
+    );
+  }
 }

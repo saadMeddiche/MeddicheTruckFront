@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {PaginatedResponse} from "../../../interfaces/PaginatedResponse";
 import {BACKEND_API} from "../../../configurations/api";
 import {BaseModel} from "../models/BaseModel";
+import {ID} from "../../../types/entities";
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,18 @@ export abstract class BaseService<I extends BaseModel , K extends string> {
   }
 
   addItem(item: I) :Observable<I>{
-    return this.http.post<I>(`${BACKEND_API}/pieces`, item);
+    return this.http.post<I>(`${BACKEND_API}/${this.key}`, item);
   }
 
   updateItem(item: I) :Observable<I>{
-    return this.http.put<I>(`${BACKEND_API}/pieces/${item.id}`, item);
+    return this.http.put<I>(`${BACKEND_API}/${this.key}/${item.id}`, item);
   }
 
-  getItem(id: number) :Observable<I>{
-    return this.http.get<I>(`${BACKEND_API}/pieces/${id}`);
+  getItem(id: ID) :Observable<I>{
+    return this.http.get<I>(`${BACKEND_API}/${this.key}/${id}`);
+  }
+
+  deleteItem(id: ID) :Observable<void>{
+    return this.http.delete<void>(`${BACKEND_API}/${this.key}/${id}`);
   }
 }

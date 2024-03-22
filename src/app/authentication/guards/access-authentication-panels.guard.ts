@@ -12,7 +12,7 @@ export class AccessAuthenticationPanelsGuard implements CanActivate {
               private popUp: PopupService) {}
 
   canActivate(): boolean {
-     if( this.authService.isLoggedIn()){
+     if(this.authService.isLoggedIn()){
        this.popUp.show(['You are already logged in'], PopupType.WARNING);
        return false;
      }

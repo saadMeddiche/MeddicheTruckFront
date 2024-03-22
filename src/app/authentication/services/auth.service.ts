@@ -25,6 +25,8 @@ export class AuthService {
     private router: Router,
     private jwtHelper: JwtHelperService,
     private popup: PopupService,
+
+    // ?????????????????
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -63,6 +65,34 @@ export class AuthService {
     );
   }
 
+  checkTokenValidation(): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+    return this.http.get<any>(`${BACKEND_API}/token/validate`, { headers });
+  }
+
+  isTokenValid(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      const token = this.getToken();
+
+      if (!token) {
+        resolve(false);
+        return;
+      }
+
+      this.checkTokenValidation().subscribe(
+        (response) => {
+          resolve(response.valid);
+        },
+        (httpErrorResponse) => {
+          localStorage.removeItem(this.tokenName);
+          this.popup.show(httpErrorResponse.error, PopupType.ERROR);
+          resolve(false);
+        }
+      );
+    });
+  }
+
+
   logout(): void {
     localStorage.removeItem(this.tokenName);
     this.router.navigate(['/signin']);
@@ -70,10 +100,11 @@ export class AuthService {
   }
 
   getToken(): string | null {
+    // ??? need to check this
     if (isPlatformBrowser(this.platformId)) {
       return localStorage.getItem(this.tokenName);
     }
-    return null;
+    return localStorage.getItem(this.tokenName);
   }
 
   isLoggedIn(): boolean {

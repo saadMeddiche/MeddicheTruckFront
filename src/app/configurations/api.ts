@@ -1,3 +1,6 @@
 
-// BackEnd Api
-export const BACKEND_API = 'http://localhost:8080/api/v1';
+export const BACKEND = 'http://localhost:8080';
+
+export const BACKEND_API = `${BACKEND}/api/v1`;
+
+

@@ -12,15 +12,15 @@
       <input type="file" (change)="onFileSelected($event)" id="image" accept="image/*" multiple #fileInput>
     </div>
 
-    <div *ngIf="piece.images.length > 0" class="selected-images">
-      <div *ngFor="let image of piece.images" class="selected-image">
-        <img [src]="host + image.photoPath" alt="Selected Image">
+    <div *ngIf="images.length > 0" class="selected-images">
+      <div *ngFor="let image of images" class="selected-image">
+        <img [src]="displayImage(image)" alt="Selected Image">
         <button class="btn btn-icon" (click)="removeImage(image)">
           <i class="fas fa-times">x</i>
         </button>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="pieceForm.invalid || !piece.images.length">Update Piece</button>
+    <button type="submit" class="btn btn-primary" [disabled]="pieceForm.invalid || !images.length">Update Piece</button>
   </form>
 </div>

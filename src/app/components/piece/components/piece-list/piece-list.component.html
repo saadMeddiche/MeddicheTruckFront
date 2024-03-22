@@ -11,7 +11,9 @@
 </div>
 
 <div class="piece-list">
-  <div class="piece" *ngFor="let item of items" (click)="editItem(item.id)">
+  <div class="piece" *ngFor="let item of items" >
+    <button  (click)="editItem(item.id)">Update</button>
+    <button (click)="deleteItem(item.id)">Delete</button>
     <h2>{{ item.name }}</h2>
     <div class="piece-images">
       <div class="piece-image" *ngFor="let image of item.images">
