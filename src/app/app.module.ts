@@ -34,6 +34,14 @@ import { PieceListComponent } from './components/piece/components/piece-list/pie
 import { PieceAddComponent } from './components/piece/components/piece-add/piece-add.component';
 import { PieceUpdateComponent } from './components/piece/components/piece-update/piece-update.component';
 import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
+import { VehicleComponent } from './componenets/vehicle/vehicle.component';
+import { VehicleAddComponent } from './components/vehicle/components/vehicle-add/vehicle-add.component';
+import { VehicleUpdateComponent } from './components/vehicle/components/vehicle-update/vehicle-update.component';
+import { VehicleListComponent } from './components/vehicle/components/vehicle-list/vehicle-list.component';
+import { PersonComponent } from './components/person/person.component';
+import { PersonListComponent } from './components/person/components/person-list/person-list.component';
+import { PersonAddComponent } from './components/person/components/person-add/person-add.component';
+import { PersonUpdateComponent } from './components/person/components/person-update/person-update.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +57,15 @@ import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
     PieceComponent,
     PieceListComponent,
     PieceAddComponent,
-    PieceUpdateComponent
+    PieceUpdateComponent,
+    VehicleComponent,
+    VehicleAddComponent,
+    VehicleUpdateComponent,
+    VehicleListComponent,
+    PersonComponent,
+    PersonListComponent,
+    PersonAddComponent,
+    PersonUpdateComponent
   ],
   imports: [
     BrowserModule,
