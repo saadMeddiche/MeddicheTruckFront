@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-vehicle',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './vehicle.component.scss'
 })
 export class VehicleComponent {
-
+  constructor(private router :Router) { }
+  async goToVehicleList(){
+    await this.router.navigate(['vehicles/list']);
+  }
 }
