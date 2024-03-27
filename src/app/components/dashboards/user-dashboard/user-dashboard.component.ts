@@ -21,49 +21,49 @@ export class UserDashboardComponent {
       title: 'Vehicles',
       image: 'assets/vehicles.png',
       description: 'Manage your vehicles',
-      url:'?test',
+      url:'vehicles',
       flipped: false
     },
     {
       title: 'Transactions',
       image: 'assets/transactions.png',
       description: 'Manage your transactions',
-      url:'?test',
+      url:'transactions',
       flipped: false
     },
     {
       title: 'Persons',
       image: 'assets/persons.png',
       description: 'Manage the persons you work with',
-      url:'?test',
+      url:'persons',
       flipped: false
     },
     {
       title: 'Card 5',
       image: 'assets/questionmark.png',
       description: 'Description for Card 5',
-      url:'?test',
+      url:'?card',
       flipped: false
     },
     {
       title: 'Card 6',
       image: 'assets/questionmark.png',
       description: 'Description for Card 6',
-      url:'?test',
+      url:'?card',
       flipped: false
     },
     {
       title: 'Card 7',
       image: 'assets/questionmark.png',
       description: 'Description for Card 7',
-      url:'?test',
+      url:'?card',
       flipped: false
     },
     {
       title: 'Card 8',
       image: 'assets/questionmark.png',
       description: 'Description for Card 8',
-      url:'?test',
+      url:'?card',
       flipped: false
     }
   ];
