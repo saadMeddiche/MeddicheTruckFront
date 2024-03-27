@@ -97,7 +97,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    &:hover {
+    &:enabled {
       background-color: #4A148C;
     }
 

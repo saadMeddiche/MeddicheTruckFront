@@ -1,7 +1,7 @@
 <div class="item-container">
 
   <button (click)="gotoItemList()">Go Back To List</button>
-  <form (ngSubmit)="updateItem()" #pieceForm="ngForm">
+  <form (ngSubmit)="updateItem()" #itemForm="ngForm">
     <div class="form-group">
       <label for="name">Piece Name</label>
       <input type="text" class="form-control" id="name" name="name" [(ngModel)]="item.name" required>
@@ -21,6 +21,6 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="pieceForm.invalid || !images.length">Update Piece</button>
+    <button type="submit" class="btn btn-primary" [disabled]="itemForm.invalid || !images.length">Update Piece</button>
   </form>
 </div>
