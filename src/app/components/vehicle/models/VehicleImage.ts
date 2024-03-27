@@ -1,8 +1,3 @@
-import {BaseModel} from "../../base/models/BaseModel";
-import {SemiString} from "../../../types/entities";
+import {BaseImage} from "../../base/models/BaseImage";
 
-export interface VehicleImage extends BaseModel{
-  name : string;
-  photoInBase64Format : SemiString;
-  photoPath : SemiString;
-}
+export interface VehicleImage extends BaseImage {}

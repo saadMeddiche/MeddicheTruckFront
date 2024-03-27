@@ -1,1 +1,41 @@
-<p>vehicle-add works!</p>
+<div class="item-container">
+  <button (click)="gotoItemList()">Go Back To List</button>
+  <form (ngSubmit)="addItem()" #itemForm="ngForm">
+    <div class="form-group">
+      <label for="type">Type</label>
+      <select name="type" id="type">
+        <option *ngFor="let type of Object.values(VehicleType)" value="{{type}}" >{{type}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="engineType">Engine Type</label>
+      <select name="engineType" id="engineType">
+        <option *ngFor="let engineType of Object.values(EngineType)" value="{{engineType}}" >{{engineType}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="model">Model</label>
+      <input type="text" class="form-control" id="model" name="model" [(ngModel)]="item.model" required>
+    </div>
+    <div class="form-group">
+      <label for="plate">Plate</label>
+      <input type="text" class="form-control" id="plate" name="plate" [(ngModel)]="item.plate" required>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Images</label>
+      <input type="file" (change)="onFileSelected($event)" id="image" accept="image/*" multiple #fileInput>
+    </div>
+
+    <div *ngIf="item.images.length > 0" class="selected-images">
+      <div *ngFor="let image of item.images" class="selected-image">
+        <img [src]="'data:image/png;base64,'+image.photoInBase64Format" alt="Selected ImageHolder">
+        <button class="btn btn-icon" (click)="removeImage(image)">
+          <i class="fas fa-times">x</i>
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="itemForm.invalid || !item.images.length">Add Vehicle</button>
+  </form>
+</div>

@@ -12,7 +12,7 @@ import {getSingularName} from "../../../utils/text";
 @Component({
   template: ''
 })
-export abstract class  BaseAddComponent<I extends BaseModelImage , K extends string, S extends BaseService<I , K>> {
+export abstract class BaseAddComponent<I extends BaseModelImage , K extends string, S extends BaseService<I , K>> {
 
   item: I ;
 
