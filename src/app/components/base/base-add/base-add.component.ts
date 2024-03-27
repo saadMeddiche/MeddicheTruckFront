@@ -7,6 +7,7 @@ import {BaseModel} from "../models/BaseModel";
 import {BaseService} from "../services/base.service";
 import {BaseModelImage} from "../models/BaseModelImage";
 import {BaseImage} from "../models/BaseImage";
+import {getSingularName} from "../../../utils/text";
 
 @Component({
   template: ''
@@ -33,7 +34,7 @@ export abstract class  BaseAddComponent<I extends BaseModelImage , K extends str
 
     this.itemService.addItem(this.item).subscribe(
       () => {
-        this.popup.show(['Record Added Successfully'], PopupType.SUCCESS);
+        this.popup.show([`${getSingularName(this.itemService.key)} Added Successfully`], PopupType.SUCCESS);
       },
       (httpErrorResponse) => {
         console.error(httpErrorResponse);
@@ -74,7 +75,7 @@ export abstract class  BaseAddComponent<I extends BaseModelImage , K extends str
     }
   }
 
-  gotoListPiece(){
+  gotoItemList(){
     this.router.navigate([`/${this.itemService.key}/list`]);
   }
 }
