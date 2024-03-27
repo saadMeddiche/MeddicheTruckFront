@@ -4,7 +4,7 @@ import {PieceService} from "../../services/piece.service";
 import {PopupService} from "../../../popup/services/popup.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PopupType} from "../../../popup/enums/PopupType";
-import {Image} from "../../../../interfaces/Image";
+import {ImageHolder} from "../../../../interfaces/ImageHolder";
 import {ImageType} from "../../../../enums/ImageType";
 import {PieceImage} from "../../models/PieceImage";
 import {BACKEND} from "../../../../configurations/api";
@@ -23,7 +23,7 @@ export class PieceUpdateComponent {
     images: []
   };
 
-  images : Image[] = [];
+  images : ImageHolder[] = [];
 
   constructor(private pieceService: PieceService,
               private popupService: PopupService,
@@ -70,7 +70,7 @@ export class PieceUpdateComponent {
     reader.readAsDataURL(file);
     reader.onload = () => {
 
-      const image: Image = {
+      const image: ImageHolder = {
         id: null,
         name: file.name.split('.')[0],
         type: ImageType.LOCAL,
@@ -81,7 +81,7 @@ export class PieceUpdateComponent {
     };
   }
 
-  removeImage(image: Image) {
+  removeImage(image: ImageHolder) {
     const index = this.images.indexOf(image);
     if (index !== -1) {
       this.images.splice(index, 1);
@@ -107,7 +107,7 @@ export class PieceUpdateComponent {
     this.router.navigate(['/pieces/list']);
   }
 
-  private parsePieceImagesToImages(pieceImages: PieceImage[]): Image[] {
+  private parsePieceImagesToImages(pieceImages: PieceImage[]): ImageHolder[] {
     return pieceImages.map(pieceImage => {
       return {
         id: pieceImage.id,
@@ -118,7 +118,7 @@ export class PieceUpdateComponent {
     });
   }
 
-  private parseImagesToPieceImages(images: Image[]): PieceImage[] {
+  private parseImagesToPieceImages(images: ImageHolder[]): PieceImage[] {
     return images.map(image => {
       return {
         id: image.type === ImageType.REMOTE ? image.id : null,
@@ -129,7 +129,7 @@ export class PieceUpdateComponent {
     });
   }
 
-  public displayImage(image: Image){
+  public displayImage(image: ImageHolder){
     return image.type == ImageType.LOCAL ? image.source : BACKEND + image.source;
   }
 

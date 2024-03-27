@@ -14,7 +14,7 @@
 
     <div *ngIf="images.length > 0" class="selected-images">
       <div *ngFor="let image of images" class="selected-image">
-        <img [src]="displayImage(image)" alt="Selected Image">
+        <img [src]="displayImage(image)" alt="Selected ImageHolder">
         <button class="btn btn-icon" (click)="removeImage(image)">
           <i class="fas fa-times">x</i>
         </button>

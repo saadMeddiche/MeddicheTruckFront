@@ -1,6 +1,6 @@
 <div class="dashboard">
   <div class="card" *ngFor="let card of cards" (click)="navigateTo(card.url)">
-    <img [src]="card.image" alt="Card Image" width="80" height="140">
+    <img [src]="card.image" alt="Card ImageHolder" width="80" height="140">
     <div class="card-content">
       <h3>{{ card.title }}</h3>
       <p class="description">{{ card.description }}</p>

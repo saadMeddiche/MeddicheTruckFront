@@ -42,6 +42,8 @@ import { PersonListComponent } from './components/person/components/person-list/
 import { PersonAddComponent } from './components/person/components/person-add/person-add.component';
 import { PersonUpdateComponent } from './components/person/components/person-update/person-update.component';
 import {VehicleComponent} from "./components/vehicle/vehicle.component";
+import { BaseAddComponent } from './components/base/base-add/base-add.component';
+import { BaseUpdateComponent } from './components/base/base-update/base-update.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,7 @@ import {VehicleComponent} from "./components/vehicle/vehicle.component";
     PersonComponent,
     PersonListComponent,
     PersonAddComponent,
-    PersonUpdateComponent
+    PersonUpdateComponent,
   ],
   imports: [
     BrowserModule,

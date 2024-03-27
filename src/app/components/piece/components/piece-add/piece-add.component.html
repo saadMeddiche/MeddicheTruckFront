@@ -13,7 +13,7 @@
 
     <div *ngIf="piece.images.length > 0" class="selected-images">
       <div *ngFor="let image of piece.images" class="selected-image">
-        <img [src]="'data:image/png;base64,'+image.photoInBase64Format" alt="Selected Image">
+        <img [src]="'data:image/png;base64,'+image.photoInBase64Format" alt="Selected ImageHolder">
         <button class="btn btn-icon" (click)="removeImage(image)">
           <i class="fas fa-times">x</i>
         </button>
