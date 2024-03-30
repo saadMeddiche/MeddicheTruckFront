@@ -12,6 +12,19 @@
       display: block;
     }
 
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #673AB7;
+      }
+    }
+
     input[type="text"],
     input[type="file"] {
       width: 100%;
