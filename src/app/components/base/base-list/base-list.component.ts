@@ -7,6 +7,7 @@ import {of} from "rxjs";
 import {BaseModel} from "../models/BaseModel";
 import {BaseService} from "../services/base.service";
 import {ID} from "../../../types/entities";
+import {getSingularName} from "../../../utils/text";
 
 @Component({
   template: ''
@@ -77,10 +78,16 @@ export abstract class BaseListComponent<I extends BaseModel, K extends string, S
     alert("Are you sure you want to delete this item?");
     this.itemService.deleteItem(itemID).subscribe(
       () => {
-        this.popup.show([`Record Deleted Successfully`], PopupType.SUCCESS);
+        this.popup.show([`${getSingularName(this.itemService.key)} Deleted Successfully`], PopupType.SUCCESS);
         this.searchItems();
       },
       (httpErrorResponse) => {
+
+        if(httpErrorResponse.status === 404){
+          this.popup.show([`${getSingularName(this.itemService.key)} Not Found`], PopupType.ERROR);
+          return;
+        }
+
         console.error(httpErrorResponse);
         this.popup.show(httpErrorResponse.error, PopupType.ERROR);
       }

@@ -43,7 +43,13 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
       return;
     }
 
+
+
     this.item.images = this.parseImagesToItemImages(this.images);
+
+    console.log(this.item);
+
+    console.log(this.images);
 
     this.itemService.updateItem(this.item).subscribe(
       () => {
@@ -95,12 +101,17 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
         (item) =>{
 
           this.images = this.parseItemImagesToImages(item.images);
-          item.images = [];
           this.item = item;
+          this.item.images = [];
 
         },
         (httpErrorResponse) => {
           console.error(httpErrorResponse);
+          if(httpErrorResponse.status === 404){
+            this.popupService.show([`${getSingularName(this.itemService.key)} Not Found`], PopupType.ERROR);
+            this.gotoItemList();
+            return;
+          }
           this.popupService.show(httpErrorResponse.error, PopupType.ERROR);
         }
       );
