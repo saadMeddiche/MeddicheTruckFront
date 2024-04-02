@@ -10,6 +10,7 @@ import {PieceImage} from "../../models/PieceImage";
 import {BACKEND} from "../../../../configurations/api";
 import {AuthService} from "../../../../authentication/services/auth.service";
 import {BaseUpdateComponent} from "../../../base/base-update/base-update.component";
+import {BaseImage} from "../../../base/models/BaseImage";
 
 @Component({
   selector: 'app-piece-update',
@@ -32,6 +33,12 @@ export class PieceUpdateComponent extends BaseUpdateComponent<Piece, "pieces", P
       name: '',
       images: []
     };
+  }
+
+  activateSupportImage = true;
+
+  override test(images: ImageHolder[]) {
+
   }
 }
 

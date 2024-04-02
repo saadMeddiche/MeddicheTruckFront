@@ -12,7 +12,6 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(): Promise<boolean> {
 
-    console.log(!this.authService.isLoggedIn());
     if (!this.authService.isLoggedIn()) {
       this.popup.show(['You need to login first !!'] , PopupType.ERROR);
       await this.router.navigate(['/signin']);
@@ -23,8 +22,6 @@ export class AuthGuard implements CanActivate {
       await this.router.navigate(['/signin']);
       return false;
     }
-
-    console.log(!this.authService.isLoggedIn());
 
     return true;
   }

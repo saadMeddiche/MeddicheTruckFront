@@ -22,6 +22,10 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
 
   abstract initializeItem(): I;
 
+  abstract activateSupportImage: boolean;
+
+  abstract test(images: ImageHolder[]) : void;
+
    protected constructor(
      @Inject(BaseService) protected itemService: S,
       protected popupService: PopupService,
@@ -38,14 +42,10 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
 
   updateItem() {
 
-    if (this.images.length === 0) {
-      this.popupService.show(['Please select at least one image.'], PopupType.ERROR);
-      return;
-    }
-
-
-
-    this.item.images = this.parseImagesToItemImages(this.images);
+     if(this.activateSupportImage){
+        const pass = this.uploadImages();
+        if(!pass) return;
+     }
 
     console.log(this.item);
 
@@ -60,6 +60,19 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
         this.popupService.show(httpErrorResponse.error, PopupType.ERROR);
       }
     );
+  }
+
+  uploadImages(){
+    if (this.images.length === 0) {
+      this.popupService.show(['Please select at least one image.'], PopupType.ERROR);
+      return false;
+    }
+
+    let images: BaseImage[] = this.parseImagesToItemImages(this.images);
+
+    this.test(this.images);
+
+    return true;
   }
 
   onFileSelected(event: Event) {
@@ -138,7 +151,7 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
         id: image.type === ImageType.REMOTE ? image.id : null,
         name: image.name,
         photoInBase64Format: image.type === ImageType.LOCAL ? image.source.split(",")[1] as string : null,
-        photoPath: image.type === ImageType.REMOTE ? image.source as string : null
+        photoPath: image.type === ImageType.REMOTE ? image.source as string : null,
       };
     });
   }
