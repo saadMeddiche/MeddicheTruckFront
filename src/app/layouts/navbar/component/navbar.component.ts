@@ -19,11 +19,7 @@ export class NavbarComponent {
     {
       name: 'U-Dashboard', route: '/userDashboard', isVisible: () => this.auth.isLoggedIn()
         && (this.auth.haveUserDashboardAccess() || this.auth.haveAccessAll())
-    },
-    {
-      name: 'A-Dashboard', route: '/adminDashboard', isVisible: () => this.auth.isLoggedIn()
-        && (this.auth.haveAdminDashboardAccess() || this.auth.haveAccessAll())
-    },
+    }
   ];
 
   title = 'MeddicheTruck';
