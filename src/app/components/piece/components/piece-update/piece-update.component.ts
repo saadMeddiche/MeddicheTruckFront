@@ -40,6 +40,10 @@ export class PieceUpdateComponent extends BaseUpdateComponent<Piece, "pieces", P
   override test(images: ImageHolder[]) {
 
   }
+
+  override testDelete(image: ImageHolder) {
+
+  }
 }
 
 

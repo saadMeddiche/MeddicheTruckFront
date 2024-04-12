@@ -26,6 +26,8 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
 
   abstract test(images: ImageHolder[]) : void;
 
+  abstract testDelete(image: ImageHolder) : void;
+
    protected constructor(
      @Inject(BaseService) protected itemService: S,
       protected popupService: PopupService,
@@ -106,6 +108,7 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
     if (index !== -1) {
       this.images.splice(index, 1);
     }
+    this.testDelete(image);
   }
 
   private getItem() :void {

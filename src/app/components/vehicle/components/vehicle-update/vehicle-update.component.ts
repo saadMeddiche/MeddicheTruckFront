@@ -71,6 +71,20 @@ export class VehicleUpdateComponent extends BaseUpdateComponent<Vehicle, "vehicl
 
   }
 
+  testDelete(image: ImageHolder) {
+    if(image.type === ImageType.LOCAL){
+      return;
+    }
+    this.vehicleImageService.deleteItem(image.id).subscribe(
+      () => {
+      },
+      (httpErrorResponse) => {
+        console.error(httpErrorResponse);
+        this.popupService.show(httpErrorResponse.error, PopupType.ERROR);
+      }
+    );
+  }
+
   // This is a workaround for the lack of enums in Angular templates
   protected readonly Object = Object;
   protected readonly VehicleType = VehicleType;
