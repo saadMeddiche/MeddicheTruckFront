@@ -6,7 +6,7 @@ import {PopupType} from "../../popup/enums/PopupType";
 import {of} from "rxjs";
 import {BaseModel} from "../models/BaseModel";
 import {BaseService} from "../services/base.service";
-import {ID} from "../../../types/entities";
+import {ID} from "../../../types/GeneralTypes";
 import {getSingularName} from "../../../utils/text";
 
 @Component({

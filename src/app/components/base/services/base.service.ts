@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {PaginatedResponse} from "../../../interfaces/PaginatedResponse";
 import {BACKEND_API} from "../../../configurations/api";
 import {BaseModel} from "../models/BaseModel";
-import {ID} from "../../../types/entities";
+import {ID} from "../../../types/GeneralTypes";
 
 @Injectable({
   providedIn: 'root'
