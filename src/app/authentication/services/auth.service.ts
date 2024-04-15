@@ -11,8 +11,8 @@ import { UsernameAndPassword } from '../models/UsernameAndPassword';
 import { Token } from '../models/Token';
 import { Permissions } from '../../enums/permissions';
 import {isPlatformBrowser} from "@angular/common";
-import {PopupType} from "../../components/popup/enums/PopupType";
-import {PopupService} from "../../components/popup/services/popup.service";
+import {PopupType} from "@app/layouts/popup/enums/PopupType";
+import {PopupService} from "@app/layouts/popup/services/popup.service";
 
 @Injectable({
   providedIn: 'root'

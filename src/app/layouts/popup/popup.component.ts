@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {PopupService} from "./services/popup.service";
-import {PopupType} from "./enums/PopupType";
+import {PopupService} from "@app/layouts/popup/services/popup.service";
+import {PopupType} from "@app/layouts/popup/enums/PopupType";
 
 @Component({
   selector: 'app-popup',

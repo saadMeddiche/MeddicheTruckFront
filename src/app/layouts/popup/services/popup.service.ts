@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import {PopupType} from "../enums/PopupType";
+import {PopupType} from "@app/layouts/popup/enums/PopupType";
 
 @Injectable({
   providedIn: 'root'

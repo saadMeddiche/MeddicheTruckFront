@@ -24,7 +24,7 @@ import { NavbarComponent } from './layouts/navbar/component/navbar.component';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
 import {NgOptimizedImage} from "@angular/common";
-import { PopupComponent } from './components/popup/popup.component';
+import { PopupComponent } from '@app/layouts/popup/popup.component';
 import { IntroTourComponent } from './components/intro-tour/intro-tour.component';
 import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
 

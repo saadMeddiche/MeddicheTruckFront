@@ -1,8 +1,8 @@
 import {CanActivate} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import {Injectable} from "@angular/core";
-import {PopupService} from "../../components/popup/services/popup.service";
-import {PopupType} from "../../components/popup/enums/PopupType";
+import {PopupService} from "@app/layouts/popup/services/popup.service";
+import {PopupType} from "@app/layouts/popup/enums/PopupType";
 
 @Injectable({
   providedIn: 'root'

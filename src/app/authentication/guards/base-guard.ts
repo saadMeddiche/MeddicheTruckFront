@@ -2,8 +2,8 @@ import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Permissions} from "../../enums/permissions";
-import {PopupService} from "../../components/popup/services/popup.service";
-import {PopupType} from "../../components/popup/enums/PopupType";
+import {PopupService} from "@app/layouts/popup/services/popup.service";
+import {PopupType} from "@app/layouts/popup/enums/PopupType";
 
 export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelperService , authority: Permissions ,popUp: PopupService) => {
 

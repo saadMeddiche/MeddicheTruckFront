@@ -1,8 +1,8 @@
 import {Component, Inject} from '@angular/core';
-import {PopupService} from "../../popup/services/popup.service";
+import {PopupService} from "@app/layouts/popup/services/popup.service";
 import {Router} from "@angular/router";
 import {PaginatedResponse} from "../../../interfaces/PaginatedResponse";
-import {PopupType} from "../../popup/enums/PopupType";
+import {PopupType} from "@app/layouts/popup/enums/PopupType";
 import {of} from "rxjs";
 import {BaseModel} from "../models/BaseModel";
 import {BaseService} from "../services/base.service";

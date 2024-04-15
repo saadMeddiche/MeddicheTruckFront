@@ -4,7 +4,7 @@ import {AuthService} from "../services/auth.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {baseGuard} from "./base-guard";
 import {Permissions} from "../../enums/permissions";
-import {PopupService} from "../../components/popup/services/popup.service";
+import {PopupService} from "@app/layouts/popup/services/popup.service";
 
 
 @Injectable({

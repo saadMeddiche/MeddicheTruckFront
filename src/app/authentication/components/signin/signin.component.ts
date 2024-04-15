@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {UsernameAndPassword} from "../../models/UsernameAndPassword";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {PopupService} from "../../../components/popup/services/popup.service";
-import {PopupType} from "../../../components/popup/enums/PopupType";
+import {PopupService} from "@app/layouts/popup/services/popup.service";
+import {PopupType} from "@app/layouts/popup/enums/PopupType";
 
 @Component({
   selector: 'app-signin',
