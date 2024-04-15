@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../authentication/services/auth.service';
-import { MenuItem } from '../models/MenuItem';
-import {languages} from "../languages";
+import { AuthService } from '@app/authentication/services/auth.service';
+import { MenuItem } from '@app/layouts/navbar/models/MenuItem';
+import {languages} from "@app/layouts/navbar/languages";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
@@ -19,7 +19,10 @@ export class NavbarComponent {
       name: 'Register', route: '/signup', isVisible: () => !this.auth.isLoggedIn()
     },
     {
-      name: 'U-Dashboard', route: '/userDashboard', isVisible: () => this.auth.isLoggedIn()
+      name: 'Profile', route: '/?profile', isVisible: () => true
+    },
+    {
+      name: 'Dashboard', route: '/userDashboard', isVisible: () => this.auth.isLoggedIn()
         && (this.auth.haveUserDashboardAccess() || this.auth.haveAccessAll())
     }
   ];

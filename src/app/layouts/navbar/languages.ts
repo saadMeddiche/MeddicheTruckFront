@@ -1,4 +1,4 @@
-import {Language} from "./models/Language";
+import {Language} from "@app/layouts/navbar/models/Language"
 
 export const languages: Language[] = [
   {
