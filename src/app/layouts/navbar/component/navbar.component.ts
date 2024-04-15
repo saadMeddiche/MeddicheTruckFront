@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../authentication/services/auth.service';
 import { MenuItem } from '../models/MenuItem';
+import {languages} from "../languages";
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-navbar',
@@ -21,11 +23,10 @@ export class NavbarComponent {
         && (this.auth.haveUserDashboardAccess() || this.auth.haveAccessAll())
     }
   ];
-
   title = 'MeddicheTruck';
   icon = 'assets/logo.png';
 
-  constructor(private router: Router, public auth: AuthService) {}
+  constructor(private router: Router, public auth: AuthService,private sanitizer: DomSanitizer) {}
 
   logout(): void {
     this.auth.logout();
@@ -34,5 +35,11 @@ export class NavbarComponent {
   isLogoutVisible(): boolean {
     return this.auth.isLoggedIn();
   }
+
+  sanitizeSVG(svg: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(svg);
+  }
+
+  protected readonly languages = languages;
 
 }
