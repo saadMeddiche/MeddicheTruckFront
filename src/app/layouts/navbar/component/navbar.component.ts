@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/authentication/services/auth.service';
-import { MenuItem } from '@app/layouts/navbar/models/MenuItem';
+import { NavbarLink } from '@app/layouts/navbar/models/navbarLink';
 import {languages} from "@app/layouts/navbar/languages";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
@@ -11,36 +11,36 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  menuItems: MenuItem[] = [
+  navbarLinks: NavbarLink[] = [
     {
-      name: 'Login', route: '/signin', isVisible: () => !this.auth.isLoggedIn()
+      name: 'Login', function: () => this.navigateTo('/signin'), isVisible: () => !this.auth.isLoggedIn()
     },
     {
-      name: 'Register', route: '/signup', isVisible: () => !this.auth.isLoggedIn()
+      name: 'Register', function: () => this.navigateTo('/signup'), isVisible: () => !this.auth.isLoggedIn()
     },
     {
-      name: 'Profile', route: '/?profile', isVisible: () => true
+      name: 'Profile',function: () => this.navigateTo('/?profile'), isVisible: () => true
     },
     {
-      name: 'Dashboard', route: '/userDashboard', isVisible: () => this.auth.isLoggedIn()
-        && (this.auth.haveUserDashboardAccess() || this.auth.haveAccessAll())
+      name: 'Dashboard',function: () => this.navigateTo('/userDashboard'), isVisible: () => this.auth.isLoggedIn() && (this.auth.haveUserDashboardAccess())
+    },
+    {
+      name: 'Logout',function: () => this.auth.logout(), isVisible: () => this.auth.isLoggedIn()
     }
   ];
+
   title = 'MeddicheTruck';
+
   icon = 'assets/logo.png';
 
   constructor(private router: Router, public auth: AuthService,private sanitizer: DomSanitizer) {}
 
-  logout(): void {
-    this.auth.logout();
-  }
-
-  isLogoutVisible(): boolean {
-    return this.auth.isLoggedIn();
-  }
-
   sanitizeSVG(svg: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(svg);
+  }
+
+  async navigateTo(route: string): Promise<void> {
+    await this.router.navigate([route]);
   }
 
   protected readonly languages = languages;
