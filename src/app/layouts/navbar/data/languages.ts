@@ -14,10 +14,10 @@ export const languages: Language[] = [
     country: 'United Kingdom',
   },
   {
-    name:'Arabic',
-    code: 'ar',
-    flagSVG: '<svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full me-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512"><style type="text/css">.st0{fill:#D80027;}.st1{fill:#6DA544;}</style><circle class="st0" cx="256" cy="256" r="256"/><path class="st1" d="M407.3,210.1H291.7L256,100.2l-35.7,109.9H104.7l93.5,67.9l-35.7,109.9L256,320l93.5,67.9L313.8,278 L407.3,210.1z M224.4,269.5l12.1-37.2h39.1l12.1,37.2v0l-31.6,23L224.4,269.5L224.4,269.5z M268.3,210.1h-24.6l12.3-37.9 L268.3,210.1z M306.6,255.8l-7.6-23.4h39.8L306.6,255.8z M213.1,232.4l-7.6,23.4l-32.2-23.4H213.1z M204.8,329.7l12.3-37.9 l19.9,14.5L204.8,329.7z M274.9,306.3l19.9-14.5l12.3,37.9L274.9,306.3z"/></svg>',
-    country: 'Morocco',
+    name: 'Español',
+    code: 'es',
+    flagSVG:'<svg class="h-3.5 w-3.5 rounded-full me-2" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m0 256c0 31.314 5.633 61.31 15.923 89.043l240.077 22.261 240.077-22.261c10.29-27.733 15.923-57.729 15.923-89.043s-5.633-61.31-15.923-89.043l-240.077-22.261-240.077 22.261c-10.29 27.733-15.923 57.729-15.923 89.043z" fill="#ffda44"/><g fill="#d80027"><path d="m496.077 166.957c-36.171-97.484-130.006-166.957-240.077-166.957s-203.906 69.473-240.077 166.957z"/><path d="m15.923 345.043c36.171 97.484 130.006 166.957 240.077 166.957s203.906-69.473 240.077-166.957z"/></g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg>',
+    country: 'Spain',
   }
 
 ]
