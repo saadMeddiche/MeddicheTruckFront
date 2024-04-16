@@ -13,7 +13,7 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 export class NavbarComponent {
   navbarLinks: NavbarLink[] = [
     {
-      name: 'Login', function: () => this.navigateTo('/signin'), isVisible: () => !this.auth.isLoggedIn()
+      name: 'Login', function: () => this.navigateTo('/logIn'), isVisible: () => !this.auth.isLoggedIn()
     },
     {
       name: 'Register', function: () => this.navigateTo('/signup'), isVisible: () => !this.auth.isLoggedIn()
