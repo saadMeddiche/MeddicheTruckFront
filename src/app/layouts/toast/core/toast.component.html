@@ -1,5 +1,5 @@
-<ng-container *ngFor="let toast of toasts" >
-  <div id="{{toast.uuid}}" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+<ng-container *ngFor="let toast of toasts;let i = index" >
+  <div id="{{toast.uuid}}" class="fixed top-4 right-4 z-50 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 transition-transform duration-300 transform translate-y-{{ i * 20 }}" role="alert">
     <!--Icon-->
     <div [innerHTML]="sanitizeIcon(toast.type)"></div>
 
