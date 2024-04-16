@@ -1,13 +1,11 @@
 import {Component, Inject} from '@angular/core';
-import {PopupService} from "@app/layouts/popup/services/popup.service";
 import {Router} from "@angular/router";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
-import {PieceImage} from "../../piece/models/PieceImage";
-import {BaseModel} from "../models/BaseModel";
-import {BaseService} from "../services/base.service";
-import {BaseModelImage} from "../models/BaseModelImage";
-import {BaseImage} from "../models/BaseImage";
-import {getSingularName} from "../../../utils/text";
+import {BaseService} from "@app/base/services/base.service";
+import {BaseModelImage} from "@app/base/models/BaseModelImage";
+import {BaseImage} from "@app/base/models/BaseImage";
+import {getSingularName} from "@app/utils/text";
+import {ToastService} from "@app/layouts/toast/services/toast.service";
 
 @Component({
   template: ''
@@ -20,7 +18,7 @@ export abstract class BaseAddComponent<I extends BaseModelImage , K extends stri
 
   protected constructor(
     @Inject(BaseService) protected itemService: S,
-    protected popup: PopupService,
+    protected toastService: ToastService,
     protected router: Router
   ) {
     this.item = this.initializeItem();
@@ -28,17 +26,17 @@ export abstract class BaseAddComponent<I extends BaseModelImage , K extends stri
 
   addItem() {
     if (this.item.images.length === 0) {
-      this.popup.show(['Please select at least one image.'], ToastType.DANGER);
+      this.toastService.pushToToaster('Please add at least one image', ToastType.DANGER);
       return;
     }
 
     this.itemService.addItem(this.item).subscribe(
       () => {
-        this.popup.show([`${getSingularName(this.itemService.key)} Added Successfully`], ToastType.SUCCESS);
+        this.toastService.pushToToaster(`${getSingularName(this.itemService.key)} added successfully`, ToastType.SUCCESS);
       },
       (httpErrorResponse) => {
         console.error(httpErrorResponse);
-        this.popup.show(httpErrorResponse.error, ToastType.DANGER);
+        this.toastService.pushToToaster(httpErrorResponse.error.message, ToastType.DANGER);
       }
     );
   }

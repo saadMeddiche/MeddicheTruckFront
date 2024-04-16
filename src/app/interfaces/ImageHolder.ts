@@ -1,5 +1,5 @@
 import {ImageType} from "../enums/ImageType";
-import {BaseModel} from "../components/base/models/BaseModel";
+import {BaseModel} from "@app/base/models/BaseModel";
 
 /*
 * This interface will be used to hold the image data

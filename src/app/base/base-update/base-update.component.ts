@@ -1,15 +1,15 @@
 import {Component, Inject} from '@angular/core';
-import {BaseModelImage} from "../models/BaseModelImage";
-import {BaseService} from "../services/base.service";
-import {ImageHolder} from "../../../interfaces/ImageHolder";
-import {PopupService} from "@app/layouts/popup/services/popup.service";
+import {BaseModelImage} from "@app/base/models/BaseModelImage";
+import {BaseService} from "@app/base/services/base.service"
+import {ImageHolder} from "@app/interfaces/ImageHolder";
+import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../../authentication/services/auth.service";
+import {AuthService} from "@app/authentication/services/auth.service";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
-import {ImageType} from "../../../enums/ImageType";
-import {BACKEND} from "../../../configurations/api";
-import {BaseImage} from "../models/BaseImage";
-import {getSingularName} from "../../../utils/text";
+import {ImageType} from "@app/enums/ImageType";
+import {BACKEND} from "@app/configurations/api";
+import {BaseImage} from "@app/base/models/BaseImage";
+import {getSingularName} from "@app/utils/text";
 
 @Component({
   template: ''
@@ -30,7 +30,7 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
 
    protected constructor(
      @Inject(BaseService) protected itemService: S,
-      protected popupService: PopupService,
+      protected toastService: ToastService,
       protected activatedRoute: ActivatedRoute,
       protected router :Router,
       protected authService : AuthService)
@@ -55,18 +55,18 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
 
     this.itemService.updateItem(this.item).subscribe(
       () => {
-        this.popupService.show([`${getSingularName(this.itemService.key)} Updated Successfully`], ToastType.SUCCESS);
+        this.toastService.pushToToaster(`${getSingularName(this.itemService.key)} updated successfully`, ToastType.SUCCESS);
       },
       (httpErrorResponse) => {
         console.error(httpErrorResponse);
-        this.popupService.show(httpErrorResponse.error, ToastType.DANGER);
+        this.toastService.pushToToaster(httpErrorResponse.error.message, ToastType.DANGER);
       }
     );
   }
 
   uploadImages(){
     if (this.images.length === 0) {
-      this.popupService.show(['Please select at least one image.'], ToastType.DANGER);
+      this.toastService.pushToToaster('Please add at least one image', ToastType.DANGER);
       return false;
     }
 
@@ -124,11 +124,11 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
         (httpErrorResponse) => {
           console.error(httpErrorResponse);
           if(httpErrorResponse.status === 404){
-            this.popupService.show([`${getSingularName(this.itemService.key)} Not Found`], ToastType.DANGER);
+            this.toastService.pushToToaster(`${getSingularName(this.itemService.key)} Not Found`, ToastType.DANGER);
             this.gotoItemList();
             return;
           }
-          this.popupService.show(httpErrorResponse.error, ToastType.DANGER);
+          this.toastService.pushToToaster(httpErrorResponse.error.message, ToastType.DANGER);
         }
       );
   }

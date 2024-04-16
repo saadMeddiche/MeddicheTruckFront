@@ -1,5 +1,5 @@
 import {BaseModel} from "./BaseModel";
-import {SemiString} from "../../../types/GeneralTypes";
+import {SemiString} from "@app/types/GeneralTypes";
 
 export interface BaseImage extends BaseModel
 {

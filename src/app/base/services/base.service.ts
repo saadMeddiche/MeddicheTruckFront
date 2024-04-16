@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {PaginatedResponse} from "../../../interfaces/PaginatedResponse";
-import {BACKEND_API} from "../../../configurations/api";
-import {BaseModel} from "../models/BaseModel";
-import {ID} from "../../../types/GeneralTypes";
+import {PaginatedResponse} from "@app/interfaces/PaginatedResponse"
+import {BACKEND_API} from "@app/configurations/api";
+import {BaseModel} from "@app/base/models/BaseModel";
+import {ID} from "@app/types/GeneralTypes";
 
 @Injectable({
   providedIn: 'root'

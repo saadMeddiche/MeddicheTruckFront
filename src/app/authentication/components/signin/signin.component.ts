@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {UsernameAndPassword} from "../../models/UsernameAndPassword";
-import {AuthService} from "../../services/auth.service";
+import {UsernameAndPassword} from "@app/authentication/models/UsernameAndPassword";
+import {AuthService} from "@app/authentication/services/auth.service";
 import {Router} from "@angular/router";
-import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 
 @Component({
