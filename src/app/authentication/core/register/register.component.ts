@@ -3,13 +3,14 @@ import {UserInformations} from "@app/authentication/models/UserInformations";
 import {AuthService} from "@app/authentication/services/auth.service";
 import {Router} from "@angular/router";
 import {Logo} from "@app/configurations/globalData";
+import {NavigationService} from "@app/base/services/navigation.service";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent extends NavigationService{
 
   user : UserInformations = {
     username :'',
@@ -21,7 +22,9 @@ export class RegisterComponent {
     birthDate :''
   };
 
-  constructor(private auth :AuthService , private router :Router) {}
+  constructor(private auth :AuthService , override router :Router) {
+    super(router);
+  }
 
   register(): void {
     this.auth.register(this.user).subscribe(
@@ -29,10 +32,6 @@ export class RegisterComponent {
         await this.navigateTo('/userDashboard')
       }
     );
-  }
-
-  async navigateTo(route :string) {
-    await this.router.navigate([route]);
   }
 
   protected readonly Logo  = Logo;
