@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {UserInformations} from "@app/authentication/models/UserInformations";
 import {AuthService} from "@app/authentication/services/auth.service";
 import {Router} from "@angular/router";
+import {Logo} from "@app/configurations/globalData";
 
 @Component({
   selector: 'app-register',
@@ -34,4 +35,5 @@ export class RegisterComponent {
     await this.router.navigate([route]);
   }
 
+  protected readonly Logo  = Logo;
 }

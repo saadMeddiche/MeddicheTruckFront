@@ -3,6 +3,7 @@ import {UsernameAndPassword} from "@app/authentication/models/UsernameAndPasswor
 import {AuthService} from "@app/authentication/services/auth.service";
 import {Router} from "@angular/router";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
+import {Logo} from "@app/configurations/globalData";
 
 @Component({
   selector: 'app-log-in',
@@ -22,4 +23,6 @@ export class LogInComponent {
   async navigateTo(route :string) {
     await this.router.navigate([route]);
   }
+
+  protected readonly Logo = Logo;
 }

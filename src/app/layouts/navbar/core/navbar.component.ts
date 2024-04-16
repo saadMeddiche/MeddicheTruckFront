@@ -4,6 +4,9 @@ import { AuthService } from '@app/authentication/services/auth.service';
 import { NavbarLink } from '@app/layouts/navbar/models/navbarLink';
 import {languages} from "@app/layouts/navbar/data/languages";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+import {Pages} from "@app/configurations/pages";
+import {Logo} from "@app/configurations/globalData";
+import {ILogo} from "@app/interfaces/ILogo";
 
 @Component({
   selector: 'app-navbar',
@@ -13,25 +16,31 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 export class NavbarComponent {
   navbarLinks: NavbarLink[] = [
     {
-      name: 'Login', function: () => this.navigateTo('/logIn'), isVisible: () => !this.auth.isLoggedIn()
+      name: 'Login',
+      function: () => this.navigateTo(Pages.LOG_IN),
+      isVisible: () => !this.auth.isLoggedIn()
     },
     {
-      name: 'Register', function: () => this.navigateTo('/register'), isVisible: () => !this.auth.isLoggedIn()
+      name: 'Register',
+      function: () => this.navigateTo(Pages.REGISTER),
+      isVisible: () => !this.auth.isLoggedIn()
     },
     {
-      name: 'Profile',function: () => this.navigateTo('/?profile'), isVisible: () => true
+      name: 'Profile',
+      function: () => this.navigateTo('/?profile'),
+      isVisible: () => true
     },
     {
-      name: 'Dashboard',function: () => this.navigateTo('/userDashboard'), isVisible: () => this.auth.isLoggedIn() && (this.auth.haveUserDashboardAccess())
+      name: 'Dashboard',
+      function: () => this.navigateTo(Pages.USER_DASHBOARD),
+      isVisible: () => this.auth.isLoggedIn() && this.auth.haveUserDashboardAccess()
     },
     {
-      name: 'Logout',function: () => this.auth.logout(), isVisible: () => this.auth.isLoggedIn()
+      name: 'Logout',
+      function: () => this.auth.logout(),
+      isVisible: () => this.auth.isLoggedIn()
     }
   ];
-
-  title = 'MeddicheTruck';
-
-  icon = 'assets/logo.png';
 
   constructor(private router: Router, public auth: AuthService,private sanitizer: DomSanitizer) {}
 
@@ -44,5 +53,6 @@ export class NavbarComponent {
   }
 
   protected readonly languages = languages;
+  protected readonly Logo :ILogo = Logo;
 
 }

@@ -1,7 +1,7 @@
 <div class="h-full font-bold flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 bg-gray-900">
   <a (click)="navigateTo('/home')" class="flex items-center justify-center mb-8 text-2xl font-semibold lg:mb-10 text-white">
-    <img src="/assets/logo.png" class="mr-4 h-11" alt="MeddicheTruck Logo">
-    <span>MeddicheTruck</span>
+    <img src="{{Logo.iconPath}}" class="mr-4 h-11" alt="{{Logo.name}} Logo">
+    <span>{{Logo.name}}</span>
   </a>
   <!-- Card -->
   <div class="w-full max-w-xl p-6 space-y-8 sm:p-8 rounded-lg shadow bg-gray-800">
