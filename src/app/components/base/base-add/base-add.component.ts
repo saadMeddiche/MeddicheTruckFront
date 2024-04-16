@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {PopupService} from "@app/layouts/popup/services/popup.service";
 import {Router} from "@angular/router";
-import {PopupType} from "@app/layouts/popup/enums/PopupType";
+import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {PieceImage} from "../../piece/models/PieceImage";
 import {BaseModel} from "../models/BaseModel";
 import {BaseService} from "../services/base.service";
@@ -28,17 +28,17 @@ export abstract class BaseAddComponent<I extends BaseModelImage , K extends stri
 
   addItem() {
     if (this.item.images.length === 0) {
-      this.popup.show(['Please select at least one image.'], PopupType.ERROR);
+      this.popup.show(['Please select at least one image.'], ToastType.DANGER);
       return;
     }
 
     this.itemService.addItem(this.item).subscribe(
       () => {
-        this.popup.show([`${getSingularName(this.itemService.key)} Added Successfully`], PopupType.SUCCESS);
+        this.popup.show([`${getSingularName(this.itemService.key)} Added Successfully`], ToastType.SUCCESS);
       },
       (httpErrorResponse) => {
         console.error(httpErrorResponse);
-        this.popup.show(httpErrorResponse.error, PopupType.ERROR);
+        this.popup.show(httpErrorResponse.error, ToastType.DANGER);
       }
     );
   }

@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {PopupService} from "@app/layouts/popup/services/popup.service";
 import {Router} from "@angular/router";
 import {PaginatedResponse} from "../../../interfaces/PaginatedResponse";
-import {PopupType} from "@app/layouts/popup/enums/PopupType";
+import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {of} from "rxjs";
 import {BaseModel} from "../models/BaseModel";
 import {BaseService} from "../services/base.service";
@@ -60,7 +60,7 @@ export abstract class BaseListComponent<I extends BaseModel, K extends string, S
       },
       (httpErrorResponse) => {
         console.error(httpErrorResponse);
-        this.popup.show(httpErrorResponse.error, PopupType.ERROR);
+        this.popup.show(httpErrorResponse.error, ToastType.DANGER);
         return of(null);
       }
     );
@@ -78,18 +78,18 @@ export abstract class BaseListComponent<I extends BaseModel, K extends string, S
     alert("Are you sure you want to delete this item?");
     this.itemService.deleteItem(itemID).subscribe(
       () => {
-        this.popup.show([`${getSingularName(this.itemService.key)} Deleted Successfully`], PopupType.SUCCESS);
+        this.popup.show([`${getSingularName(this.itemService.key)} Deleted Successfully`], ToastType.SUCCESS);
         this.searchItems();
       },
       (httpErrorResponse) => {
 
         if(httpErrorResponse.status === 404){
-          this.popup.show([`${getSingularName(this.itemService.key)} Not Found`], PopupType.ERROR);
+          this.popup.show([`${getSingularName(this.itemService.key)} Not Found`], ToastType.DANGER);
           return;
         }
 
         console.error(httpErrorResponse);
-        this.popup.show(httpErrorResponse.error, PopupType.ERROR);
+        this.popup.show(httpErrorResponse.error, ToastType.DANGER);
       }
     );
   }

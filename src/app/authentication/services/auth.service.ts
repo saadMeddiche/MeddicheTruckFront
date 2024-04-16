@@ -11,8 +11,8 @@ import { UsernameAndPassword } from '../models/UsernameAndPassword';
 import { Token } from '../models/Token';
 import { Permissions } from '../../enums/permissions';
 import {isPlatformBrowser} from "@angular/common";
-import {PopupType} from "@app/layouts/popup/enums/PopupType";
-import {PopupService} from "@app/layouts/popup/services/popup.service";
+import {ToastType} from "@app/layouts/toast/enums/ToastType";
+import {ToastService} from "@app/layouts/toast/services/toast.service";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private jwtHelper: JwtHelperService,
-    private popup: PopupService,
+    private toastService: ToastService,
 
     // ?????????????????
     @Inject(PLATFORM_ID) private platformId: Object
@@ -36,15 +36,13 @@ export class AuthService {
         if (response && response.token) {
           localStorage.setItem(this.tokenName, response.token);
         }
-        this.popup.show(['You are now logged in'], PopupType.SUCCESS);
+        this.toastService.pushToToaster('You are now logged in', ToastType.SUCCESS);
         this.router.navigate(['/userDashboard']);
         return response;
       }),
       catchError(httpErrorResponse => {
-
-        this.popup.show(httpErrorResponse.error, PopupType.ERROR);
+        this.toastService.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
         return of(null);
-
       })
     );
   }
@@ -55,11 +53,11 @@ export class AuthService {
         if (response && response.token) {
           localStorage.setItem(this.tokenName, response.token);
         }
-        this.popup.show(['You are now registered and logged in'], PopupType.SUCCESS);
+        this.toastService.pushToToaster('You are now registered and logged in', ToastType.SUCCESS);
         return response;
       }),
       catchError(httpErrorResponse => {
-        this.popup.show(httpErrorResponse.error, PopupType.ERROR);
+        this.toastService.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
         return of(null);
       })
     );
@@ -85,7 +83,7 @@ export class AuthService {
         },
         (httpErrorResponse) => {
           localStorage.removeItem(this.tokenName);
-          this.popup.show(httpErrorResponse.error, PopupType.ERROR);
+          this.toastService.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
           resolve(false);
         }
       );
@@ -96,7 +94,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.tokenName);
     this.router.navigate(['/signin']);
-    this.popup.show(['You are now logged out'], PopupType.WARNING);
+    this.toastService.pushToToaster('You are now logged out', ToastType.SUCCESS);
   }
 
   getToken(): string | null {

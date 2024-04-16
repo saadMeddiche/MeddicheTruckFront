@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {PopupService} from "@app/layouts/popup/services/popup.service";
-import {PopupType} from "@app/layouts/popup/enums/PopupType";
+import {ToastType} from "@app/layouts/toast/enums/ToastType";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   async canActivate(): Promise<boolean> {
 
     if (!this.authService.isLoggedIn()) {
-      this.popup.show(['You need to login first !!'] , PopupType.ERROR);
+      this.popup.show(['You need to login first !!'] , ToastType.DANGER);
       await this.router.navigate(['/signin']);
       return false;
     }

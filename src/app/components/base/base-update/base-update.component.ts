@@ -5,7 +5,7 @@ import {ImageHolder} from "../../../interfaces/ImageHolder";
 import {PopupService} from "@app/layouts/popup/services/popup.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../authentication/services/auth.service";
-import {PopupType} from "@app/layouts/popup/enums/PopupType";
+import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ImageType} from "../../../enums/ImageType";
 import {BACKEND} from "../../../configurations/api";
 import {BaseImage} from "../models/BaseImage";
@@ -55,18 +55,18 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
 
     this.itemService.updateItem(this.item).subscribe(
       () => {
-        this.popupService.show([`${getSingularName(this.itemService.key)} Updated Successfully`], PopupType.SUCCESS);
+        this.popupService.show([`${getSingularName(this.itemService.key)} Updated Successfully`], ToastType.SUCCESS);
       },
       (httpErrorResponse) => {
         console.error(httpErrorResponse);
-        this.popupService.show(httpErrorResponse.error, PopupType.ERROR);
+        this.popupService.show(httpErrorResponse.error, ToastType.DANGER);
       }
     );
   }
 
   uploadImages(){
     if (this.images.length === 0) {
-      this.popupService.show(['Please select at least one image.'], PopupType.ERROR);
+      this.popupService.show(['Please select at least one image.'], ToastType.DANGER);
       return false;
     }
 
@@ -124,11 +124,11 @@ export abstract class BaseUpdateComponent<I extends BaseModelImage , K extends s
         (httpErrorResponse) => {
           console.error(httpErrorResponse);
           if(httpErrorResponse.status === 404){
-            this.popupService.show([`${getSingularName(this.itemService.key)} Not Found`], PopupType.ERROR);
+            this.popupService.show([`${getSingularName(this.itemService.key)} Not Found`], ToastType.DANGER);
             this.gotoItemList();
             return;
           }
-          this.popupService.show(httpErrorResponse.error, PopupType.ERROR);
+          this.popupService.show(httpErrorResponse.error, ToastType.DANGER);
         }
       );
   }

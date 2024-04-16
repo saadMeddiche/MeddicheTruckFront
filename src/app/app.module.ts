@@ -20,13 +20,13 @@ import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { NavbarComponent } from './layouts/navbar/component/navbar.component';
+import { NavbarComponent } from '@app/layouts/navbar/core/navbar.component';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
 import {NgOptimizedImage} from "@angular/common";
-import { PopupComponent } from '@app/layouts/popup/popup.component';
 import { IntroTourComponent } from './components/intro-tour/intro-tour.component';
 import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
+import { ToastComponent } from '@app/layouts/toast/core/toast.component';
 
 
 @NgModule({
@@ -35,8 +35,8 @@ import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
     SigninComponent,
     SignupComponent,
     NavbarComponent,
-    PopupComponent,
     IntroTourComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

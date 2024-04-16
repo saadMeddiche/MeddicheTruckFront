@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/authentication/services/auth.service';
 import { NavbarLink } from '@app/layouts/navbar/models/navbarLink';
-import {languages} from "@app/layouts/navbar/languages";
+import {languages} from "@app/layouts/navbar/data/languages";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
