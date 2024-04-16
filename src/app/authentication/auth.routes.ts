@@ -1,9 +1,10 @@
 import {Routes} from "@angular/router";
 import {AccessAuthenticationPanelsGuard} from "@app/authentication/guards/access-authentication-panels.guard";
-import {SignupComponent} from "./components/signup/signup.component";
-import {LogInComponent} from "@app/authentication/components/log-in/core/log-in.component";
+import {LogInComponent} from "@app/authentication/core/log-in/log-in.component";
+import {RegisterComponent} from "@app/authentication/core/register/register.component";
+import {Pages} from "@app/configurations/pages";
 
 export const authRoutes: Routes = [
-  { path: 'logIn', component: LogInComponent , canActivate:[AccessAuthenticationPanelsGuard] },
-  { path: 'signup', component: SignupComponent ,canActivate:[AccessAuthenticationPanelsGuard]},
+  { path: Pages.LOG_IN, component: LogInComponent , canActivate:[AccessAuthenticationPanelsGuard] },
+  { path: Pages.REGISTER, component: RegisterComponent ,canActivate:[AccessAuthenticationPanelsGuard]},
 ];

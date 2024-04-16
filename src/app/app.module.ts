@@ -3,7 +3,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignupComponent } from './authentication/components/signup/signup.component';
 import {FormsModule} from "@angular/forms";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
@@ -26,17 +25,20 @@ import {NgOptimizedImage} from "@angular/common";
 import { IntroTourComponent } from './components/intro-tour/intro-tour.component';
 import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
 import { ToastComponent } from '@app/layouts/toast/core/toast.component';
-import { LogInComponent } from '@app/authentication/components/log-in/core/log-in.component';
+import { LogInComponent } from '@app/authentication/core/log-in/log-in.component';
+import { RegisterComponent } from '@app/authentication/core/register/register.component';
+import { HomeComponent } from '@app/components/home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
     NavbarComponent,
     IntroTourComponent,
     ToastComponent,
     LogInComponent,
+    RegisterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

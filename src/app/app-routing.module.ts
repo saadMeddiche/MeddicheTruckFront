@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {authRoutes} from "./authentication/auth.routes";
+import {Pages} from "@app/configurations/pages";
 
 const routes: Routes = [
   ...authRoutes,
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
+  { path: '**', redirectTo: Pages.HOME, pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -16,7 +16,7 @@ export class NavbarComponent {
       name: 'Login', function: () => this.navigateTo('/logIn'), isVisible: () => !this.auth.isLoggedIn()
     },
     {
-      name: 'Register', function: () => this.navigateTo('/signup'), isVisible: () => !this.auth.isLoggedIn()
+      name: 'Register', function: () => this.navigateTo('/register'), isVisible: () => !this.auth.isLoggedIn()
     },
     {
       name: 'Profile',function: () => this.navigateTo('/?profile'), isVisible: () => true
