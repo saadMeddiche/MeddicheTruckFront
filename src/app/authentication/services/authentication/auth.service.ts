@@ -15,6 +15,7 @@ import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {TokenService} from "@app/authentication/services/token/token.service";
 import {NavigationService} from "@app/base/services/navigation.service";
+import {UserService} from "@app/authentication/services/user/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class AuthService extends NavigationService{
     override router: Router,
     private token :TokenService,
     private toastService: ToastService,
+    private userService: UserService,
     // ?????????????????
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
@@ -45,6 +47,9 @@ export class AuthService extends NavigationService{
         // Set the token
         this.token.set(response.token);
 
+        // Set the username
+        this.userService.setUserName(credentials.username);
+
         // Notify the user
         this.toastService.pushToToaster('You are now logged in', ToastType.SUCCESS);
 
@@ -61,7 +66,7 @@ export class AuthService extends NavigationService{
   }
   register(user: UserInformations): Observable<any> {
     return this.http.post<any>(`${BACKEND_API}/authentication/signUp`, user).pipe(
-      map(response => {
+      map(async response => {
 
         // Check if the response or the token is not provided
         if (!response || !response.token) {
@@ -72,8 +77,17 @@ export class AuthService extends NavigationService{
         // Set the token
         this.token.set(response.token);
 
+        // Set the username
+        this.userService.setUserName(user.username);
+
+        // Set email
+        this.userService.setEmail(user.email);
+
         // Notify the user
         this.toastService.pushToToaster('You are now registered and auto-logged in', ToastType.SUCCESS);
+
+        // Navigate to the user dashboard
+        await this.navigateToUserDashboard()
 
         return response;
       }),

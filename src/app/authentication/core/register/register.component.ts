@@ -27,11 +27,7 @@ export class RegisterComponent extends NavigationService {
   }
 
   register(): void {
-    this.auth.register(this.user).subscribe(
-      async (response) => {
-        await this.navigateTo('/userDashboard')
-      }
-    );
+    this.auth.register(this.user).subscribe();
   }
 
   protected readonly Logo  = Logo;
