@@ -4,10 +4,11 @@ import { AuthService } from '@app/authentication/services/authentication/auth.se
 import { NavbarLink } from '@app/layouts/navbar/models/navbarLink';
 import {languages} from "@app/data/languages";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
-import {Pages} from "@app/configurations/pages";
 import {Logo} from "@app/configurations/globalData";
 import {ILogo} from "@app/interfaces/ILogo";
 import {NavigationService} from "@app/services/navigation.service";
+import {LanguageService} from "@app/services/language.service";
+import {ILanguage} from "@app/interfaces/ILanguage";
 
 @Component({
   selector: 'app-navbar',
@@ -16,9 +17,15 @@ import {NavigationService} from "@app/services/navigation.service";
 })
 export class NavbarComponent extends NavigationService{
 
-  constructor(override router: Router, public auth: AuthService,private sanitizer: DomSanitizer) {
+  constructor(override router: Router,
+              public auth: AuthService,
+              private sanitizer: DomSanitizer,
+              private languageService: LanguageService){
     super(router);
+    this.selectedLanguage = this.languageService.getLanguage();
   }
+
+  selectedLanguage :ILanguage;
 
   navbarLinks: NavbarLink[] = [
     {

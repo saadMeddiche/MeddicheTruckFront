@@ -13,7 +13,7 @@ export class LanguageService {
 
   constructor(private localStorageService :LocalStorageService) {}
 
-  applyDefault(language: string) {
+  applyDefault() {
     this.localStorageService.setItem(this.languageKey, this.defaultLanguage.code);
   }
 
@@ -21,12 +21,22 @@ export class LanguageService {
 
     // Check if language exists
     if (!languages.map(l => l.code).includes(language)) {
-      this.applyDefault(language)
+      this.applyDefault();
       console.error('\n[LanguageService](setLanguage) Language not found, default language applied');
       return;
     }
 
+    // Set language
     this.localStorageService.setItem(this.languageKey, language);
+  }
+
+  getLanguageByCode(code: string) {
+    return languages.find(l => l.code === code);
+  }
+
+  getLanguage() {
+    const language = this.localStorageService.getItem(this.languageKey);
+    return this.getLanguageByCode(language) || this.defaultLanguage;
   }
 
 }

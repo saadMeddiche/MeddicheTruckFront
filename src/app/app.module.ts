@@ -28,6 +28,7 @@ import { ToastComponent } from '@app/layouts/toast/core/toast.component';
 import { LogInComponent } from '@app/authentication/core/log-in/log-in.component';
 import { RegisterComponent } from '@app/authentication/core/register/register.component';
 import { HomeComponent } from '@app/components/home/home.component';
+import {LanguageService} from "@app/services/language.service";
 
 
 @NgModule({
@@ -75,7 +76,14 @@ import { HomeComponent } from '@app/components/home/home.component';
 })
 export class AppModule {
 
+  constructor(private languageService: LanguageService) {}
+
   ngOnInit() {
+    this.checkProfile();
+    this.languageService.applyDefault();
+  }
+
+  private checkProfile(){
     if (isDevMode()) {
       console.log('Development!');
     } else {
