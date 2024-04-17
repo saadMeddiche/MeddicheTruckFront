@@ -4,12 +4,19 @@ import {AuthService} from "@app/authentication/services/authentication/auth.serv
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {Pages} from "@app/configurations/pages";
+import {NavigationService} from "@app/base/services/navigation.service";
+import {TokenService} from "@app/authentication/services/token/token.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router , private toastService : ToastService) {}
+export class AuthGuard extends NavigationService implements CanActivate {
+  constructor(private authService: AuthService,
+              override router: Router ,
+              private toastService : ToastService,
+              private token: TokenService) {
+    super(router);
+  }
 
   async canActivate(): Promise<boolean> {
 
@@ -19,9 +26,10 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
-    if(!await this.authService.isTokenValid()){
+    if(!await this.token.isValid()){
+
       this.toastService.pushToToaster('Token expired, please re-login', ToastType.WARNING);
-      await this.router.navigate([Pages.LOG_IN]);
+      await this.authService.logout()
       return false;
     }
 

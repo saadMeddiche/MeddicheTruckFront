@@ -68,7 +68,7 @@ export class TokenService {
     this.localStorageService.removeItem(this.tokenKey);
   }
 
-  checkValidation(tokenValidationRequest :TokenValidationRequest): Observable<boolean> {
+  private checkValidation(tokenValidationRequest :TokenValidationRequest): Observable<boolean> {
     return this.http.post<boolean>(`${BACKEND_API}/token/validate`,tokenValidationRequest );
   }
 

@@ -1,7 +1,6 @@
 import {CanActivate} from "@angular/router";
 import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Injectable} from "@angular/core";
-
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 
