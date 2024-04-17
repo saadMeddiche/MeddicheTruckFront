@@ -7,7 +7,7 @@ import {languages} from "@app/data/languages";
 })
 export class LanguageService {
 
-  private readonly defaultLanguage = languages[0];
+  private readonly defaultLanguage = languages[1];
 
   private readonly languageKey = 'language';
 

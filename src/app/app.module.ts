@@ -29,6 +29,8 @@ import { LogInComponent } from '@app/authentication/core/log-in/log-in.component
 import { RegisterComponent } from '@app/authentication/core/register/register.component';
 import { HomeComponent } from '@app/components/home/home.component';
 import {LanguageService} from "@app/services/language.service";
+import {UserDashboardComponent} from "@app/components/dashboards/user-dashboard/user-dashboard.component";
+
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import {LanguageService} from "@app/services/language.service";
     LogInComponent,
     RegisterComponent,
     HomeComponent,
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,

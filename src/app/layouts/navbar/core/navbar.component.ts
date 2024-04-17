@@ -17,15 +17,21 @@ import {ILanguage} from "@app/interfaces/ILanguage";
 })
 export class NavbarComponent extends NavigationService{
 
+  selectedLanguage :ILanguage | null = null;
+
   constructor(override router: Router,
               public auth: AuthService,
               private sanitizer: DomSanitizer,
               private languageService: LanguageService){
     super(router);
+
+  }
+
+  ngOnInit(): void {
     this.selectedLanguage = this.languageService.getLanguage();
   }
 
-  selectedLanguage :ILanguage;
+
 
   navbarLinks: NavbarLink[] = [
     {

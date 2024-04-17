@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   // Method to set data in localStorage
   setItem(key: string, value: any): void {
@@ -14,7 +15,10 @@ export class LocalStorageService {
 
   // Method to get data from localStorage
   getItem(key: string): any {
-    const item = localStorage.getItem(key);
+    let item = null;
+    if (isPlatformBrowser(this.platformId)) {
+      item = localStorage.getItem(key);
+    }
     return item ? JSON.parse(item) : null;
   }
 
