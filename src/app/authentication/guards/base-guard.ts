@@ -8,35 +8,16 @@ import {Pages} from "@app/configurations/pages";
 import {TokenService} from "@app/authentication/services/token/token.service";
 
 export const baseGuard = async (auth:AuthService ,
-                                router :Router ,
-                                jwtHelper :JwtHelperService ,
                                 authority: Permissions ,
-                                toastService: ToastService,
-                                tokenService :TokenService) => {
+                                toastService: ToastService) => {
 
-  // Check if the user is logged in
-  if(!auth.isLoggedIn()){
-    toastService.pushToToaster('You need to login first !!', ToastType.DANGER);
-    await router.navigate([Pages.LOG_IN]); // Redirect unauthenticated users
-    return false;
-  }
-
-  // Get the token from the local storage
-  const token = tokenService.get();
-
-  // Check if the token is null
-  if(token == null){
-    await router.navigate([Pages.LOG_IN]); // Redirect unauthenticated users
-    console.log("[baseGuard] Token is null");
-    return false;
-  }
 
   let requiredPermission = [authority , Permissions.ACCESS_ALL];
 
   // Check if the user doesn't have the required permission
   if(!requiredPermission.some(permission => auth.hasPermission(permission))){
     toastService.pushToToaster('You don\'t have the required permission !!', ToastType.DANGER);
-    auth.logout();
+    await auth.logout();
     return false;
   }
 

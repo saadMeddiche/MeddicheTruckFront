@@ -95,7 +95,7 @@ export class TokenService {
           resolve(response);
         },
         (httpErrorResponse) => {
-          this.toastService.pushToToaster("Error Server #1", ToastType.DANGER);
+          this.toastService.pushToToaster("Server didn't recognize the token", ToastType.DANGER);
           resolve(false);
         }
       );

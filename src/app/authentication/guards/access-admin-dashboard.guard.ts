@@ -13,18 +13,12 @@ import {TokenService} from "@app/authentication/services/token/token.service";
 })
 export class AccessAdminDashboardGuard implements CanActivate {
   constructor(private authService: AuthService,
-              private router: Router ,
-              private jwtHelper: JwtHelperService,
-              private toastService: ToastService,
-              private token : TokenService) {}
+              private toastService: ToastService) {}
 
   async canActivate(): Promise<boolean> {
     return await baseGuard(
       this.authService ,
-      this.router ,
-      this.jwtHelper ,
       Permissions.ACCESS_ADMIN_DASHBOARD ,
-      this.toastService,
-      this.token);
+      this.toastService);
   }
 }
