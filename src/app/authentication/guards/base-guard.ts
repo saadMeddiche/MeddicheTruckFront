@@ -1,16 +1,17 @@
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {Permissions} from "../../enums/permissions";
-import {PopupService} from "@app/layouts/popup/services/popup.service";
+import {Permissions} from "@app/enums/permissions";
+import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
+import {Pages} from "@app/configurations/pages";
 
-export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelperService , authority: Permissions ,popUp: PopupService) => {
+export const baseGuard = async (auth:AuthService , router :Router ,jwtHelper :JwtHelperService , authority: Permissions ,toastService: ToastService) => {
 
   // Check if the user is logged in
   if(!auth.isLoggedIn()){
-    popUp.show(['You need to login first'], ToastType.DANGER);
-    router.navigate(['/signin']); // Redirect unauthenticated users
+    toastService.pushToToaster('You need to login first !!', ToastType.DANGER);
+    await router.navigate([Pages.LOG_IN]); // Redirect unauthenticated users
     return false;
   }
 
@@ -19,7 +20,7 @@ export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelpe
 
   // Check if the token is null
   if(token == null){
-    router.navigate(['/signin']) // Redirect unauthenticated users
+    await router.navigate([Pages.LOG_IN]); // Redirect unauthenticated users
     console.log("[baseGuard] Token is null");
     return false;
   }
@@ -28,7 +29,7 @@ export const baseGuard = (auth:AuthService , router :Router ,jwtHelper :JwtHelpe
 
   // Check if the user doesn't have the required permission
   if(!requiredPermission.some(permission => auth.hasPermission(permission))){
-    popUp.show(['You don\'t have permission to access this page'], ToastType.WARNING);
+    toastService.pushToToaster('You don\'t have the required permission !!', ToastType.DANGER);
     auth.logout();
     return false;
   }

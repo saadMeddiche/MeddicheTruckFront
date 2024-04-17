@@ -7,22 +7,28 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {Pages} from "@app/configurations/pages";
 import {Logo} from "@app/configurations/globalData";
 import {ILogo} from "@app/interfaces/ILogo";
+import {NavigationService} from "@app/base/services/navigation.service";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent extends NavigationService{
+
+  constructor(override router: Router, public auth: AuthService,private sanitizer: DomSanitizer) {
+    super(router);
+  }
+
   navbarLinks: NavbarLink[] = [
     {
       name: 'Login',
-      function: () => this.navigateTo(Pages.LOG_IN),
+      function: () => this.navigateToLogin(),
       isVisible: () => !this.auth.isLoggedIn()
     },
     {
       name: 'Register',
-      function: () => this.navigateTo(Pages.REGISTER),
+      function: () => this.navigateToRegister(),
       isVisible: () => !this.auth.isLoggedIn()
     },
     {
@@ -32,7 +38,7 @@ export class NavbarComponent {
     },
     {
       name: 'Dashboard',
-      function: () => this.navigateTo(Pages.USER_DASHBOARD),
+      function: () => this.navigateToUserDashboard(),
       isVisible: () => this.auth.isLoggedIn() && this.auth.haveUserDashboardAccess()
     },
     {
@@ -42,14 +48,8 @@ export class NavbarComponent {
     }
   ];
 
-  constructor(private router: Router, public auth: AuthService,private sanitizer: DomSanitizer) {}
-
   sanitizeSVG(svg: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(svg);
-  }
-
-  async navigateTo(route: string): Promise<void> {
-    await this.router.navigate([route]);
   }
 
   protected readonly languages = languages;

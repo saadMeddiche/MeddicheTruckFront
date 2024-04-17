@@ -10,7 +10,7 @@ import {NavigationService} from "@app/base/services/navigation.service";
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent extends NavigationService{
+export class RegisterComponent extends NavigationService {
 
   user : UserInformations = {
     username :'',
