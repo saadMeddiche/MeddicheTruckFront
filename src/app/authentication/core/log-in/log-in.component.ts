@@ -4,7 +4,7 @@ import {AuthService} from "@app/authentication/services/authentication/auth.serv
 import {Router} from "@angular/router";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {Logo} from "@app/configurations/globalData";
-import {NavigationService} from "@app/base/services/navigation.service";
+import {NavigationService} from "@app/services/navigation.service";
 
 @Component({
   selector: 'app-log-in',

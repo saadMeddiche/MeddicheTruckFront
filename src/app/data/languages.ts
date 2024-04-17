@@ -1,6 +1,6 @@
-import {Language} from "@app/layouts/navbar/models/Language"
+import {ILanguage} from "@app/interfaces/ILanguage"
 
-export const languages: Language[] = [
+export const languages: ILanguage[] = [
   {
     name: 'Français',
     code: 'fr',

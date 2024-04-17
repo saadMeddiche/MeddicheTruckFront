@@ -4,7 +4,7 @@ import {AuthService} from "@app/authentication/services/authentication/auth.serv
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {Pages} from "@app/configurations/pages";
-import {NavigationService} from "@app/base/services/navigation.service";
+import {NavigationService} from "@app/services/navigation.service";
 import {TokenService} from "@app/authentication/services/token/token.service";
 
 @Injectable({

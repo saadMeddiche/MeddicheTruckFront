@@ -3,7 +3,7 @@ import {UserInformations} from "@app/authentication/models/UserInformations";
 import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Router} from "@angular/router";
 import {Logo} from "@app/configurations/globalData";
-import {NavigationService} from "@app/base/services/navigation.service";
+import {NavigationService} from "@app/services/navigation.service";
 
 @Component({
   selector: 'app-register',

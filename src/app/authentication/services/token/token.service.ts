@@ -1,5 +1,5 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {LocalStorageService} from "@app/base/services/local-storage.service";
+import {LocalStorageService} from "@app/services/local-storage.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Token} from "@app/authentication/models/Token";
 import {JwtHelperService} from "@auth0/angular-jwt";
