@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@app/authentication/services/auth.service';
+import { AuthService } from '@app/authentication/services/authentication/auth.service';
 import { NavbarLink } from '@app/layouts/navbar/models/navbarLink';
 import {languages} from "@app/layouts/navbar/data/languages";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";

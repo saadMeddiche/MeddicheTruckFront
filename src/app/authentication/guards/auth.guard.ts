@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-import {AuthService} from "@app/authentication/services/auth.service";
+import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {Pages} from "@app/configurations/pages";

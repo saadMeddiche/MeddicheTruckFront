@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {UserInformations} from "@app/authentication/models/UserInformations";
-import {AuthService} from "@app/authentication/services/auth.service";
+import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Router} from "@angular/router";
 import {Logo} from "@app/configurations/globalData";
 import {NavigationService} from "@app/base/services/navigation.service";

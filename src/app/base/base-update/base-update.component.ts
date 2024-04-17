@@ -4,7 +4,7 @@ import {BaseService} from "@app/base/services/base.service"
 import {ImageHolder} from "@app/interfaces/ImageHolder";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "@app/authentication/services/auth.service";
+import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ImageType} from "@app/enums/ImageType";
 import {BACKEND} from "@app/configurations/api";

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {UsernameAndPassword} from "@app/authentication/models/UsernameAndPassword";
-import {AuthService} from "@app/authentication/services/auth.service";
+import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Router} from "@angular/router";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {Logo} from "@app/configurations/globalData";

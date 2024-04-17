@@ -1,4 +1,4 @@
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../services/authentication/auth.service";
 import {Router} from "@angular/router";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Permissions} from "@app/enums/permissions";
