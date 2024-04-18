@@ -8,18 +8,20 @@
     <h2 class="text-2xl font-bold text-white">
       Sign in to platform
     </h2>
-    <form (ngSubmit)="logIn()" class="mt-8 space-y-6" >
-<!--      <div>-->
-<!--        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 text-white">Your email</label>-->
-<!--        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="name@company.com" required>-->
-<!--      </div>-->
+    <form [formGroup]="form" (ngSubmit)="logIn()" class="mt-8 space-y-6" >
       <div>
         <label for="username" class="block mb-2 text-sm font-medium  text-white">Your username</label>
-        <input type="text" name="username" id="username" class="border sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Username" [(ngModel)]="credentials.username"  required>
+        <input
+          formControlName="username"
+          type="text" name="username" id="username" class="border sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder=""  required>
+        <div class="text-red-500 font-light">{{getErrorName("username")}}</div>
       </div>
       <div>
         <label for="password" class="block mb-2 text-sm font-medium  text-white">Your password</label>
-        <input type="password" name="password" id="password" placeholder="••••••••" class=" border sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" [(ngModel)]="credentials.password" required>
+        <input
+          formControlName="password"
+          type="password" name="password" id="password" placeholder="" class=" border sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" required>
+        <div class="text-red-500 font-light">{{getErrorPassword("password")}}</div>
       </div>
       <div class="flex items-start">
         <div class="flex items-center h-5">
@@ -30,7 +32,9 @@
         </div>
         <a href="#" class="ml-auto text-sm text-primary-700 hover:underline text-primary-500">Lost Password?</a>
       </div>
-      <button type="submit" class="w-full px-5 py-3 text-base font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto bg-primary-600 hover:bg-primary-700 focus:ring-primary-800">Login to your account</button>
+      <button
+        [disabled]="form.invalid"
+        type="submit" class="disabled:bg-blue-300 w-full px-5 py-3 text-base font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto bg-primary-600 hover:bg-primary-700 focus:ring-primary-800">Login to your account</button>
       <div class="text-sm font-medium text-gray-400">
         Not registered? <a class="text-primary-700 hover:underline text-primary-500">Create account</a>
       </div>
