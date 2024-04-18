@@ -16,9 +16,9 @@ export class LocalStorageService {
   // Method to get data from localStorage
   getItem(key: string): any {
     let item = null;
-    if (isPlatformBrowser(this.platformId)) {
+    // if (isPlatformBrowser(this.platformId)) {
       item = localStorage.getItem(key);
-    }
+    // }
     return item ? JSON.parse(item) : null;
   }
 

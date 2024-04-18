@@ -40,7 +40,7 @@
 <!--        </li>-->
 
         <ng-container *ngFor="let item of navbarLinks">
-          <li>
+          <li *ngIf="item.isVisible()">
             <a (click)="item.function()" class="block py-2 px-3 md:p-0 rounded text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700 cursor-pointer">{{item.name}}</a>
           </li>
         </ng-container>

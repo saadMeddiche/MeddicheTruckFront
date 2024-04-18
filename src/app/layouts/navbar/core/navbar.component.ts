@@ -31,8 +31,6 @@ export class NavbarComponent extends NavigationService{
     this.selectedLanguage = this.languageService.getLanguage();
   }
 
-
-
   navbarLinks: NavbarLink[] = [
     {
       name: 'Login',
@@ -47,7 +45,7 @@ export class NavbarComponent extends NavigationService{
     {
       name: 'Profile',
       function: () => this.navigateTo('/?profile'),
-      isVisible: () => true
+      isVisible: () => this.auth.isLoggedIn()
     },
     {
       name: 'Dashboard',
