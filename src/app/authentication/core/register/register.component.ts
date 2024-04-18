@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UserInformations} from "@app/authentication/models/UserInformations";
 import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Router} from "@angular/router";
 import {Logo} from "@app/configurations/globalData";
-import {NavigationService} from "@app/services/navigation.service";
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {
@@ -12,21 +11,17 @@ import {
   noSpaceValidator,
   passwordValidator
 } from "@app/base/validation/costum-validators/costum.validators";
-import {
-  getErrorMessageForBirthDate,
-  getErrorMessageForEmail,
-  getErrorMessageForName,
-  getErrorMessageForPassword
-} from "@app/base/validation/error-messages/error.messages";
+import {ToastType} from "@app/layouts/toast/enums/ToastType";
+import {ValidationService} from "@app/base/services/validation.service";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent extends NavigationService  {
+export class RegisterComponent extends ValidationService {
 
-  registrationForm: FormGroup;
+  protected readonly Logo  = Logo;
 
   user : UserInformations = {
     username :'',
@@ -40,10 +35,22 @@ export class RegisterComponent extends NavigationService  {
 
   constructor(private auth :AuthService , override router :Router , private toastService :ToastService){
     super(router);
-    this.registrationForm = this.buildForm();
   }
 
-  buildForm() {
+  register(): void {
+
+    if(this.form.invalid) {
+      this.toastService.pushToToaster('Validation failed', ToastType.DANGER);
+      return;
+    }
+
+    this.user = this.form.value;
+
+
+    this.auth.register(this.user).subscribe();
+  }
+
+  override buildForm() {
     return new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -78,42 +85,13 @@ export class RegisterComponent extends NavigationService  {
         Validators.minLength(8),
         passwordValidator()
       ])
-
       },
-
       {
        validators: matchValidator('confirmPassword', 'password')
       }
-
     );
   }
 
-  register(): void {
-    if(this.registrationForm.invalid) {
-      alert('Please fill all the required fields');
-      return;
-    }
 
-    this.user = this.registrationForm.value;
-
-    this.auth.register(this.user).subscribe();
-  }
-
-  protected readonly Logo  = Logo;
-  protected getErrorName(controlName: string): string {
-    return getErrorMessageForName(controlName, this.registrationForm);
-  }
-
-  protected getErrorEmail(controlName: string): string {
-    return getErrorMessageForEmail(controlName, this.registrationForm);
-  }
-
-  protected getErrorPassword(controlName: string): string {
-    return getErrorMessageForPassword(controlName, this.registrationForm);
-  }
-
-  protected getErrorBirthDate(controlName: string): string {
-    return getErrorMessageForBirthDate(controlName, this.registrationForm);
-  }
 
 }
