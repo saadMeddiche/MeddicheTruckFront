@@ -3,7 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
   MatCard,
@@ -66,6 +66,7 @@ import {UserDashboardComponent} from "@app/components/dashboards/user-dashboard/
     MatLabel,
     MatInputModule,
     MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(),

@@ -21,7 +21,6 @@ export class TokenService {
     private localStorageService :LocalStorageService,
     private http: HttpClient,
     private jwtHelper: JwtHelperService,
-    private toastService: ToastService,
     private userService: UserService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
@@ -37,7 +36,6 @@ export class TokenService {
   get(): string | null {
      const token = this.localStorageService.getItem(this.tokenKey);
      if(!token){
-       console.error('\n[TokenService](get) Token is not found\n');
        return null
      }
       return token;
@@ -95,7 +93,6 @@ export class TokenService {
           resolve(response);
         },
         (httpErrorResponse) => {
-          this.toastService.pushToToaster("Server didn't recognize the token", ToastType.DANGER);
           resolve(false);
         }
       );
