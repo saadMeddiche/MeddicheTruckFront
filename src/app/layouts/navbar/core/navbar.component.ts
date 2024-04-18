@@ -24,7 +24,6 @@ export class NavbarComponent extends NavigationService{
               private sanitizer: DomSanitizer,
               private languageService: LanguageService){
     super(router);
-
   }
 
   ngOnInit(): void {
