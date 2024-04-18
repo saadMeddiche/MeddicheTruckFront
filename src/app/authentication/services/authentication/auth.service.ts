@@ -59,7 +59,9 @@ export class AuthService extends NavigationService{
         return response;
       }),
       catchError(httpErrorResponse => {
-        this.toastService.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
+        httpErrorResponse.error.forEach((error: string) => {
+          this.toastService.pushToToaster(error, ToastType.DANGER);
+        })
         return of(null);
       })
     );
@@ -92,7 +94,9 @@ export class AuthService extends NavigationService{
         return response;
       }),
       catchError(httpErrorResponse => {
-        this.toastService.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
+        httpErrorResponse.error.forEach((error: string) => {
+          this.toastService.pushToToaster(error, ToastType.DANGER);
+        })
         return of(null);
       })
     );

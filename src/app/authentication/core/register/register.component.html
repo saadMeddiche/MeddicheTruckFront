@@ -47,8 +47,14 @@
       </div>
       <button type="submit" class="w-full px-5 py-3 text-base font-bold  text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto bg-primary-600 hover:bg-primary-700 focus:ring-primary-800">Create account</button>
       <div class="text-sm font-bold  text-gray-500">
-        Already have an account? <a href="#" class="text-primary-700 hover:underline text-primary-500">Login here</a>
+        Already have an account? <a (click)="navigateToLogin()" class="text-primary-700 hover:underline text-primary-500">Login here</a>
       </div>
     </form>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#registration-form').parsley();
+  });
+</script>
