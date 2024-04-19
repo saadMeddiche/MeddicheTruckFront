@@ -8,13 +8,12 @@ import {BaseModel} from "@app/base/models/BaseModel";
 import {BaseService} from "@app/base/services/base.service";
 import {ID} from "@app/types/GeneralTypes";
 import {getSingularName} from "@app/utils/text";
+import {NavigationService} from "@app/base/services/navigation.service";
 
 @Component({
   template: ''
 })
-export abstract class BaseListComponent<I extends BaseModel, K extends string, S extends BaseService<I , K>> {
-
-  host :string = "http://localhost:8080";
+export abstract class BaseListComponent<I extends BaseModel, K extends string, S extends BaseService<I>> extends NavigationService {
 
   items : I[] = [];
 
@@ -29,8 +28,9 @@ export abstract class BaseListComponent<I extends BaseModel, K extends string, S
   protected constructor(
     @Inject(BaseService) protected itemService: S,
     protected toastService: ToastService,
-    protected router: Router
+    override router: Router
   ) {
+    super(router);
   }
 
   ngOnInit() {
@@ -48,49 +48,48 @@ export abstract class BaseListComponent<I extends BaseModel, K extends string, S
 
   searchItems() {
     this.itemService.searchItems(this.searchTerm , this.page , this.size).subscribe(
-      (response: PaginatedResponse<I ,K>) => {
-        for (const key in response._embedded) {
-          if (Object.prototype.hasOwnProperty.call(response._embedded, key)) {
-            this.items = response._embedded[key];
-            break;
-          }
-        }
-        this.totalPages = response.page.totalPages;
+      (response: PaginatedResponse<I>) => {
+        this.items = response.content;
+        this.totalPages = response.totalPages;
         return response;
       },
       (httpErrorResponse) => {
-        console.error(httpErrorResponse);
-        this.toastService.pushToToaster(httpErrorResponse.error.message, ToastType.DANGER);
+        console.error(`\n[BaseListComponent](searchItems) httpErrorResponse: `, httpErrorResponse);
+        this.toastService.pushToToaster("List didn't fetch correctly", ToastType.DANGER);
         return of(null);
       }
     );
   }
 
-  gotoAddPage(){
-    this.router.navigate([`/${this.itemService.key}/add`]);
+  async navigateToAddPage(){
+    await this.navigateTo(`/${this.itemService.key}/add`)
   }
 
-  editItem(itemID: ID){
-    this.router.navigate([`/${this.itemService.key}/edit/${itemID}`]);
+  async navigateToEditPage(itemID: ID){
+    await this.navigateTo(`/${this.itemService.key}/edit/${itemID}`)
   }
 
   deleteItem(itemID: ID){
     alert("Are you sure you want to delete this item?");
     this.itemService.deleteItem(itemID).subscribe(
       () => {
-        this.toastService.pushToToaster(`${getSingularName(this.itemService.key)} deleted successfully`, ToastType.SUCCESS);
+        this.toastService.pushToToaster(`${this.getItemName} deleted successfully`, ToastType.SUCCESS);
         this.searchItems();
       },
       (httpErrorResponse) => {
 
         if(httpErrorResponse.status === 404){
-          this.toastService.pushToToaster(`${getSingularName(this.itemService.key)} not found`, ToastType.DANGER);
+          this.toastService.pushToToaster(`${this.getItemName} not found`, ToastType.DANGER);
           return;
         }
 
         console.error(httpErrorResponse);
-        this.toastService.pushToToaster(httpErrorResponse.error.message, ToastType.DANGER);
+        this.toastService.pushToToaster(`${this.getItemName} did`, ToastType.DANGER);
       }
     );
+  }
+
+  getItemName(){
+    return getSingularName(this.itemService.key);
   }
 }
