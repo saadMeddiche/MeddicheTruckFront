@@ -32,7 +32,7 @@ export class Vehicle extends BaseModel {
   }
 
   set type(type: VehicleType) {
-    this._type = type;
+    this._type = type ? type : VehicleType.CAR;
   }
 
   get engineType(): EngineType {
@@ -40,7 +40,7 @@ export class Vehicle extends BaseModel {
   }
 
   set engineType(engineType: EngineType) {
-    this._engineType = engineType;
+    this._engineType = engineType ? engineType : EngineType.FUEL;
   }
 
   get model(): string {
@@ -48,7 +48,7 @@ export class Vehicle extends BaseModel {
   }
 
   set model(model: string) {
-    this._model = model;
+    this._model = model ? model : '0000';
   }
 
   get plate(): string {
@@ -56,7 +56,7 @@ export class Vehicle extends BaseModel {
   }
 
   set plate(plate: string) {
-    this._plate = plate;
+    this._plate = plate ? plate : 'ABCD 0000';
   }
 
 }
