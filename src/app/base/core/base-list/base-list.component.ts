@@ -9,6 +9,7 @@ import {BaseService} from "@app/base/services/base.service";
 import {ID} from "@app/types/GeneralTypes";
 import {getSingularName} from "@app/utils/text";
 import {NavigationService} from "@app/base/services/navigation.service";
+import {AuthService} from "@app/authentication/services/authentication/auth.service";
 
 @Component({
   template: ''
@@ -28,7 +29,8 @@ export abstract class BaseListComponent<I extends BaseModel, S extends BaseServi
   protected constructor(
     @Inject(BaseService) protected itemService: S,
     protected toastService: ToastService,
-    override router: Router
+    override router: Router,
+    protected authService: AuthService
   ) {
     super(router);
   }
@@ -55,9 +57,34 @@ export abstract class BaseListComponent<I extends BaseModel, S extends BaseServi
       },
       (httpErrorResponse) => {
         console.error(`\n[BaseListComponent](searchItems) httpErrorResponse: `, httpErrorResponse);
-        this.toastService.pushToToaster("List didn't fetch correctly", ToastType.DANGER);
+
+        this.toastService.pushToToaster("List didn't fetch correctly", ToastType.WARNING);
+
+        if(httpErrorResponse.status === 401 ){
+          this.toastService.pushToToaster("Error: Please reload page or re-login", ToastType.DANGER);
+        }
         return of(null);
       }
+    );
+  }
+
+  deleteItem(itemID: ID){
+    alert("Are you sure you want to delete this item?");
+    this.itemService.deleteItem(itemID).subscribe(
+        () => {
+          this.toastService.pushToToaster(`${this.getItemName} deleted successfully`, ToastType.SUCCESS);
+          this.searchItems();
+        },
+        (httpErrorResponse) => {
+
+          if(httpErrorResponse.status === 404){
+            this.toastService.pushToToaster(`${this.getItemName} not found`, ToastType.DANGER);
+            return;
+          }
+
+          console.error(httpErrorResponse);
+          this.toastService.pushToToaster(`${this.getItemName} did`, ToastType.DANGER);
+        }
     );
   }
 
@@ -69,27 +96,24 @@ export abstract class BaseListComponent<I extends BaseModel, S extends BaseServi
     await this.navigateTo(`/${this.itemService.key}/edit/${itemID}`)
   }
 
-  deleteItem(itemID: ID){
-    alert("Are you sure you want to delete this item?");
-    this.itemService.deleteItem(itemID).subscribe(
-      () => {
-        this.toastService.pushToToaster(`${this.getItemName} deleted successfully`, ToastType.SUCCESS);
-        this.searchItems();
-      },
-      (httpErrorResponse) => {
-
-        if(httpErrorResponse.status === 404){
-          this.toastService.pushToToaster(`${this.getItemName} not found`, ToastType.DANGER);
-          return;
-        }
-
-        console.error(httpErrorResponse);
-        this.toastService.pushToToaster(`${this.getItemName} did`, ToastType.DANGER);
-      }
-    );
-  }
-
   getItemName(){
     return getSingularName(this.itemService.key);
+  }
+
+  clearSearchTerm(){
+    this.searchTerm = "";
+    this.searchItems();
+  }
+
+  isPreviousDisabled(){
+    return this.page === 0 || this.totalPages == 0
+  }
+
+  isNextDisabled(){
+    return this.page === this.totalPages - 1 || this.totalPages == 0
+  }
+
+  currentPage(){
+    return this.totalPages != 0 ? this.page + 1 : 0;
   }
 }

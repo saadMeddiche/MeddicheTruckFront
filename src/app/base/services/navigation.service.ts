@@ -9,6 +9,10 @@ export abstract class NavigationService {
 
   protected constructor(protected router: Router) {}
 
+  refreshPage(): void {
+    window.location.reload();
+  }
+
   async navigateTo(route :string) {
     await this.router.navigate([route]);
   }

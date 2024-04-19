@@ -31,9 +31,6 @@ export function matchValidator(confirmPasswordControlName: string, passwordContr
 
     const password = control.get(passwordControlName)?.value;
 
-    console.log(password);
-    console.log(confirmPassword);
-
     return password !== confirmPassword ? {match: true} : null;
 
   }
