@@ -29,6 +29,8 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
 
   searchTerm: string = "";
 
+  unWantedItemId: ID = null;
+
   @Input() columns: Column<I>[] = []
 
   @Input() itemService: S | undefined;
@@ -74,23 +76,36 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   }
 
   deleteItem(itemID: ID){
-    alert("Are you sure you want to delete this item?");
     this.itemService!.deleteItem(itemID).subscribe(
       () => {
-        this.toastService.pushToToaster(`${this.getItemName} deleted successfully`, ToastType.SUCCESS);
+        this.toastService.pushToToaster(`${this.getItemName()} deleted successfully`, ToastType.SUCCESS);
         this.searchItems();
       },
       (httpErrorResponse) => {
 
         if(httpErrorResponse.status === 404){
-          this.toastService.pushToToaster(`${this.getItemName} not found`, ToastType.DANGER);
+          this.toastService.pushToToaster(`${this.getItemName()} not found`, ToastType.DANGER);
           return;
         }
 
         console.error(httpErrorResponse);
-        this.toastService.pushToToaster(`${this.getItemName} did`, ToastType.DANGER);
+        this.toastService.pushToToaster(`${this.getItemName()} did`, ToastType.DANGER);
       }
     );
+  }
+
+  setUnWantedItemId(itemID: ID){
+    console.log("setUnWantedItemId", itemID);
+
+    const element = document.getElementById(`delete-modal`);
+
+    // remove class hidden
+    element!.classList.remove('hidden');
+
+    // add aria-modal="true"
+    element!.setAttribute('aria-modal', 'true');
+
+    this.unWantedItemId = itemID;
   }
 
   async navigateToAddPage(){
