@@ -10,6 +10,7 @@ import {ID} from "@app/types/GeneralTypes";
 import {getSingularName} from "@app/utils/text";
 import {NavigationService} from "@app/base/services/navigation.service";
 import {AuthService} from "@app/authentication/services/authentication/auth.service";
+import {Column} from "@app/base/models/Column";
 
 @Component({
   template: ''
@@ -25,6 +26,8 @@ export abstract class BaseListComponent<I extends BaseModel, S extends BaseServi
   totalPages: number = 0;
 
   searchTerm: string = "";
+
+  abstract columns: Column<I>[];
 
   protected constructor(
     @Inject(BaseService) protected itemService: S,
