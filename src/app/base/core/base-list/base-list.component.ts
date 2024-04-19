@@ -13,7 +13,7 @@ import {NavigationService} from "@app/base/services/navigation.service";
 @Component({
   template: ''
 })
-export abstract class BaseListComponent<I extends BaseModel, K extends string, S extends BaseService<I>> extends NavigationService {
+export abstract class BaseListComponent<I extends BaseModel, S extends BaseService<I>> extends NavigationService {
 
   items : I[] = [];
 

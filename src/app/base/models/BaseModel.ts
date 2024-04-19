@@ -7,10 +7,17 @@ export interface IBaseModel{
 
 export class BaseModel {
 
-  @AutoGetterSetter
-  protected id: ID;
+  private _id: ID;
 
   constructor(baseModel: IBaseModel) {
-    this.id = baseModel.id;
+    this._id = baseModel.id;
+  }
+
+  get id(): ID {
+    return this._id;
+  }
+
+  set id(id: ID) {
+    this._id = id;
   }
 }
