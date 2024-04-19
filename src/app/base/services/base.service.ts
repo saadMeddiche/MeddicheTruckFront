@@ -13,7 +13,7 @@ export abstract class BaseService<I extends BaseModel> {
 
   abstract key: string ;
   protected constructor(
-    private http: HttpClient
+    protected http: HttpClient
   ) { }
 
   searchItems(searchTerm: string , page: number , size: number) :Observable<PaginatedResponse<I>>{

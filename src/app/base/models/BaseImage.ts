@@ -1,7 +1,7 @@
-import {BaseModel} from "./BaseModel";
+import {IBaseModel} from "./BaseModel";
 import {SemiString} from "@app/types/GeneralTypes";
 
-export interface BaseImage extends BaseModel
+export interface BaseImage extends IBaseModel
 {
   name : string;
   photoInBase64Format : SemiString;
