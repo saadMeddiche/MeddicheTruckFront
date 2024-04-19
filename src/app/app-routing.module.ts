@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {authRoutes} from "./authentication/auth.routes";
-import {Pages} from "@app/configurations/pages";
+import {Pages} from "@app/data/pages";
 import {dashboardRoutes} from "@app/components/dashboards/dashboard.routes";
 import {HomeComponent} from "@app/components/home/home.component";
+import {vehicleRoutes} from "@app/components/vehicle/vehicle.routes";
 
 const routes: Routes = [
   ...authRoutes,
   ...dashboardRoutes,
+  ...vehicleRoutes,
   { path: Pages.HOME, component: HomeComponent },
   { path: '**', redirectTo: Pages.HOME, pathMatch: 'full' }
 ];

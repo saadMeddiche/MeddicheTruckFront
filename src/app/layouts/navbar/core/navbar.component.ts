@@ -4,10 +4,10 @@ import { AuthService } from '@app/authentication/services/authentication/auth.se
 import { NavbarLink } from '@app/layouts/navbar/models/navbarLink';
 import {languages} from "@app/data/languages";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
-import {Logo} from "@app/configurations/globalData";
+import {Logo} from "@app/data/logo";
 import {ILogo} from "@app/interfaces/ILogo";
-import {NavigationService} from "@app/services/navigation.service";
-import {LanguageService} from "@app/services/language.service";
+import {NavigationService} from "@app/base/services/navigation.service";
+import {LanguageService} from "@app/base/services/language.service";
 import {ILanguage} from "@app/interfaces/ILanguage";
 
 @Component({

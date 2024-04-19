@@ -9,30 +9,59 @@ import {ID} from "@app/types/GeneralTypes";
 @Injectable({
   providedIn: 'root'
 })
-export abstract class BaseService<I extends BaseModel , K extends string> {
+export abstract class BaseService<I extends BaseModel> {
 
   abstract key: string ;
   protected constructor(
     private http: HttpClient
   ) { }
 
-  searchItems(searchTerm: string , page: number , size: number) :Observable<PaginatedResponse<I,K>>{
-    return this.http.get<PaginatedResponse<I ,K>>(`${BACKEND_API}/${this.key}/search/dynamicSearch?searchTerm=${searchTerm}&page=${page}&size=${size}`);
+  searchItems(searchTerm: string , page: number , size: number) :Observable<PaginatedResponse<I>>{
+    return this.http.get<PaginatedResponse<I>>(this.buildSearchItemsUrl(searchTerm , page , size));
   }
 
   addItem(item: I) :Observable<I>{
-    return this.http.post<I>(`${BACKEND_API}/${this.key}`, item);
+    return this.http.post<I>(this.buildSimpleUrl(), item);
   }
 
   updateItem(item: I) :Observable<I>{
-    return this.http.put<I>(`${BACKEND_API}/${this.key}/${item.id}`, item);
+    return this.http.put<I>(this.buildSimpleUrl(), item);
   }
 
   getItem(id: ID) :Observable<I>{
-    return this.http.get<I>(`${BACKEND_API}/${this.key}/${id}`);
+    return this.http.get<I>(this.buildIdUrl(id));
   }
 
   deleteItem(id: ID) :Observable<void>{
-    return this.http.delete<void>(`${BACKEND_API}/${this.key}/${id}`);
+    return this.http.delete<void>(this.buildIdUrl(id));
   }
+
+  private buildSimpleUrl() :string {
+    return `${BACKEND_API}/${this.key}`;
+  }
+
+  private buildIdUrl(id: ID) :string {
+    return `${BACKEND_API}/${this.key}/${id}`;
+  }
+
+  private buildSearchItemsUrl(searchTerm: string , page: number , size: number) :string {
+
+    let url = `${BACKEND_API}/${this.key}`;
+
+    const queryParams :string[] = [];
+
+    if(searchTerm) queryParams.push(`searchTerm=${searchTerm}`);
+
+    if(page) queryParams.push(`page=${page}`);
+
+    if(size) queryParams.push(`size=${size}`);
+
+    const queryString = queryParams.length > 0 ?  queryParams.join('&') : '';
+
+    if(queryString) url += `?${queryString}`;
+
+    return url;
+
+  }
+
 }

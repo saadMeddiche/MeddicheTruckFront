@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {NavigationService} from "@app/services/navigation.service";
+import {NavigationService} from "@app/base/services/navigation.service";
 import {Router} from "@angular/router";
 import {
   getErrorMessageForBirthDate,

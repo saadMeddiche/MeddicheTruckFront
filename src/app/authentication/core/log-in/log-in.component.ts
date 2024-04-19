@@ -3,7 +3,7 @@ import {UsernameAndPassword} from "@app/authentication/models/UsernameAndPasswor
 import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Router} from "@angular/router";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
-import {Logo} from "@app/configurations/globalData";
+import {Logo} from "@app/data/logo";
 import {ValidationService} from "@app/base/services/validation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {noSpaceValidator, passwordValidator} from "@app/base/validation/costum-validators/costum.validators";

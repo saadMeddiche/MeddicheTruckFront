@@ -14,7 +14,7 @@ import {isPlatformBrowser} from "@angular/common";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {TokenService} from "@app/authentication/services/token/token.service";
-import {NavigationService} from "@app/services/navigation.service";
+import {NavigationService} from "@app/base/services/navigation.service";
 import {UserService} from "@app/authentication/services/user/user.service";
 
 @Injectable({

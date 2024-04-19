@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {UserInformations} from "@app/authentication/models/UserInformations";
 import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Router} from "@angular/router";
-import {Logo} from "@app/configurations/globalData";
+import {Logo} from "@app/data/logo";
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {

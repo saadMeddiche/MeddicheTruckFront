@@ -1,20 +1,17 @@
 <div class="h-full font-bold flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 bg-gray-900">
   <div class="h-4/5 overflow-y-auto grid mb-8 border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 md:mb-12 md:grid-cols-2 bg-white dark:bg-gray-800">
-  <ng-container *ngFor="let card of cards">
-      <figure class="hover:bg-gray-900 cursor-pointer flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e dark:bg-gray-800 dark:border-gray-700">
-        <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-          <p class="my-4">{{card.description}}</p>
-        </blockquote>
-        <figcaption class="flex items-center justify-center ">
-          <img class="rounded-lg w-20 h-20" src="{{card.imagePath}}" alt="profile picture">
-          <div class="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
-            <div class="font-bold">{{card.title}}</div>
-          </div>
-        </figcaption>
-      </figure>
-  </ng-container>
-
-</div>
-
-
+    <ng-container *ngFor="let card of cards">
+        <figure class="hover:bg-gray-900 cursor-pointer flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e dark:bg-gray-800 dark:border-gray-700">
+          <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
+            <p class="my-4">{{card.description}}</p>
+          </blockquote>
+          <figcaption class="flex items-center justify-center ">
+            <img class="rounded-lg w-20 h-20" src="{{card.imagePath}}" alt="profile picture">
+            <div class="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
+              <div class="font-bold">{{card.title}}</div>
+            </div>
+          </figcaption>
+        </figure>
+    </ng-container>
+  </div>
 </div>

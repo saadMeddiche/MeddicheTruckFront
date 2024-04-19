@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {Router} from "@angular/router";
-import {Pages} from "@app/configurations/pages";
+import {Pages} from "@app/data/pages";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,21 @@ export abstract class NavigationService {
 
   async navigateToUserDashboard() {
     await this.navigateTo(Pages.USER_DASHBOARD);
+  }
+
+  async navigateToVehiclesList() {
+    await this.navigateTo(Pages.VEHICLES_LIST);
+  }
+
+  async navigateToPersonsList() {
+    await this.navigateTo(Pages.PERSONS_LIST);
+  }
+
+  async navigateToPiecesList() {
+    await this.navigateTo(Pages.PIECES_LIST);
+  }
+
+  async navigateToTransactionsList() {
+    await this.navigateTo(Pages.TRANSACTIONS_LIST);
   }
 }

@@ -28,8 +28,10 @@ import { ToastComponent } from '@app/layouts/toast/core/toast.component';
 import { LogInComponent } from '@app/authentication/core/log-in/log-in.component';
 import { RegisterComponent } from '@app/authentication/core/register/register.component';
 import { HomeComponent } from '@app/components/home/home.component';
-import {LanguageService} from "@app/services/language.service";
+import {LanguageService} from "@app/base/services/language.service";
 import {UserDashboardComponent} from "@app/components/dashboards/user-dashboard/user-dashboard.component";
+import { VehicleComponent } from '@app/components/vehicle/core/vehicle.component';
+import { VehicleListComponent } from '@app/components/vehicle/core/vehicle-list/vehicle-list.component';
 
 
 
@@ -43,6 +45,8 @@ import {UserDashboardComponent} from "@app/components/dashboards/user-dashboard/
     RegisterComponent,
     HomeComponent,
     UserDashboardComponent,
+    VehicleComponent,
+    VehicleListComponent,
   ],
   imports: [
     BrowserModule,
