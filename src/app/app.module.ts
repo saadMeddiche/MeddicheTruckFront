@@ -31,6 +31,7 @@ import { HomeComponent } from '@app/components/home/home.component';
 import {LanguageService} from "@app/base/services/language.service";
 import {UserDashboardComponent} from "@app/components/dashboards/user-dashboard/user-dashboard.component";
 import { VehicleListComponent } from '@app/components/vehicle/core/vehicle-list/vehicle-list.component';
+import { BaseListComponent } from '@app/base/core/base-list/base-list.component';
 
 
 
@@ -45,6 +46,7 @@ import { VehicleListComponent } from '@app/components/vehicle/core/vehicle-list/
     HomeComponent,
     UserDashboardComponent,
     VehicleListComponent,
+    BaseListComponent,
   ],
   imports: [
     BrowserModule,

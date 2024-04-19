@@ -7,24 +7,23 @@ import {Router} from "@angular/router";
 import {lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
 import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Column} from "@app/base/models/Column";
+import {NavigationService} from "@app/base/services/navigation.service";
 
 @Component({
   selector: 'app-vehicle-list',
   templateUrl: './vehicle-list.component.html',
   styleUrl: './vehicle-list.component.scss'
 })
-export class VehicleListComponent extends BaseListComponent<Vehicle, VehicleService>
+export class VehicleListComponent extends NavigationService
 {
    constructor(
-       override itemService: VehicleService,
-       override toastService: ToastService,
+       protected vehicleService: VehicleService,
        override router: Router,
-       override authService: AuthService
    ) {
-     super( itemService, toastService, router , authService);
+     super(router);
    }
 
-   override columns : Column<Vehicle>[] = [
+    columns : Column<Vehicle>[] = [
       {
          name: 'plate',
          label: 'Plate' ,
@@ -51,6 +50,5 @@ export class VehicleListComponent extends BaseListComponent<Vehicle, VehicleServ
       }
    ]
 
-   protected readonly upperCaseFirstLetter = upperCaseFirstLetter;
-   protected readonly lowerCaseFirstLetter = lowerCaseFirstLetter;
+
 }
