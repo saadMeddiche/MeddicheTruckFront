@@ -1,13 +1,10 @@
-import { Component } from '@angular/core';
-import {BaseListComponent} from "@app/base/core/base-list/base-list.component";
+import {Component} from '@angular/core';
 import {Vehicle} from "@app/components/vehicle/models/vehicle";
 import {VehicleService} from "@app/components/vehicle/services/vehicle.service";
-import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {Router} from "@angular/router";
-import {lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
-import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {Column} from "@app/base/models/Column";
 import {NavigationService} from "@app/base/services/navigation.service";
+import {ColumnType} from "@app/base/enums/ColumnType";
 
 @Component({
   selector: 'app-vehicle-list',
@@ -27,26 +24,33 @@ export class VehicleListComponent extends NavigationService
       {
          name: 'plate',
          label: 'Plate' ,
-         type: 'text',
+         type: ColumnType.TEXT,
          value: (item: Vehicle) => item.plate
       },
       {
         name: 'model',
         label: 'Model',
-        type: 'text',
+        type: ColumnType.TEXT,
         value: (item: Vehicle) => item.model
       },
       {
         name: 'type',
         label: 'Type' ,
-        type: 'text',
+        type: ColumnType.TEXT,
         value: (item: Vehicle) => item.type
       },
       {
         name: 'engineType',
         label: 'Engine Type',
-        type: 'text',
+        type: ColumnType.TEXT,
         value: (item: Vehicle) => item.engineType
+      },
+      {
+        name:'image',
+        label: 'Images',
+        type: ColumnType.IMAGE,
+        value: (_item: Vehicle) => "images",
+        function: (item: Vehicle) => this.navigateTo(`/vehicles/${item.id}/images`)
       }
    ]
 

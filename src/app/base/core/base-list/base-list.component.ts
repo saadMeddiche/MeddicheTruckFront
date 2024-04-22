@@ -11,6 +11,7 @@ import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {of} from "rxjs";
 import {ID} from "@app/types/GeneralTypes";
 import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
+import {ColumnType} from "@app/base/enums/ColumnType";
 
 @Component({
   selector: 'app-base-list',
@@ -140,4 +141,5 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   protected readonly lowerCaseFirstLetter = lowerCaseFirstLetter;
   protected readonly upperCaseFirstLetter = upperCaseFirstLetter;
 
+  protected readonly ColumnType = ColumnType;
 }
