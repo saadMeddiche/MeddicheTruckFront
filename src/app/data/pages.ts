@@ -4,6 +4,7 @@ export enum Pages{
   HOME = 'home',
   USER_DASHBOARD = 'userDashboard',
   VEHICLES_LIST = 'vehicles',
+  VEHICLES_IMAGES = 'vehicles/:id/images',
   PERSONS_LIST = 'persons',
   PIECES_LIST = 'pieces',
   TRANSACTIONS_LIST = 'transactions',

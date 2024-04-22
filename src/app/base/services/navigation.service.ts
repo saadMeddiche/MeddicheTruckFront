@@ -1,6 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {Pages} from "@app/data/pages";
+import {ID} from "@app/types/GeneralTypes";
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,10 @@ export abstract class NavigationService {
 
   async navigateToVehiclesList() {
     await this.navigateTo(Pages.VEHICLES_LIST);
+  }
+
+  async navigateToVehicleImages(id: ID) {
+    await this.navigateTo(Pages.VEHICLES_IMAGES.replace(':id', id!.toString()));
   }
 
   async navigateToPersonsList() {

@@ -32,6 +32,8 @@ import {LanguageService} from "@app/base/services/language.service";
 import {UserDashboardComponent} from "@app/components/dashboards/user-dashboard/user-dashboard.component";
 import { VehicleListComponent } from '@app/components/vehicle/core/vehicle-list/vehicle-list.component';
 import { BaseListComponent } from '@app/base/core/base-list/base-list.component';
+import { BaseImageComponent } from '@app/base/core/base-image/base-image.component';
+import { VehicleImageComponent } from '@app/components/vehicle/core/vehicle-image/vehicle-image.component';
 
 
 
@@ -47,6 +49,8 @@ import { BaseListComponent } from '@app/base/core/base-list/base-list.component'
     UserDashboardComponent,
     VehicleListComponent,
     BaseListComponent,
+    BaseImageComponent,
+    VehicleImageComponent,
   ],
   imports: [
     BrowserModule,

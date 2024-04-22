@@ -50,7 +50,7 @@ export class VehicleListComponent extends NavigationService
         label: 'Images',
         type: ColumnType.IMAGE,
         value: (_item: Vehicle) => "images",
-        function: (item: Vehicle) => this.navigateTo(`/vehicles/${item.id}/images`)
+        function: (item: Vehicle) => this.navigateToVehicleImages(item.id)
       }
    ]
 
