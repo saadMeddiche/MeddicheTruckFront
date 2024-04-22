@@ -5,7 +5,6 @@ import {NavigationService} from "@app/base/services/navigation.service";
 import {Column} from "@app/base/models/Column";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {Router} from "@angular/router";
-import {AuthService} from "@app/authentication/services/authentication/auth.service";
 import {PaginatedResponse} from "@app/interfaces/PaginatedResponse";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {of} from "rxjs";
@@ -35,6 +34,8 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   @Input() columns: Column<I>[] = []
 
   @Input() itemService: S | undefined;
+
+  deleteConfirmationModalVisible: boolean = false;
 
   public constructor(
     protected toastService: ToastService,
@@ -90,24 +91,26 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
         }
 
         console.error(httpErrorResponse);
-        this.toastService.pushToToaster(`${this.getItemName()} did`, ToastType.DANGER);
+        this.toastService.pushToToaster(`${this.getItemName()} didn't deleted as expected`, ToastType.DANGER);
       }
     );
+    this.hideDeleteConfirmationModal()
   }
 
+  // Store the item id that is going to be deleted
   setUnWantedItemId(itemID: ID){
-    console.log("setUnWantedItemId", itemID);
-
-    const element = document.getElementById(`delete-modal`);
-
-    // remove class hidden
-    element!.classList.remove('hidden');
-
-    // add aria-modal="true"
-    element!.setAttribute('aria-modal', 'true');
-
     this.unWantedItemId = itemID;
+    this.displayDeleteConfirmationModal()
   }
+
+  displayDeleteConfirmationModal(){
+    this.deleteConfirmationModalVisible = true;
+  }
+
+  hideDeleteConfirmationModal(){
+    this.deleteConfirmationModalVisible = false;
+  }
+
 
   async navigateToAddPage(){
     await this.navigateTo(`/${this.itemService!.key}/add`)
