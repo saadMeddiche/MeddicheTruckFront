@@ -5,6 +5,7 @@ import {PaginatedResponse} from "@app/interfaces/PaginatedResponse"
 import {BACKEND_API} from "@app/configurations/api";
 import {BaseModel} from "@app/base/models/BaseModel";
 import {ID} from "@app/types/GeneralTypes";
+import {BaseSentImage} from "@app/base/models/image/BaseSentImage";
 
 @Injectable({
   providedIn: 'root'
@@ -20,19 +21,19 @@ export abstract class BaseService<I extends BaseModel> {
     return this.http.get<PaginatedResponse<I>>(this.buildSearchItemsUrl(searchTerm , page , size));
   }
 
-  addItem(item: I) :Observable<I>{
+  addItem(item: I) :Observable<I> {
     return this.http.post<I>(this.buildSimpleUrl(), item);
   }
 
-  updateItem(item: I) :Observable<I>{
+  updateItem(item: I) :Observable<I> {
     return this.http.put<I>(this.buildSimpleUrl(), item);
   }
 
-  getItem(id: ID) :Observable<I>{
+  getItem(id: ID) :Observable<I> {
     return this.http.get<I>(this.buildIdUrl(id));
   }
 
-  deleteItem(id: ID) :Observable<void>{
+  deleteItem(id: ID) :Observable<void> {
     return this.http.delete<void>(this.buildIdUrl(id));
   }
 
