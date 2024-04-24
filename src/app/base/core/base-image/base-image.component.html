@@ -41,7 +41,14 @@
 <!--    Images-->
     <div class="flex flex-wrap justify-center">
       <ng-container *ngFor="let image of images">
-        <div class="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2">
+        <div class="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 relative">
+          <button
+            (click)="deleteImage(image.id)"
+            class="absolute top-0 left-0 z-10 bg-red-500 text-white px-2 py-1 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 30 30">
+              <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
+            </svg>
+          </button>
           <img class="w-full h-auto rounded-lg"
                id="image-{{image.id}}"
                [src]="BACKEND + image.photoPath"
@@ -55,7 +62,7 @@
 
 
 <!--    Paging-->
-    <div class="sticky bottom-0  items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between dark:bg-gray-800 dark:border-gray-700">
+    <div class="sticky bottom-0 z-20  items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between dark:bg-gray-800 dark:border-gray-700">
       <div class="flex items-center mb-4 sm:mb-0">
         <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
           Showing

@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {NavigationService} from "@app/base/services/navigation.service";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {Router} from "@angular/router";
 import {PaginatedResponse} from "@app/interfaces/PaginatedResponse";
@@ -13,6 +12,7 @@ import {BaseImageService} from "@app/base/services/base-image.service";
 import {ValidationService} from "@app/base/services/validation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {fileTypeValidator, noSpaceValidator} from "@app/base/validation/costum-validators/costum.validators";
+import {ID} from "@app/types/GeneralTypes";
 
 @Component({
   selector: 'app-base-image',
@@ -106,6 +106,30 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     )
   }
 
+  deleteImage(imageID: ID){
+    this.itemService!.deleteItem(imageID).subscribe(
+      () => {
+        this.toastService.pushToToaster(`Image deleted successfully`, ToastType.SUCCESS);
+        this.searchItemImages();
+      },
+      (httpErrorResponse) => {
+
+        if(httpErrorResponse.status === 404){
+          this.toastService.pushToToaster(`Image not found`, ToastType.DANGER);
+          return;
+        }
+
+        if(httpErrorResponse.status === 401){
+          this.toastService.pushToToaster("Error: Please reload page or re-login", ToastType.DANGER);
+          return;
+        }
+
+        console.error(httpErrorResponse);
+        this.toastService.pushToToaster(`Image didn't deleted as expected`, ToastType.DANGER);
+      }
+    );
+  }
+
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length) {
@@ -128,13 +152,6 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     };
     console.log(this.image);
   }
-
-  // removeImage(image: BaseImage) {
-  //   const index = this.item.images.indexOf(image);
-  //   if (index !== -1) {
-  //     this.item.images.splice(index, 1);
-  //   }
-  // }
 
   getItemName(){
     return getSingularName(this.itemService!.key);
