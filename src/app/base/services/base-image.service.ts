@@ -22,7 +22,7 @@ export abstract class BaseImageService<IR extends BaseReceivedImage , IS extends
   }
 
   addItem(item: IS) :Observable<IR> {
-    return this.http.post<IR>(this.buildSimpleUrl(), item);
+    return this.http.post<IR>(this.buildSimpleUrl(), item.toJSON());
   }
 
   updateItem(item: IS) :Observable<IR> {

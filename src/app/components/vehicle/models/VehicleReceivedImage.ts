@@ -21,4 +21,13 @@ export class VehicleReceivedImage extends BaseReceivedImage {
     this._vehicleId = vehicleId;
   }
 
+  override toJSON(): IVehicleReceivedImage {
+    return {
+      id: this.id,
+      name: this.name,
+      photoPath: this.photoPath,
+      vehicleId: this.vehicleId
+    }
+  }
+
 }

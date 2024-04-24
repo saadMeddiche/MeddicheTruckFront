@@ -36,4 +36,12 @@ export class BaseSentImage extends BaseModel{
     this._photoInBase64Format = photoInBase64Format;
   }
 
+  toJSON(): IBaseSentImage {
+    return {
+      id: this.id,
+      name: this.name,
+      photoInBase64Format: this.photoInBase64Format
+    }
+  }
+
 }

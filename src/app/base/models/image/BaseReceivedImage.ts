@@ -34,4 +34,12 @@ export class BaseReceivedImage extends BaseModel {
   set photoPath(photoPath: SemiString) {
     this._photoPath = photoPath;
   }
+
+  public toJSON(): IBaseReceivedImage {
+    return {
+      id: this.id,
+      name: this.name,
+      photoPath: this.photoPath
+    }
+  }
 }

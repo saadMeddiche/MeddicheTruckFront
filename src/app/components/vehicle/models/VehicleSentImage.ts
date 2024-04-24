@@ -21,4 +21,13 @@ export class VehicleSentImage extends BaseSentImage {
     this._vehicleId = vehicleId;
   }
 
+  override toJSON(): IVehicleSentImage {
+    return {
+      id: this.id,
+      name: this.name,
+      photoInBase64Format: this.photoInBase64Format,
+      vehicleId: this.vehicleId
+    }
+  }
+
 }

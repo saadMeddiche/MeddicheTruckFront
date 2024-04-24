@@ -76,7 +76,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     this.itemService!.addItem(this.image!).subscribe
       (
       () => {
-        this.toastService.pushToToaster(`${getSingularName(this.itemService!.key)} uploaded successfully`, ToastType.SUCCESS);
+        this.toastService.pushToToaster(`Image uploaded successfully`, ToastType.SUCCESS);
         this.searchItemImages();
       },
   (httpErrorResponse) => {
@@ -88,8 +88,11 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
 
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
+    console.log("Before");
     if (inputElement.files && inputElement.files.length) {
+      console.log("After 1");
       for (let i = 0; i < inputElement.files.length; i++) {
+        console.log("After 2");
         const file = inputElement.files[i];
         this.readFile(file);
       }
@@ -104,6 +107,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
       this.image!.name = file.name.split('.')[0];
       this.image!.photoInBase64Format = (reader.result as string).split(',')[1];
     };
+    console.log("test :");
     console.log(this.image);
   }
 
