@@ -36,13 +36,13 @@ export class VehicleListComponent extends NavigationService
       {
         name: 'type',
         label: 'Type' ,
-        type: ColumnType.TEXT,
+        type: ColumnType.SELECT,
         value: (item: Vehicle) => item.type
       },
       {
         name: 'engineType',
         label: 'Engine Type',
-        type: ColumnType.TEXT,
+        type: ColumnType.SELECT,
         value: (item: Vehicle) => item.engineType
       },
       {
