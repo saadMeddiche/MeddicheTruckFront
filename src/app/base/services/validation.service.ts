@@ -3,7 +3,7 @@ import {NavigationService} from "@app/base/services/navigation.service";
 import {Router} from "@angular/router";
 import {
   getErrorMessageForBirthDate,
-  getErrorMessageForEmail,
+  getErrorMessageForEmail, getErrorMessageForFile,
   getErrorMessageForName,
   getErrorMessageForPassword
 } from "@app/base/validation/error-messages/error.messages";
@@ -37,5 +37,9 @@ export abstract class ValidationService extends NavigationService {
 
   protected getErrorBirthDate(controlName: string): string {
     return getErrorMessageForBirthDate(controlName, this.form);
+  }
+
+  protected getErrorFile(controlName: string): string {
+    return getErrorMessageForFile(controlName, this.form);
   }
 }

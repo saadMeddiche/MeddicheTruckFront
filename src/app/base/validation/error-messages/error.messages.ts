@@ -68,3 +68,18 @@ export function getErrorMessageForBirthDate(controlName: string , form: FormGrou
   return '';
 }
 
+export function getErrorMessageForFile(controlName: string , form: FormGroup): string {
+
+  const control = form.get(controlName);
+
+  if (control?.hasError('required')) {
+    return 'This field is required.';
+  }
+
+  if (control?.hasError('fileType')) {
+    return 'Invalid file type: Supported file types are png, jpeg and jpg.';
+  }
+
+  return '';
+}
+

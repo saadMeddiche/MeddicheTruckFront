@@ -5,19 +5,19 @@ import {BaseModel, IBaseModel} from "@app/base/models/BaseModel";
 export interface IBaseSentImage extends IBaseModel
 {
   name : string;
-  photoInBase64Format : SemiString;
+  photoInBase64 : SemiString;
 }
 
 
 export class BaseSentImage extends BaseModel{
 
   private _name: string;
-  private _photoInBase64Format: SemiString;
+  private _photoInBase64: SemiString;
 
   constructor(baseImage: IBaseSentImage) {
     super(baseImage);
     this._name = baseImage.name;
-    this._photoInBase64Format = baseImage.photoInBase64Format;
+    this._photoInBase64 = baseImage.photoInBase64
   }
 
   get name(): string {
@@ -28,19 +28,19 @@ export class BaseSentImage extends BaseModel{
     this._name = name;
   }
 
-  get photoInBase64Format(): SemiString {
-    return this._photoInBase64Format;
+  get photoInBase64(): SemiString {
+    return this._photoInBase64
   }
 
-  set photoInBase64Format(photoInBase64Format: SemiString) {
-    this._photoInBase64Format = photoInBase64Format;
+  set photoInBase64(photoInBase64: SemiString) {
+    this._photoInBase64 = photoInBase64
   }
 
   toJSON(): IBaseSentImage {
     return {
       id: this.id,
       name: this.name,
-      photoInBase64Format: this.photoInBase64Format
+      photoInBase64: this.photoInBase64
     }
   }
 

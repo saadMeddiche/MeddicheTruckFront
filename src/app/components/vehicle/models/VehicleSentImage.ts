@@ -25,7 +25,7 @@ export class VehicleSentImage extends BaseSentImage {
     return {
       id: this.id,
       name: this.name,
-      photoInBase64Format: this.photoInBase64Format,
+      photoInBase64: this.photoInBase64,
       vehicleId: this.vehicleId
     }
   }

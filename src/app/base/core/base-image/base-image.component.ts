@@ -6,17 +6,20 @@ import {PaginatedResponse} from "@app/interfaces/PaginatedResponse";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {of} from "rxjs";
 import {BaseReceivedImage} from "@app/base/models/image/BaseReceivedImage";
-import {BACKEND_API} from "@app/configurations/api";
+import {BACKEND, BACKEND_API} from "@app/configurations/api";
 import {getSingularName, lowerCaseFirstLetter, replaceUpperCaseWithSpace} from "@app/utils/text";
 import {BaseSentImage} from "@app/base/models/image/BaseSentImage";
 import {BaseImageService} from "@app/base/services/base-image.service";
+import {ValidationService} from "@app/base/services/validation.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {fileTypeValidator, noSpaceValidator} from "@app/base/validation/costum-validators/costum.validators";
 
 @Component({
   selector: 'app-base-image',
   templateUrl: './base-image.component.html',
   styleUrl: './base-image.component.scss'
 })
-export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSentImage, S extends BaseImageService<IR , IS>> extends NavigationService {
+export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSentImage, S extends BaseImageService<IR , IS>> extends ValidationService {
 
   @Input() image: IS | null = null;
 
@@ -26,11 +29,23 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
 
   page: number = 0;
 
-  size: number = 5;
+  size: number = 12;
 
   totalPages: number = 0;
 
   searchTerm: string = "";
+
+  override buildForm(): FormGroup {
+    return new FormGroup({
+      name: new FormControl('', [
+        noSpaceValidator()
+      ]),
+      file: new FormControl('', [
+        Validators.required,
+        fileTypeValidator(['png', 'jpeg', 'jpg'])
+      ])
+    })
+  }
 
   public constructor(
     protected toastService: ToastService,
@@ -81,6 +96,11 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
       },
   (httpErrorResponse) => {
         console.error(httpErrorResponse);
+
+        if(httpErrorResponse.status === 401){
+          this.toastService.pushToToaster("Error: Please reload page or re-login", ToastType.DANGER);
+        }
+
         this.toastService.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
       }
     )
@@ -88,11 +108,8 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
 
   onFileSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    console.log("Before");
     if (inputElement.files && inputElement.files.length) {
-      console.log("After 1");
       for (let i = 0; i < inputElement.files.length; i++) {
-        console.log("After 2");
         const file = inputElement.files[i];
         this.readFile(file);
       }
@@ -104,10 +121,11 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     reader.readAsDataURL(file);
     reader.onload = () => {
       this.image!.id = null;
-      this.image!.name = file.name.split('.')[0];
-      this.image!.photoInBase64Format = (reader.result as string).split(',')[1];
+      this.image!.name =
+        this.form.get('name')?.value != ""
+        ? this.form.get('name')?.value : file.name.split('.')[0];
+      this.image!.photoInBase64 = (reader.result as string).split(',')[1];
     };
-    console.log("test :");
     console.log(this.image);
   }
 
@@ -139,7 +157,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     return this.totalPages != 0 ? this.page + 1 : 0;
   }
 
-  protected readonly BACKEND_API = BACKEND_API;
   protected readonly lowerCaseFirstLetter = lowerCaseFirstLetter;
   protected readonly replaceUpperCaseWithSpace = replaceUpperCaseWithSpace;
+  protected readonly BACKEND = BACKEND;
 }

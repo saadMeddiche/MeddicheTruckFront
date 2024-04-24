@@ -15,7 +15,7 @@ export class VehicleImageComponent {
   image: VehicleSentImage = new VehicleSentImage({
     id:null,
     name:"",
-    photoInBase64Format:"",
+    photoInBase64:"",
     vehicleId: 0
   })
 
