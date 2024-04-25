@@ -1,6 +1,7 @@
 <app-base-list [itemService]="vehicleService"
                [columns]="columns"
                (addButtonIsClicked)="addVehicle()"
+                (editButtonIsClicked)="editVehicle($event)"
                (deleteButtonIsClicked)="deleteVehicle($event)"
 ></app-base-list>
 
@@ -13,3 +14,9 @@
 <app-base-delete [service]="vehicleService"
                  (itemIsDeleted)="refreshList()"
 ></app-base-delete>
+
+<app-base-update [service]="vehicleService"
+              [inputs]="inputs"
+              [form]="form"
+              (itemIsUpdated)="refreshList()"
+></app-base-update>

@@ -39,10 +39,16 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     this.addButtonIsClicked.emit();
   }
 
+  @Output() editButtonIsClicked = new EventEmitter<ID>();
+  alertParentThatEditButtonIsClicked(itemID: ID){
+    this.editButtonIsClicked.emit(itemID);
+  }
+
   @Output() deleteButtonIsClicked = new EventEmitter<ID>();
   alertParentThatDeleteButtonIsClicked(itemID: ID){
     this.deleteButtonIsClicked.emit(itemID);
   }
+
 
   @ViewChild(BasePaginationComponent)
   basePaginationComponent!: BasePaginationComponent;

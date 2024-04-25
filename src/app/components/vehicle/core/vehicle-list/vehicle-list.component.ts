@@ -14,6 +14,7 @@ import {BaseAddComponent} from "@app/base/core/base-add/base-add.component";
 import {BaseDeleteComponent} from "@app/base/core/base-delete/base-delete.component";
 import {ID} from "@app/types/GeneralTypes";
 import {BaseListComponent} from "@app/base/core/base-list/base-list.component";
+import {BaseUpdateComponent} from "@app/base/core/base-update/base-update.component";
 
 @Component({
   selector: 'app-vehicle-list',
@@ -25,6 +26,9 @@ export class VehicleListComponent extends ValidationService
 
   @ViewChild(BaseAddComponent)
   baseAddComponent!: BaseAddComponent<Vehicle, VehicleService>;
+
+  @ViewChild(BaseUpdateComponent)
+  baseUpdateComponent!: BaseUpdateComponent<Vehicle, VehicleService>;
 
   @ViewChild(BaseDeleteComponent)
   baseDeleteComponent!: BaseDeleteComponent<Vehicle, VehicleService>;
@@ -121,6 +125,11 @@ export class VehicleListComponent extends ValidationService
 
     addVehicle(){
       this.baseAddComponent.toggleModal();
+    }
+
+    editVehicle(vehicleId :ID){
+        console.log(vehicleId);
+       this.baseUpdateComponent.startUpdateProcess(vehicleId);
     }
 
     deleteVehicle(vehicleId :ID){

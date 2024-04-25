@@ -6,7 +6,6 @@ import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {of} from "rxjs";
 import {BaseReceivedImage} from "@app/base/models/image/BaseReceivedImage";
 import {BACKEND} from "@app/configurations/api";
-import {getSingularName, lowerCaseFirstLetter, replaceUpperCaseWithSpace} from "@app/utils/text";
 import {BaseSentImage} from "@app/base/models/image/BaseSentImage";
 import {BaseImageService} from "@app/base/services/base-image.service";
 import {ValidationService} from "@app/base/services/validation.service";
