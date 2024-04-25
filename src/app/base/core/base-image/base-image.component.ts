@@ -21,9 +21,9 @@ import {ID} from "@app/types/GeneralTypes";
 })
 export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSentImage, S extends BaseImageService<IR , IS>> extends ValidationService {
 
-  @Input() image: IS | null = null;
+  @Input() image!: IS ;
 
-  @Input() itemService: S | undefined;
+  @Input() itemService!: S ;
 
   @Input() itemId: number = 0;
 
@@ -64,13 +64,8 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     this.searchItemImages();
   }
 
-  onPageChange(n: number) {
-    this.page += n;
-    this.searchItemImages();
-  }
-
   searchItemImages() {
-    this.itemService!.searchImagesByItemId(this.searchTerm , this.page , this.size, this.itemId).subscribe(
+    this.itemService.searchImagesByItemId(this.searchTerm , this.page , this.size, this.itemId).subscribe(
       (response: PaginatedResponse<IR>) => {
         this.images = response.content;
         this.totalPages = response.totalPages;
@@ -90,7 +85,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   }
 
   uploadImage() {
-    this.itemService!.uploadImage(this.image!).subscribe
+    this.itemService.uploadImage(this.image).subscribe
       (
       () => {
         this.toastService.pushToToaster(`Image uploaded successfully`, ToastType.SUCCESS);
@@ -109,7 +104,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   }
 
   deleteImage(imageID: ID){
-    this.itemService!.deleteImage(imageID).subscribe(
+    this.itemService.deleteImage(imageID).subscribe(
       () => {
         this.toastService.pushToToaster(`Image deleted successfully`, ToastType.SUCCESS);
         this.searchItemImages();
@@ -146,17 +141,18 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this.image!.id = null;
-      this.image!.name =
+      this.image.id = null;
+      this.image.name =
         this.form.get('name')?.value != ""
         ? this.form.get('name')?.value : file.name.split('.')[0];
-      this.image!.photoInBase64 = (reader.result as string).split(',')[1];
+      this.image.photoInBase64 = (reader.result as string).split(',')[1];
     };
     console.log(this.image);
   }
 
-  getItemName(){
-    return getSingularName(this.itemService!.key);
+  pageChanged(n: number) {
+    this.page = n;
+    this.searchItemImages();
   }
 
   clearSearchTerm(){
@@ -164,19 +160,5 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     this.searchItemImages();
   }
 
-  isPreviousDisabled(){
-    return this.page === 0 || this.totalPages == 0
-  }
-
-  isNextDisabled(){
-    return this.page === this.totalPages - 1 || this.totalPages == 0
-  }
-
-  currentPage(){
-    return this.totalPages != 0 ? this.page + 1 : 0;
-  }
-
-  protected readonly lowerCaseFirstLetter = lowerCaseFirstLetter;
-  protected readonly replaceUpperCaseWithSpace = replaceUpperCaseWithSpace;
   protected readonly BACKEND = BACKEND;
 }

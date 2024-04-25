@@ -7,6 +7,7 @@ import {BACKEND_API} from "@app/configurations/api";
 import {BaseReceivedImage} from "@app/base/models/image/BaseReceivedImage";
 import {BaseSentImage} from "@app/base/models/image/BaseSentImage";
 import {buildSearchableUrl} from "@app/utils/url";
+import {replaceUpperCaseWithSpace} from "@app/utils/text";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,10 @@ export abstract class BaseImageService<IR extends BaseReceivedImage , IS extends
   private buildSearchItemsByItemIdUrl(searchTerm: string , page: number , size: number ,itemId: ID ) :string {
     let url = `${BACKEND_API}/${this.key}/of/${itemId}`;
     return buildSearchableUrl(searchTerm , page , size , url);
+  }
+
+  getItemName(){
+    return replaceUpperCaseWithSpace(this.key);
   }
 
 }

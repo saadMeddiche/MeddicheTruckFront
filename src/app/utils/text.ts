@@ -16,6 +16,6 @@ export function removeLastCharacter(str : string) : string {
 }
 
 export function replaceUpperCaseWithSpace(str : string) : string {
-    return str.replace(/([A-Z])/g, ' $1').trim();
+    return str.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
 }
 

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {BaseModel} from "@app/base/models/BaseModel";
 import {BaseService} from "@app/base/services/base.service";
 import {NavigationService} from "@app/base/services/navigation.service";
@@ -11,6 +11,7 @@ import {of} from "rxjs";
 import {ID} from "@app/types/GeneralTypes";
 import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
 import {ColumnType} from "@app/base/enums/ColumnType";
+import {BasePaginationComponent} from "@app/base/core/base-pagination/base-pagination.component";
 
 @Component({
   selector: 'app-base-list',
@@ -43,6 +44,9 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     this.deleteButtonIsClicked.emit(itemID);
   }
 
+  @ViewChild(BasePaginationComponent)
+  basePaginationComponent!: BasePaginationComponent;
+
   public constructor(
     protected toastService: ToastService,
     override router: Router
@@ -74,26 +78,14 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     );
   }
 
+  pageChanged(n: number) {
+    this.page = n;
+    this.searchItems();
+  }
+
   clearSearchTerm(){
     this.searchTerm = "";
     this.searchItems();
-  }
-
-  onPageChange(n: number) {
-    this.page += n;
-    this.searchItems();
-  }
-
-  isPreviousDisabled(){
-    return this.page === 0 || this.totalPages == 0
-  }
-
-  isNextDisabled(){
-    return this.page === this.totalPages - 1 || this.totalPages == 0
-  }
-
-  currentPage(){
-    return this.totalPages != 0 ? this.page + 1 : 0;
   }
 
   protected readonly ColumnType = ColumnType;
