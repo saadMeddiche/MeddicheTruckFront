@@ -257,6 +257,7 @@
                         <ng-container *ngFor="let option of input.options">
                           <option
                             [value]="option"
+                            [selected]="option === input.defaultValue"
                             [innerHTML]="option">
                           </option>
                         </ng-container>

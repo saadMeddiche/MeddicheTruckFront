@@ -64,29 +64,28 @@ export class VehicleListComponent extends NavigationService
         name: 'plate',
         label: 'Plate',
         type: InputType.TEXT,
-        value: (_item: Vehicle) => "",
+        defaultValue: "",
       },
       {
         name: 'model',
         label: 'Model',
         type: InputType.TEXT,
-        value: (_item: Vehicle) => "",
+        defaultValue: "",
       },
       {
         name: 'type',
         label: 'Type',
         type: InputType.SELECT,
-        value: (_item: Vehicle) => VehicleType.CAR,
+        defaultValue: VehicleType.CAR,
         options: Object.values(VehicleType),
       },
       {
         name: 'engineType',
         label: 'Engine Type',
         type: InputType.SELECT,
-        value: (_item: Vehicle) => EngineType.FUEL,
+        defaultValue: EngineType.FUEL,
         options: Object.values(EngineType),
       }
     ]
-
 
 }
