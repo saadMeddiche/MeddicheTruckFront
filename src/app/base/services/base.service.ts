@@ -7,6 +7,7 @@ import {BaseModel} from "@app/base/models/BaseModel";
 import {ID} from "@app/types/GeneralTypes";
 import {BaseSentImage} from "@app/base/models/image/BaseSentImage";
 import {buildSearchableUrl} from "@app/utils/url";
+import {getSingularName} from "@app/utils/text";
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,10 @@ export abstract class BaseService<I extends BaseModel> {
   private buildSearchItemsUrl(searchTerm: string , page: number , size: number) :string {
     let url = `${BACKEND_API}/${this.key}`;
     return buildSearchableUrl(searchTerm , page , size , url);
+  }
+
+  getItemName(){
+    return getSingularName(this.key);
   }
 
 }

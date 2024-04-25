@@ -1,4 +1,4 @@
-import {Component, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BaseModel} from "@app/base/models/BaseModel";
 import {BaseService} from "@app/base/services/base.service";
 import {NavigationService} from "@app/base/services/navigation.service";
@@ -11,22 +11,15 @@ import {of} from "rxjs";
 import {ID} from "@app/types/GeneralTypes";
 import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
 import {ColumnType} from "@app/base/enums/ColumnType";
-import {MyInput} from "@app/base/models/MyInput";
-import {InputType} from "@app/base/enums/InputType";
-import {ValidationService} from "@app/base/services/validation.service";
-import {FormGroup} from "@angular/forms";
-
 
 @Component({
   selector: 'app-base-list',
   templateUrl: './base-list.component.html',
   styleUrl: './base-list.component.scss'
 })
-export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> extends ValidationService {
+export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> extends NavigationService {
 
   items: I[] = [];
-
-  item: I | null = null;
 
   page: number = 0;
 
@@ -38,19 +31,16 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
 
   unWantedItemId: ID = null;
 
-  @Input() columns: Column<I>[] = []
+  @Input() columns!: Column<I>[] ;
 
-  @Input() inputs: MyInput<I>[] = []
-
-  @Input() override form: FormGroup = new FormGroup({});
-  @Input()
-  override buildForm(): FormGroup {
-    return new FormGroup({});
-  }
-
-  @Input() itemService: S | undefined;
+  @Input() itemService!: S ;
 
   deleteConfirmationModalVisible: boolean = false;
+
+  @Output() addButtonIsClicked = new EventEmitter<void>();
+  alertParentThatAddButtonIsClicked(){
+    this.addButtonIsClicked.emit();
+  }
 
   public constructor(
     protected toastService: ToastService,
@@ -63,17 +53,13 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     this.searchItems();
   }
 
-  onSearch() {
-    this.searchItems();
-  }
-
   onPageChange(n: number) {
     this.page += n;
     this.searchItems();
   }
 
   searchItems() {
-    this.itemService!.searchItems(this.searchTerm , this.page , this.size).subscribe(
+    this.itemService.searchItems(this.searchTerm , this.page , this.size).subscribe(
       (response: PaginatedResponse<I>) => {
         this.items = response.content;
         this.totalPages = response.totalPages;
@@ -93,7 +79,7 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   }
 
   deleteItem(itemID: ID){
-    this.itemService!.deleteItem(itemID).subscribe(
+    this.itemService.deleteItem(itemID).subscribe(
       () => {
         this.toastService.pushToToaster(`${this.getItemName()} deleted successfully`, ToastType.SUCCESS);
         this.searchItems();
@@ -112,24 +98,6 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     this.hideDeleteConfirmationModal()
   }
 
-  addItem(){
-    this.itemService!.addItem(this.form.value).subscribe(
-      () => {
-        this.toastService.pushToToaster(`${this.getItemName()} added successfully`, ToastType.SUCCESS);
-        this.searchItems();
-      },
-      (httpErrorResponse) => {
-        console.error(httpErrorResponse);
-
-        if(httpErrorResponse.status === 401 ){
-          this.toastService.pushToToaster("Error: Please reload page or re-login", ToastType.DANGER);
-        }
-
-        this.toastService.pushToToaster(`${this.getItemName()} didn't added as expected`, ToastType.DANGER);
-      }
-    );
-  }
-
   // Store the item id that is going to be deleted
   setUnWantedItemId(itemID: ID){
     this.unWantedItemId = itemID;
@@ -144,17 +112,8 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     this.deleteConfirmationModalVisible = false;
   }
 
-
-  async navigateToAddPage(){
-    await this.navigateTo(`/${this.itemService!.key}/add`)
-  }
-
-  async navigateToEditPage(itemID: ID){
-    await this.navigateTo(`/${this.itemService!.key}/edit/${itemID}`)
-  }
-
   getItemName(){
-    return getSingularName(this.itemService!.key);
+    return getSingularName(this.itemService.key);
   }
 
   clearSearchTerm(){
@@ -178,5 +137,4 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   protected readonly upperCaseFirstLetter = upperCaseFirstLetter;
 
   protected readonly ColumnType = ColumnType;
-  protected readonly InputType = InputType;
 }

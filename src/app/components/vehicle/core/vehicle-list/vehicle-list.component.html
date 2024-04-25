@@ -1,7 +1,10 @@
 <app-base-list [itemService]="vehicleService"
                [columns]="columns"
-               [inputs]="inputs"
-               [form]="form"
-               [buildForm]="buildForm"
-
+               (addButtonIsClicked)="addVehicle()"
 ></app-base-list>
+
+<app-base-add [service]="vehicleService"
+              [inputs]="inputs"
+              [form]="form"
+              >
+</app-base-add>

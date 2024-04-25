@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Vehicle} from "@app/components/vehicle/models/vehicle";
 import {VehicleService} from "@app/components/vehicle/services/vehicle.service";
 import {Router} from "@angular/router";
@@ -10,6 +10,7 @@ import {VehicleType} from "@app/components/vehicle/enums/vehicle.type";
 import {EngineType} from "@app/components/vehicle/enums/engine.type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "@app/base/services/validation.service";
+import {BaseAddComponent} from "@app/base/core/base-add/base-add.component";
 
 @Component({
   selector: 'app-vehicle-list',
@@ -18,6 +19,10 @@ import {ValidationService} from "@app/base/services/validation.service";
 })
 export class VehicleListComponent extends ValidationService
 {
+
+  @ViewChild(BaseAddComponent)
+  baseAddComponent!: BaseAddComponent<Vehicle, VehicleService>;
+
    constructor(
        protected vehicleService: VehicleService,
        override router: Router,
@@ -103,6 +108,10 @@ export class VehicleListComponent extends ValidationService
           Validators.required
         ]),
       });
+    }
+
+    addVehicle(){
+      this.baseAddComponent.toggleModal();
     }
 
 }
