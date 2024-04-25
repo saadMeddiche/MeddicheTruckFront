@@ -1,11 +1,7 @@
 import {AuthService} from "@app/authentication/services/authentication/auth.service";
-import {Router} from "@angular/router";
-import {JwtHelperService} from "@auth0/angular-jwt";
 import {Permissions} from "@app/enums/permissions";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
-import {Pages} from "@app/data/pages";
-import {TokenService} from "@app/authentication/services/token/token.service";
 
 export const baseGuard = async (auth:AuthService ,
                                 authority: Permissions ,

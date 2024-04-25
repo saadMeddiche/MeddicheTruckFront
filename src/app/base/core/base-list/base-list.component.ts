@@ -54,11 +54,6 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     this.searchItems();
   }
 
-  onPageChange(n: number) {
-    this.page += n;
-    this.searchItems();
-  }
-
   searchItems() {
     this.itemService.searchItems(this.searchTerm , this.page , this.size).subscribe(
       (response: PaginatedResponse<I>) => {
@@ -81,6 +76,11 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
 
   clearSearchTerm(){
     this.searchTerm = "";
+    this.searchItems();
+  }
+
+  onPageChange(n: number) {
+    this.page += n;
     this.searchItems();
   }
 

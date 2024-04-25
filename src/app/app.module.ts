@@ -36,6 +36,7 @@ import { BaseImageComponent } from '@app/base/core/base-image/base-image.compone
 import { VehicleImageComponent } from '@app/components/vehicle/core/vehicle-image/vehicle-image.component';
 import { BaseAddComponent } from '@app/base/core/base-add/base-add.component';
 import { BaseDeleteComponent } from '@app/base/core/base-delete/base-delete.component';
+import { BasePaginationComponent } from '@app/base/core/base-pagination/base-pagination.component';
 
 
 
@@ -55,6 +56,7 @@ import { BaseDeleteComponent } from '@app/base/core/base-delete/base-delete.comp
     VehicleImageComponent,
     BaseAddComponent,
     BaseDeleteComponent,
+    BasePaginationComponent,
   ],
   imports: [
     BrowserModule,
