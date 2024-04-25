@@ -1,10 +1,13 @@
 <app-base-list [itemService]="vehicleService"
                [columns]="columns"
                (addButtonIsClicked)="addVehicle()"
+               (deleteButtonIsClicked)="deleteVehicle($event)"
 ></app-base-list>
 
 <app-base-add [service]="vehicleService"
               [inputs]="inputs"
               [form]="form"
-              >
-</app-base-add>
+></app-base-add>
+
+<app-base-delete [service]="vehicleService"
+></app-base-delete>

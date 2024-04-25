@@ -7,7 +7,7 @@ import {BaseModel} from "@app/base/models/BaseModel";
 import {ID} from "@app/types/GeneralTypes";
 import {BaseSentImage} from "@app/base/models/image/BaseSentImage";
 import {buildSearchableUrl} from "@app/utils/url";
-import {getSingularName} from "@app/utils/text";
+import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,14 @@ export abstract class BaseService<I extends BaseModel> {
 
   getItemName(){
     return getSingularName(this.key);
+  }
+
+  getItemNameUpperCase(){
+    return upperCaseFirstLetter(this.getItemName())
+  }
+
+  getItemNameLowerCase(){
+    return lowerCaseFirstLetter(this.getItemName());
   }
 
 }

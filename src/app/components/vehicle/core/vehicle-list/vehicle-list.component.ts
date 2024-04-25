@@ -11,6 +11,8 @@ import {EngineType} from "@app/components/vehicle/enums/engine.type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "@app/base/services/validation.service";
 import {BaseAddComponent} from "@app/base/core/base-add/base-add.component";
+import {BaseDeleteComponent} from "@app/base/core/base-delete/base-delete.component";
+import {ID} from "@app/types/GeneralTypes";
 
 @Component({
   selector: 'app-vehicle-list',
@@ -22,6 +24,9 @@ export class VehicleListComponent extends ValidationService
 
   @ViewChild(BaseAddComponent)
   baseAddComponent!: BaseAddComponent<Vehicle, VehicleService>;
+
+  @ViewChild(BaseDeleteComponent)
+  baseDeleteComponent!: BaseDeleteComponent<Vehicle, VehicleService>;
 
    constructor(
        protected vehicleService: VehicleService,
@@ -112,6 +117,10 @@ export class VehicleListComponent extends ValidationService
 
     addVehicle(){
       this.baseAddComponent.toggleModal();
+    }
+
+    deleteVehicle(vehicleId :ID){
+      this.baseDeleteComponent.startDeleteProcess(vehicleId);
     }
 
 }

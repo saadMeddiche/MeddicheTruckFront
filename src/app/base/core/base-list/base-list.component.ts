@@ -29,17 +29,18 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
 
   searchTerm: string = "";
 
-  unWantedItemId: ID = null;
-
   @Input() columns!: Column<I>[] ;
 
   @Input() itemService!: S ;
 
-  deleteConfirmationModalVisible: boolean = false;
-
   @Output() addButtonIsClicked = new EventEmitter<void>();
   alertParentThatAddButtonIsClicked(){
     this.addButtonIsClicked.emit();
+  }
+
+  @Output() deleteButtonIsClicked = new EventEmitter<ID>();
+  alertParentThatDeleteButtonIsClicked(itemID: ID){
+    this.deleteButtonIsClicked.emit(itemID);
   }
 
   public constructor(
@@ -76,44 +77,6 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
         return of(null);
       }
     );
-  }
-
-  deleteItem(itemID: ID){
-    this.itemService.deleteItem(itemID).subscribe(
-      () => {
-        this.toastService.pushToToaster(`${this.getItemName()} deleted successfully`, ToastType.SUCCESS);
-        this.searchItems();
-      },
-      (httpErrorResponse) => {
-
-        if(httpErrorResponse.status === 404){
-          this.toastService.pushToToaster(`${this.getItemName()} not found`, ToastType.DANGER);
-          return;
-        }
-
-        console.error(httpErrorResponse);
-        this.toastService.pushToToaster(`${this.getItemName()} didn't deleted as expected`, ToastType.DANGER);
-      }
-    );
-    this.hideDeleteConfirmationModal()
-  }
-
-  // Store the item id that is going to be deleted
-  setUnWantedItemId(itemID: ID){
-    this.unWantedItemId = itemID;
-    this.displayDeleteConfirmationModal()
-  }
-
-  displayDeleteConfirmationModal(){
-    this.deleteConfirmationModalVisible = true;
-  }
-
-  hideDeleteConfirmationModal(){
-    this.deleteConfirmationModalVisible = false;
-  }
-
-  getItemName(){
-    return getSingularName(this.itemService.key);
   }
 
   clearSearchTerm(){
