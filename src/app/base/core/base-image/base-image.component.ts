@@ -5,7 +5,7 @@ import {PaginatedResponse} from "@app/interfaces/PaginatedResponse";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {of} from "rxjs";
 import {BaseReceivedImage} from "@app/base/models/image/BaseReceivedImage";
-import {BACKEND, BACKEND_API} from "@app/configurations/api";
+import {BACKEND} from "@app/configurations/api";
 import {getSingularName, lowerCaseFirstLetter, replaceUpperCaseWithSpace} from "@app/utils/text";
 import {BaseSentImage} from "@app/base/models/image/BaseSentImage";
 import {BaseImageService} from "@app/base/services/base-image.service";
@@ -24,6 +24,8 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   @Input() image: IS | null = null;
 
   @Input() itemService: S | undefined;
+
+  @Input() itemId: number = 0;
 
   images: IR[] = [];
 
@@ -68,7 +70,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   }
 
   searchItemImages() {
-    this.itemService!.searchItems(this.searchTerm , this.page , this.size).subscribe(
+    this.itemService!.searchImagesByItemId(this.searchTerm , this.page , this.size, this.itemId).subscribe(
       (response: PaginatedResponse<IR>) => {
         this.images = response.content;
         this.totalPages = response.totalPages;
@@ -88,7 +90,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   }
 
   uploadImage() {
-    this.itemService!.addItem(this.image!).subscribe
+    this.itemService!.uploadImage(this.image!).subscribe
       (
       () => {
         this.toastService.pushToToaster(`Image uploaded successfully`, ToastType.SUCCESS);
@@ -107,7 +109,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   }
 
   deleteImage(imageID: ID){
-    this.itemService!.deleteItem(imageID).subscribe(
+    this.itemService!.deleteImage(imageID).subscribe(
       () => {
         this.toastService.pushToToaster(`Image deleted successfully`, ToastType.SUCCESS);
         this.searchItemImages();

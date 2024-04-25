@@ -6,6 +6,7 @@ import {BACKEND_API} from "@app/configurations/api";
 import {BaseModel} from "@app/base/models/BaseModel";
 import {ID} from "@app/types/GeneralTypes";
 import {BaseSentImage} from "@app/base/models/image/BaseSentImage";
+import {buildSearchableUrl} from "@app/utils/url";
 
 @Injectable({
   providedIn: 'root'
@@ -46,23 +47,8 @@ export abstract class BaseService<I extends BaseModel> {
   }
 
   private buildSearchItemsUrl(searchTerm: string , page: number , size: number) :string {
-
     let url = `${BACKEND_API}/${this.key}`;
-
-    const queryParams :string[] = [];
-
-    if(searchTerm) queryParams.push(`searchTerm=${searchTerm}`);
-
-    if(page) queryParams.push(`page=${page}`);
-
-    if(size) queryParams.push(`size=${size}`);
-
-    const queryString = queryParams.length > 0 ?  queryParams.join('&') : '';
-
-    if(queryString) url += `?${queryString}`;
-
-    return url;
-
+    return buildSearchableUrl(searchTerm , page , size , url);
   }
 
 }
