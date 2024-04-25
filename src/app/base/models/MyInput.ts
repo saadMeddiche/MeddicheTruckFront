@@ -6,8 +6,8 @@ export interface MyInput<I extends BaseModel> {
   label: string;
   type: InputType;
   value?: (item: I) => any;
-  defaultValue?: any;
   placeholder?: (item: I) => string;
   options?: any[];
   multiple?: boolean;
+  validationMessage?: () => string;
 }

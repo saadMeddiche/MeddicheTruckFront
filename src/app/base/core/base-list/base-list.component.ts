@@ -1,4 +1,4 @@
-import {Component ,Input} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import {BaseModel} from "@app/base/models/BaseModel";
 import {BaseService} from "@app/base/services/base.service";
 import {NavigationService} from "@app/base/services/navigation.service";
@@ -13,6 +13,8 @@ import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/
 import {ColumnType} from "@app/base/enums/ColumnType";
 import {MyInput} from "@app/base/models/MyInput";
 import {InputType} from "@app/base/enums/InputType";
+import {ValidationService} from "@app/base/services/validation.service";
+import {FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -20,9 +22,11 @@ import {InputType} from "@app/base/enums/InputType";
   templateUrl: './base-list.component.html',
   styleUrl: './base-list.component.scss'
 })
-export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> extends NavigationService {
+export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> extends ValidationService {
 
-  items : I[] = [];
+  items: I[] = [];
+
+  item: I | null = null;
 
   page: number = 0;
 
@@ -37,6 +41,12 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   @Input() columns: Column<I>[] = []
 
   @Input() inputs: MyInput<I>[] = []
+
+  @Input() override form: FormGroup = new FormGroup({});
+  @Input()
+  override buildForm(): FormGroup {
+    return new FormGroup({});
+  }
 
   @Input() itemService: S | undefined;
 
@@ -100,6 +110,24 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
       }
     );
     this.hideDeleteConfirmationModal()
+  }
+
+  addItem(){
+    this.itemService!.addItem(this.form.value).subscribe(
+      () => {
+        this.toastService.pushToToaster(`${this.getItemName()} added successfully`, ToastType.SUCCESS);
+        this.searchItems();
+      },
+      (httpErrorResponse) => {
+        console.error(httpErrorResponse);
+
+        if(httpErrorResponse.status === 401 ){
+          this.toastService.pushToToaster("Error: Please reload page or re-login", ToastType.DANGER);
+        }
+
+        this.toastService.pushToToaster(`${this.getItemName()} didn't added as expected`, ToastType.DANGER);
+      }
+    );
   }
 
   // Store the item id that is going to be deleted
