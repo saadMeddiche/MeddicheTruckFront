@@ -1,4 +1,4 @@
-import {Component, Inject ,Input} from '@angular/core';
+import {Component ,Input} from '@angular/core';
 import {BaseModel} from "@app/base/models/BaseModel";
 import {BaseService} from "@app/base/services/base.service";
 import {NavigationService} from "@app/base/services/navigation.service";
@@ -11,6 +11,9 @@ import {of} from "rxjs";
 import {ID} from "@app/types/GeneralTypes";
 import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
 import {ColumnType} from "@app/base/enums/ColumnType";
+import {MyInput} from "@app/base/models/MyInput";
+import {InputType} from "@app/base/enums/InputType";
+
 
 @Component({
   selector: 'app-base-list',
@@ -32,6 +35,8 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   unWantedItemId: ID = null;
 
   @Input() columns: Column<I>[] = []
+
+  @Input() inputs: MyInput<I>[] = []
 
   @Input() itemService: S | undefined;
 
@@ -145,4 +150,5 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   protected readonly upperCaseFirstLetter = upperCaseFirstLetter;
 
   protected readonly ColumnType = ColumnType;
+  protected readonly InputType = InputType;
 }

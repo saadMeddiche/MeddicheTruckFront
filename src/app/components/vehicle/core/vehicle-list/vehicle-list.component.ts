@@ -5,6 +5,11 @@ import {Router} from "@angular/router";
 import {Column} from "@app/base/models/Column";
 import {NavigationService} from "@app/base/services/navigation.service";
 import {ColumnType} from "@app/base/enums/ColumnType";
+import {MyInput} from "@app/base/models/MyInput";
+import {InputType} from "@app/base/enums/InputType";
+import {VehicleType} from "@app/components/vehicle/enums/vehicle.type";
+import {EngineType} from "@app/components/vehicle/enums/engine.type";
+import {initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-vehicle-list',
@@ -36,13 +41,13 @@ export class VehicleListComponent extends NavigationService
       {
         name: 'type',
         label: 'Type' ,
-        type: ColumnType.SELECT,
+        type: ColumnType.TEXT,
         value: (item: Vehicle) => item.type
       },
       {
         name: 'engineType',
         label: 'Engine Type',
-        type: ColumnType.SELECT,
+        type: ColumnType.TEXT,
         value: (item: Vehicle) => item.engineType
       },
       {
@@ -53,6 +58,35 @@ export class VehicleListComponent extends NavigationService
         function: (item: Vehicle) => this.navigateToVehicleImages(item.id)
       }
    ]
+
+    inputs : MyInput<Vehicle>[] =[
+      {
+        name: 'plate',
+        label: 'Plate',
+        type: InputType.TEXT,
+        value: (_item: Vehicle) => "",
+      },
+      {
+        name: 'model',
+        label: 'Model',
+        type: InputType.TEXT,
+        value: (_item: Vehicle) => "",
+      },
+      {
+        name: 'type',
+        label: 'Type',
+        type: InputType.SELECT,
+        value: (_item: Vehicle) => VehicleType.CAR,
+        options: Object.values(VehicleType),
+      },
+      {
+        name: 'engineType',
+        label: 'Engine Type',
+        type: InputType.SELECT,
+        value: (_item: Vehicle) => EngineType.FUEL,
+        options: Object.values(EngineType),
+      }
+    ]
 
 
 }
