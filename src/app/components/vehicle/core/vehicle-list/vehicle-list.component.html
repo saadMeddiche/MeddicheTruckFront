@@ -7,7 +7,9 @@
 <app-base-add [service]="vehicleService"
               [inputs]="inputs"
               [form]="form"
+              (itemIsAdded)="refreshList()"
 ></app-base-add>
 
 <app-base-delete [service]="vehicleService"
+                 (itemIsDeleted)="refreshList()"
 ></app-base-delete>

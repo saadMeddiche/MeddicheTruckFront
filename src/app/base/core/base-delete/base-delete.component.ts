@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ID} from "@app/types/GeneralTypes";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {BaseModel} from "@app/base/models/BaseModel";
@@ -12,11 +12,17 @@ import {ToastService} from "@app/layouts/toast/services/toast.service";
 })
 export class BaseDeleteComponent<I extends BaseModel, S extends BaseService<I>> {
 
+   @Input() service!: S;
+
   protected idOfLastClickedItem: ID = null;
 
   protected isModalVisible: boolean = false;
 
-   @Input() service!: S;
+   @Output() itemIsDeleted = new EventEmitter<void>();
+
+  alertParentThatItemIsDeleted(){
+    this.itemIsDeleted.emit();
+  }
 
   constructor(private toastService: ToastService) {}
 
@@ -24,7 +30,8 @@ export class BaseDeleteComponent<I extends BaseModel, S extends BaseService<I>> 
     this.service.deleteItem(itemID).subscribe(
       () => {
         this.toastService.pushToToaster(`${this.service.getItemName()} deleted successfully`, ToastType.SUCCESS);
-      },
+        this.alertParentThatItemIsDeleted();
+        },
       (httpErrorResponse) => {
 
         if(httpErrorResponse.status === 404){

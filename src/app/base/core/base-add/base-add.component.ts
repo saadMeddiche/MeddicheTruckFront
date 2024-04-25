@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {InputType} from "@app/base/enums/InputType";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
@@ -24,6 +24,12 @@ export class BaseAddComponent<I extends BaseModel, S extends BaseService<I>> ext
 
   isModalVisible: boolean = false;
 
+  @Output() itemIsAdded = new EventEmitter<void>();
+
+  alertParentThatItemIsAdded(){
+    this.itemIsAdded.emit();
+  }
+
   public constructor(
     protected toastService: ToastService,
     override router: Router
@@ -36,6 +42,7 @@ export class BaseAddComponent<I extends BaseModel, S extends BaseService<I>> ext
       () => {
         this.toastService.pushToToaster(`${this.service.getItemName()} added successfully`, ToastType.SUCCESS);
         this.toggleModal();
+        this.alertParentThatItemIsAdded();
       },
       (httpErrorResponse) => {
         console.error(httpErrorResponse);

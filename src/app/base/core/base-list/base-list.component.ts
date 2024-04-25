@@ -19,6 +19,10 @@ import {ColumnType} from "@app/base/enums/ColumnType";
 })
 export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> extends NavigationService {
 
+  @Input() columns!: Column<I>[] ;
+
+  @Input() itemService!: S ;
+
   items: I[] = [];
 
   page: number = 0;
@@ -28,10 +32,6 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   totalPages: number = 0;
 
   searchTerm: string = "";
-
-  @Input() columns!: Column<I>[] ;
-
-  @Input() itemService!: S ;
 
   @Output() addButtonIsClicked = new EventEmitter<void>();
   alertParentThatAddButtonIsClicked(){
@@ -95,9 +95,6 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   currentPage(){
     return this.totalPages != 0 ? this.page + 1 : 0;
   }
-
-  protected readonly lowerCaseFirstLetter = lowerCaseFirstLetter;
-  protected readonly upperCaseFirstLetter = upperCaseFirstLetter;
 
   protected readonly ColumnType = ColumnType;
 }

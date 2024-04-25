@@ -13,6 +13,7 @@ import {ValidationService} from "@app/base/services/validation.service";
 import {BaseAddComponent} from "@app/base/core/base-add/base-add.component";
 import {BaseDeleteComponent} from "@app/base/core/base-delete/base-delete.component";
 import {ID} from "@app/types/GeneralTypes";
+import {BaseListComponent} from "@app/base/core/base-list/base-list.component";
 
 @Component({
   selector: 'app-vehicle-list',
@@ -27,6 +28,9 @@ export class VehicleListComponent extends ValidationService
 
   @ViewChild(BaseDeleteComponent)
   baseDeleteComponent!: BaseDeleteComponent<Vehicle, VehicleService>;
+
+  @ViewChild(BaseListComponent)
+  baseListComponent!: BaseListComponent<Vehicle, VehicleService>;
 
    constructor(
        protected vehicleService: VehicleService,
@@ -121,6 +125,10 @@ export class VehicleListComponent extends ValidationService
 
     deleteVehicle(vehicleId :ID){
       this.baseDeleteComponent.startDeleteProcess(vehicleId);
+    }
+
+    refreshList(){
+      this.baseListComponent.searchItems();
     }
 
 }
