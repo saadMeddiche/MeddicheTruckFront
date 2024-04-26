@@ -16,8 +16,10 @@ export class ToastService {
 
   pushToToaster(message :string , toastType :ToastType): void {
     const toast = new Toast(message, toastType);
+
     this.limitToasts();
     this.toasts.push(toast);
+    this.removeToastAfterTime(toast.uuid!, 5000)
     this.toaster.next(this.toasts);
   }
 
@@ -36,5 +38,11 @@ export class ToastService {
       this.toasts.shift();
       this.toaster.next(this.toasts);
     }
+  }
+
+  removeToastAfterTime(uuid: string, time: number): void {
+    setTimeout(() => {
+      this.removeToast(uuid);
+    }, time);
   }
 }
