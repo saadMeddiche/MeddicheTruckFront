@@ -70,7 +70,7 @@ export class PersonListComponent extends ValidationService {
       name: 'description',
       label: 'Description',
       type: ColumnType.TEXTAREA,
-      value: (item: Person) => item.description
+      value: (item: Person) => item.description != "" ? item.description : "-"
     }
   ]
 

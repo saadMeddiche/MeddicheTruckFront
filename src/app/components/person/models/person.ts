@@ -30,7 +30,7 @@ export class Person extends BaseModel {
   }
 
   set firstName(firstName: string) {
-    this._firstName = firstName ? firstName : 'John';
+    this._firstName = firstName;
   }
 
   get middleName(): string {
@@ -38,7 +38,7 @@ export class Person extends BaseModel {
   }
 
   set middleName(middleName: string) {
-    this._middleName = middleName ? middleName : 'Doe';
+    this._middleName = middleName;
   }
 
   get lastName(): string {
@@ -46,7 +46,7 @@ export class Person extends BaseModel {
   }
 
   set lastName(lastName: string) {
-    this._lastName = lastName ? lastName : 'Smith';
+    this._lastName = lastName;
   }
 
   get birthDate(): Date {
@@ -54,7 +54,7 @@ export class Person extends BaseModel {
   }
 
   set birthDate(birthDate: Date) {
-    this._birthDate = birthDate ? birthDate : new Date();
+    this._birthDate = birthDate;
   }
 
   get description(): string {
@@ -62,6 +62,6 @@ export class Person extends BaseModel {
   }
 
   set description(description: string) {
-    this._description = description ? description : 'This is a default description. Here you can add more information about the person.';
+    this._description = description;
   }
 }
