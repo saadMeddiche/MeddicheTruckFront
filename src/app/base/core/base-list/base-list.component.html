@@ -129,6 +129,12 @@
                       {{ column.value(item) }}
                     </td>
 
+                    <td *ngIf="column.type == ColumnType.LINK"
+                        (click)="column.function ? column.function(item): ''"
+                        class="text-blue-600 underline cursor-pointer p-4 text-base font-medium whitespace-nowrap">
+                      {{ column.value(item) }}
+                    </td>
+
                   </ng-container>
                   <td class="p-4 space-x-2 whitespace-nowrap">
                     <button

@@ -66,7 +66,28 @@ export class TransactionListComponent extends ValidationService {
       label: 'Type',
       type: ColumnType.TEXT,
       value: (item: Transaction) => item.type
-    }
+    },
+    {
+      name:'vehicles',
+      label: 'Vehicles',
+      type: ColumnType.LINK,
+      value: (_item: Transaction) => "Vehicles",
+      function: (_item: Transaction) => ""
+    },
+    {
+      name:'pieces',
+      label: 'Pieces',
+      type: ColumnType.LINK,
+      value: (_item: Transaction) => "Pieces",
+      function: (_item: Transaction) => ""
+    },
+    {
+      name:'persons',
+      label: 'Persons',
+      type: ColumnType.LINK,
+      value: (_item: Transaction) => "Persons",
+      function: (_item: Transaction) => ""
+    },
   ]
 
   inputs: MyInput<Transaction>[] = [
