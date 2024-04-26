@@ -1,6 +1,5 @@
 export enum ColumnType{
   TEXT = 'text',
+  TEXTAREA = 'textarea',
   IMAGE = 'image',
-  DATE = 'date',
-  NUMBER = 'number'
 }

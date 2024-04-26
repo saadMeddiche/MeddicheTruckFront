@@ -45,7 +45,9 @@ export function birthDateValidator(): ValidatorFn {
 
     const date = new Date(value);
 
-    const currentDate = new Date();
+    let currentDate = new Date();
+
+    currentDate.setFullYear(currentDate.getFullYear() - 18);
 
     return !pattern || date > currentDate ? {birthDate: true} : null;
 

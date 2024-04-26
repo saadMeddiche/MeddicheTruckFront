@@ -62,7 +62,7 @@ export function getErrorMessageForBirthDate(controlName: string , form: FormGrou
   }
 
   if (control?.hasError('birthDate')) {
-    return 'Invalid birth date:\n -Date must be in the past.';
+    return 'Must be at least 18 years ago.';
   }
 
   return '';

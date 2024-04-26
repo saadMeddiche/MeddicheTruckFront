@@ -113,7 +113,13 @@
                   <td class="max-w-sm p-4 overflow-hidden text-base font-normal  truncate xl:max-w-xs text-gray-400">#{{ item.id }}</td>
                   <ng-container *ngFor="let column of columns">
 
-                    <td *ngIf="column.type == ColumnType.TEXT" class="p-4 text-base font-medium whitespace-nowrap text-white">
+                    <td *ngIf="column.type == ColumnType.TEXT"
+                        class="p-4 text-base font-medium whitespace-nowrap text-white">
+                      {{ column.value(item) }}
+                    </td>
+
+                    <td *ngIf="column.type == ColumnType.TEXTAREA"
+                        class="truncate max-w-20 p-4 text-base font-medium whitespace-nowrap text-white">
                       {{ column.value(item) }}
                     </td>
 
