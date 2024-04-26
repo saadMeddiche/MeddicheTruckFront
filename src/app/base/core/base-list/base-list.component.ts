@@ -12,6 +12,7 @@ import {ID} from "@app/types/GeneralTypes";
 import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
 import {ColumnType} from "@app/base/enums/ColumnType";
 import {BasePaginationComponent} from "@app/base/core/base-pagination/base-pagination.component";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-base-list',
@@ -55,9 +56,10 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
 
   public constructor(
     protected toastService: ToastService,
-    override router: Router
+    override router: Router,
+    override location: Location
   ) {
-    super(router);
+    super(router, location);
   }
 
   ngOnInit() {

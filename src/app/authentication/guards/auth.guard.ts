@@ -6,6 +6,7 @@ import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {Pages} from "@app/data/pages";
 import {NavigationService} from "@app/base/services/navigation.service";
 import {TokenService} from "@app/authentication/services/token/token.service";
+import {Location} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,9 @@ export class AuthGuard extends NavigationService implements CanActivate {
   constructor(private authService: AuthService,
               override router: Router ,
               private toastService : ToastService,
-              private token: TokenService) {
-    super(router);
+              private token: TokenService,
+              override location: Location ) {
+    super(router, location);
   }
 
   async canActivate(): Promise<boolean> {

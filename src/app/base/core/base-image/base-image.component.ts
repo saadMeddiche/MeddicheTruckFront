@@ -12,6 +12,7 @@ import {ValidationService} from "@app/base/services/validation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {fileTypeValidator, noSpaceValidator} from "@app/base/validation/costum-validators/costum.validators";
 import {ID} from "@app/types/GeneralTypes";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-base-image',
@@ -50,9 +51,10 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
 
   public constructor(
     protected toastService: ToastService,
-    override router: Router
+    override router: Router,
+    override location: Location
   ) {
-    super(router);
+    super(router, location);
   }
 
   ngOnInit() {

@@ -2,13 +2,14 @@ import {Inject, Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {Pages} from "@app/data/pages";
 import {ID} from "@app/types/GeneralTypes";
-
+import {Location} from "@angular/common";
 @Injectable({
   providedIn: 'root'
 })
 export abstract class NavigationService {
 
-  protected constructor(protected router: Router) {}
+  protected constructor(protected router: Router,
+                        protected location: Location ) {}
 
   refreshPage(): void {
     window.location.reload();
@@ -16,6 +17,10 @@ export abstract class NavigationService {
 
   async navigateTo(route :string) {
     await this.router.navigate([route]);
+  }
+
+  async back() {
+    this.location.back();
   }
 
   async navigateToHome() {

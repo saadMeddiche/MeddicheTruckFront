@@ -7,6 +7,7 @@ import {Logo} from "@app/data/logo";
 import {ValidationService} from "@app/base/services/validation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {noSpaceValidator, passwordValidator} from "@app/base/validation/costum-validators/costum.validators";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-log-in',
@@ -19,8 +20,11 @@ export class LogInComponent extends ValidationService{
 
   protected readonly Logo = Logo;
 
-  constructor(private authService: AuthService, override router: Router , private toastService :ToastService) {
-    super(router);
+  constructor(private authService: AuthService,
+              override router: Router ,
+              private toastService :ToastService,
+              override location: Location ) {
+    super(router , location);
   }
 
   logIn(): void {

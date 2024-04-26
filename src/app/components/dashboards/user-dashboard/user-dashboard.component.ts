@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NavigationService} from "@app/base/services/navigation.service";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-user-dashboard',
@@ -9,8 +10,9 @@ import {Router} from "@angular/router";
 })
 export class UserDashboardComponent extends NavigationService {
 
-  constructor(override router: Router) {
-    super(router);
+  constructor(override router: Router,
+              override location: Location ) {
+    super(router, location);
   }
 
   cards = [

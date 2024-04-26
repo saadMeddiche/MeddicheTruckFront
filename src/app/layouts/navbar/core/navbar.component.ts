@@ -9,6 +9,7 @@ import {ILogo} from "@app/interfaces/ILogo";
 import {NavigationService} from "@app/base/services/navigation.service";
 import {LanguageService} from "@app/base/services/language.service";
 import {ILanguage} from "@app/interfaces/ILanguage";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
@@ -22,8 +23,9 @@ export class NavbarComponent extends NavigationService{
   constructor(override router: Router,
               public auth: AuthService,
               private sanitizer: DomSanitizer,
-              private languageService: LanguageService){
-    super(router);
+              private languageService: LanguageService,
+              override location: Location ){
+    super(router ,location);
   }
 
   ngOnInit(): void {

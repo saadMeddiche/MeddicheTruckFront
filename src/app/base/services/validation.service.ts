@@ -8,6 +8,7 @@ import {
   getErrorMessageForPassword
 } from "@app/base/validation/error-messages/error.messages";
 import {FormGroup} from "@angular/forms";
+import {Location} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,9 @@ export abstract class ValidationService extends NavigationService {
 
   abstract buildForm(): FormGroup;
 
-  protected constructor(override router :Router) {
-    super(router);
+  protected constructor(override router :Router,
+                        override location: Location ) {
+    super(router, location);
     this.form = this.buildForm();
   }
 

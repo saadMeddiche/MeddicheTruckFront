@@ -10,7 +10,7 @@ import { UserInformations } from '../../models/UserInformations';
 import { UsernameAndPassword } from '../../models/UsernameAndPassword';
 import { Token } from '../../models/Token';
 import { Permissions } from '../../../enums/permissions';
-import {isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser, Location} from "@angular/common";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {TokenService} from "@app/authentication/services/token/token.service";
@@ -29,9 +29,10 @@ export class AuthService extends NavigationService{
     private toastService: ToastService,
     private userService: UserService,
     // ?????????????????
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    override location: Location
   ) {
-    super(router);
+    super(router, location);
   }
 
   login(credentials: UsernameAndPassword): Observable<any> {

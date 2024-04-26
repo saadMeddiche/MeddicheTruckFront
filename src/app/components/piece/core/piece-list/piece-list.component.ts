@@ -16,6 +16,7 @@ import {MyInput} from "@app/base/models/MyInput";
 import {InputType} from "@app/base/enums/InputType";
 import {noSpaceValidator} from "@app/base/validation/costum-validators/costum.validators";
 import {ID} from "@app/types/GeneralTypes";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-piece-list',
@@ -39,8 +40,9 @@ export class PieceListComponent  extends ValidationService {
   constructor(
     protected pieceService: PieceService,
     override router: Router,
+    override location: Location
   ) {
-    super(router);
+    super(router, location);
   }
 
   columns : Column<Piece>[] = [

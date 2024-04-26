@@ -14,6 +14,7 @@ import {BaseUpdateComponent} from "@app/base/core/base-update/base-update.compon
 import {BaseDeleteComponent} from "@app/base/core/base-delete/base-delete.component";
 import {BaseListComponent} from "@app/base/core/base-list/base-list.component";
 import {ID} from "@app/types/GeneralTypes";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-person-list',
@@ -37,8 +38,9 @@ export class PersonListComponent extends ValidationService {
   constructor(
     protected personService: PersonService,
     override router: Router,
+    override location: Location
   ) {
-    super(router);
+    super(router,location);
   }
 
   columns : Column<Person>[] = [

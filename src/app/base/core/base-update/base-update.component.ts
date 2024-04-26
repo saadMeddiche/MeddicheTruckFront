@@ -9,6 +9,7 @@ import {FormGroup} from "@angular/forms";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {InputType} from "@app/base/enums/InputType";
 import {ID} from "@app/types/GeneralTypes";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-base-update',
@@ -35,9 +36,10 @@ export class BaseUpdateComponent<I extends BaseModel, S extends BaseService<I>> 
 
   public constructor(
     protected toastService: ToastService,
-    override router: Router
+    override router: Router,
+    override location: Location
   ) {
-    super(router);
+    super(router, location);
   }
 
   getItem(itemID: ID){

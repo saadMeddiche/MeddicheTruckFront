@@ -13,6 +13,7 @@ import {
 } from "@app/base/validation/costum-validators/costum.validators";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {ValidationService} from "@app/base/services/validation.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-register',
@@ -33,8 +34,11 @@ export class RegisterComponent extends ValidationService {
     birthDate :''
   };
 
-  constructor(private auth :AuthService , override router :Router , private toastService :ToastService){
-    super(router);
+  constructor(private auth :AuthService ,
+              override router :Router ,
+              private toastService :ToastService,
+              override location: Location ){
+    super(router, location);
   }
 
   register(): void {

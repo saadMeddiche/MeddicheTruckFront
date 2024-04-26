@@ -8,6 +8,7 @@ import {BaseService} from "@app/base/services/base.service";
 import {MyInput} from "@app/base/models/MyInput";
 import {FormGroup} from "@angular/forms";
 import {NavigationService} from "@app/base/services/navigation.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-base-add',
@@ -32,9 +33,10 @@ export class BaseAddComponent<I extends BaseModel, S extends BaseService<I>> ext
 
   public constructor(
     protected toastService: ToastService,
-    override router: Router
+    override router: Router,
+    override location: Location
   ) {
-    super(router);
+    super(router, location);
   }
 
   addItem(){
