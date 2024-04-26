@@ -13,7 +13,7 @@ import {
   MatCardImage, MatCardSubtitle,
   MatCardTitle
 } from "@angular/material/card";
-import {MatFormField, MatFormFieldControl, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
+import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -41,6 +41,7 @@ import { BaseUpdateComponent } from '@app/base/core/base-update/base-update.comp
 import { PersonListComponent } from '@app/components/person/core/person-list/person-list.component';
 import { PieceListComponent } from '@app/components/piece/core/piece-list/piece-list.component';
 import { PieceImageComponent } from '@app/components/piece/core/piece-image/piece-image.component';
+import { TransactionListComponent } from '@app/components/transaction/core/transaction-list/transaction-list.component';
 
 
 
@@ -65,6 +66,7 @@ import { PieceImageComponent } from '@app/components/piece/core/piece-image/piec
     PersonListComponent,
     PieceListComponent,
     PieceImageComponent,
+    TransactionListComponent,
   ],
   imports: [
     BrowserModule,

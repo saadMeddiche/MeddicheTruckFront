@@ -1,0 +1,23 @@
+<app-base-list [itemService]="transactionService"
+               [columns]="columns"
+               (addButtonIsClicked)="addTransaction()"
+               (editButtonIsClicked)="editTransaction($event)"
+               (deleteButtonIsClicked)="deleteTransaction($event)"
+></app-base-list>
+
+<app-base-add [service]="transactionService"
+              [inputs]="inputs"
+              [form]="form"
+              (itemIsAdded)="refreshList()"
+></app-base-add>
+
+<app-base-delete [service]="transactionService"
+                 (itemIsDeleted)="refreshList()"
+></app-base-delete>
+
+<app-base-update [service]="transactionService"
+                 [inputs]="inputs"
+                 [form]="form"
+                 (itemIsUpdated)="refreshList()"
+></app-base-update>
+
