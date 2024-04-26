@@ -41,7 +41,6 @@ import { BaseUpdateComponent } from '@app/base/core/base-update/base-update.comp
 import { PersonListComponent } from '@app/components/person/core/person-list/person-list.component';
 import { PieceListComponent } from '@app/components/piece/core/piece-list/piece-list.component';
 import { PieceImageComponent } from '@app/components/piece/core/piece-image/piece-image.component';
-import { TransactionListComponent } from '@app/components/transaction/core/transaction-list/transaction-list.component';
 
 
 
@@ -66,7 +65,6 @@ import { TransactionListComponent } from '@app/components/transaction/core/trans
     PersonListComponent,
     PieceListComponent,
     PieceImageComponent,
-    TransactionListComponent,
   ],
   imports: [
     BrowserModule,

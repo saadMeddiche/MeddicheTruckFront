@@ -3,4 +3,5 @@ export enum ColumnType{
   TEXTAREA = 'textarea',
   IMAGE = 'image',
   LINK = 'link',
+  BOOLEAN = 'boolean',
 }

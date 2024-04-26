@@ -122,6 +122,9 @@ export class VehicleListComponent extends ValidationService
         engineType: new FormControl(EngineType.FUEL, [
           Validators.required
         ]),
+        inStock: new FormControl(true, [
+        Validators.required
+      ])
       });
     }
 

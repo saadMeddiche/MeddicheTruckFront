@@ -7,6 +7,7 @@ export interface IVehicle extends IBaseModel {
   engineType: EngineType;
   model: string;
   plate: string;
+  inStock: boolean;
 }
 
 export class Vehicle extends BaseModel {
@@ -19,12 +20,15 @@ export class Vehicle extends BaseModel {
 
   private _plate: string;
 
+  private _inStock: boolean;
+
   constructor(vehicle: IVehicle) {
     super(vehicle);
     this._type = vehicle.type;
     this._engineType = vehicle.engineType;
     this._model = vehicle.model;
     this._plate = vehicle.plate;
+    this._inStock = vehicle.inStock
   }
 
   get type(): VehicleType {
@@ -57,6 +61,14 @@ export class Vehicle extends BaseModel {
 
   set plate(plate: string) {
     this._plate = plate ? plate : 'ABCD 0000';
+  }
+
+  get inStock(): boolean {
+    return this._inStock;
+  }
+
+  set inStock(inStock: boolean) {
+    this._inStock = inStock;
   }
 
 }

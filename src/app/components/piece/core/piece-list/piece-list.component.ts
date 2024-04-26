@@ -53,6 +53,12 @@ export class PieceListComponent  extends ValidationService {
       value: (item: Piece) => item.name
     },
     {
+      name: 'inStock',
+      label: 'In Stock',
+      type: ColumnType.BOOLEAN,
+      value: (item: Piece) => item.inStock
+    },
+    {
       name:'image',
       label: 'Images',
       type: ColumnType.IMAGE,
@@ -67,6 +73,12 @@ export class PieceListComponent  extends ValidationService {
       label: 'Name',
       type: InputType.TEXT,
       validationMessage: () => this.getErrorName('name')
+    },
+    {
+      name: 'inStock',
+      label: 'In Stock',
+      type: InputType.CHECKBOX,
+      validationMessage: () => this.getErrorName('inStock')
     }
   ]
 
@@ -75,6 +87,9 @@ export class PieceListComponent  extends ValidationService {
       name: new FormControl('', [
         Validators.required,
         noSpaceValidator()
+      ]),
+      inStock: new FormControl(true, [
+        Validators.required
       ])
     });
   }
