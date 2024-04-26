@@ -16,6 +16,7 @@ export class ToastService {
 
   pushToToaster(message :string , toastType :ToastType): void {
     const toast = new Toast(message, toastType);
+    this.limitToasts();
     this.toasts.push(toast);
     this.toaster.next(this.toasts);
   }
@@ -28,5 +29,12 @@ export class ToastService {
   removeToast(uuid: string): void {
     this.toasts = this.toasts.filter(toast => toast.uuid !== uuid);
     this.toaster.next(this.toasts);
+  }
+
+  limitToasts(){
+    if(this.toasts.length >= 5){
+      this.toasts.shift();
+      this.toaster.next(this.toasts);
+    }
   }
 }
