@@ -3,6 +3,7 @@ export enum InputType {
   TEXTAREA = 'textarea',
   IMAGE = 'image',
   DATE = 'date',
+  DATETIME = 'datetime',
   NUMBER = 'number',
   SELECT = 'select',
   MULTI_SELECT = 'multi-select'

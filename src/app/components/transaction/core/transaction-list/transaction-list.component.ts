@@ -87,7 +87,7 @@ export class TransactionListComponent extends ValidationService {
     {
       name: 'timeTransaction',
       label: 'Time Transaction',
-      type: InputType.DATE,
+      type: InputType.DATETIME,
       validationMessage: () => this.getErrorName('timeTransaction')
     },
     {
