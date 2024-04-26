@@ -50,6 +50,10 @@ export abstract class NavigationService {
     await this.navigateTo(Pages.PIECES_LIST);
   }
 
+  async navigateToPieceImages(id: ID) {
+    await this.navigateTo(Pages.PIECES_IMAGES.replace(':id', id!.toString()));
+  }
+
   async navigateToTransactionsList() {
     await this.navigateTo(Pages.TRANSACTIONS_LIST);
   }

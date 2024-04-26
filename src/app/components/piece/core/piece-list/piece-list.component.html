@@ -1,0 +1,23 @@
+<app-base-list [itemService]="pieceService"
+               [columns]="columns"
+               (addButtonIsClicked)="addPiece()"
+               (editButtonIsClicked)="editPiece($event)"
+               (deleteButtonIsClicked)="deletePiece($event)"
+></app-base-list>
+
+<app-base-add [service]="pieceService"
+              [inputs]="inputs"
+              [form]="form"
+              (itemIsAdded)="refreshList()"
+></app-base-add>
+
+<app-base-delete [service]="pieceService"
+                 (itemIsDeleted)="refreshList()"
+></app-base-delete>
+
+<app-base-update [service]="pieceService"
+                 [inputs]="inputs"
+                 [form]="form"
+                 (itemIsUpdated)="refreshList()"
+></app-base-update>
+

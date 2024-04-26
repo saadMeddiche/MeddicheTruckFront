@@ -39,6 +39,8 @@ import { BaseDeleteComponent } from '@app/base/core/base-delete/base-delete.comp
 import { BasePaginationComponent } from '@app/base/core/base-pagination/base-pagination.component';
 import { BaseUpdateComponent } from '@app/base/core/base-update/base-update.component';
 import { PersonListComponent } from '@app/components/person/core/person-list/person-list.component';
+import { PieceListComponent } from '@app/components/piece/core/piece-list/piece-list.component';
+import { PieceImageComponent } from '@app/components/piece/core/piece-image/piece-image.component';
 
 
 
@@ -61,6 +63,8 @@ import { PersonListComponent } from '@app/components/person/core/person-list/per
     BasePaginationComponent,
     BaseUpdateComponent,
     PersonListComponent,
+    PieceListComponent,
+    PieceImageComponent,
   ],
   imports: [
     BrowserModule,

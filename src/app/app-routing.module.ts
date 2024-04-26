@@ -6,12 +6,14 @@ import {dashboardRoutes} from "@app/components/dashboards/dashboard.routes";
 import {HomeComponent} from "@app/components/home/home.component";
 import {vehicleRoutes} from "@app/components/vehicle/vehicle.routes";
 import {personRoutes} from "@app/components/person/person.routes";
+import {pieceRoutes} from "@app/components/piece/piece.routes";
 
 const routes: Routes = [
   ...authRoutes,
   ...dashboardRoutes,
   ...vehicleRoutes,
   ...personRoutes,
+  ...pieceRoutes,
   { path: Pages.HOME, component: HomeComponent },
   { path: '**', redirectTo: Pages.HOME, pathMatch: 'full' }
 ];
