@@ -1,8 +1,10 @@
 <app-base-list [itemService]="pieceService"
                [columns]="columns"
+               [extraRowButtons]="extraRowButtons"
                (addButtonIsClicked)="addPiece()"
                (editButtonIsClicked)="editPiece($event)"
                (deleteButtonIsClicked)="deletePiece($event)"
+               (extraButtonIsClicked)="extraButton($event)"
 ></app-base-list>
 
 <app-base-add [service]="pieceService"
@@ -20,4 +22,10 @@
                  [form]="form"
                  (itemIsUpdated)="refreshList()"
 ></app-base-update>
+
+<app-base-add #Transactions [service]="pieceTransactionService"
+              [inputs]="transactionInputs"
+              [form]="transactionForm"
+              (itemIsAdded)="refreshList()"
+></app-base-add>
 

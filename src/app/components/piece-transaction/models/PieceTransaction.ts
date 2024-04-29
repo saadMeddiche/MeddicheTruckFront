@@ -12,9 +12,9 @@ export interface IPieceTransaction extends IBaseModel {
 
   type: TransactionType;
 
-  pieceID: number;
+  pieceId: number;
 
-  personID: number;
+  personId: number;
 
   price: number;
 }
@@ -29,9 +29,9 @@ export class PieceTransaction extends BaseModel {
 
   private _type: TransactionType;
 
-  private _pieceID: number;
+  private _pieceId: number;
 
-  private _personID: number;
+  private _personId: number;
 
   private _price: number;
 
@@ -41,8 +41,8 @@ export class PieceTransaction extends BaseModel {
     this._time = pieceTransaction.time;
     this._description = pieceTransaction.description;
     this._type = pieceTransaction.type;
-    this._pieceID = pieceTransaction.pieceID;
-    this._personID = pieceTransaction.personID;
+    this._pieceId = pieceTransaction.pieceId;
+    this._personId = pieceTransaction.personId;
     this._price = pieceTransaction.price;
   }
 
@@ -78,20 +78,20 @@ export class PieceTransaction extends BaseModel {
     this._type = type;
   }
 
-  get pieceID(): number {
-    return this._pieceID;
+  get pieceId(): number {
+    return this._pieceId;
   }
 
-  set pieceID(pieceID: number) {
-    this._pieceID = pieceID;
+  set pieceId(pieceID: number) {
+    this._pieceId = pieceID;
   }
 
-  get personID(): number {
-    return this._personID;
+  get personId(): number {
+    return this._personId;
   }
 
-  set personID(personID: number) {
-    this._personID = personID;
+  set personId(personID: number) {
+    this._personId = personID;
   }
 
   get price(): number {

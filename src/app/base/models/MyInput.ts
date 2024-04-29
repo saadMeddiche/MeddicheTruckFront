@@ -2,6 +2,7 @@ import {InputType} from "@app/base/enums/InputType";
 import {BaseModel} from "@app/base/models/BaseModel";
 
 export interface MyInput<I extends BaseModel> {
+  idPrefix?: string;
   name: string;
   label: string;
   type: InputType;

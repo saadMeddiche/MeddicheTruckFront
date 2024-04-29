@@ -86,6 +86,7 @@ export class BaseUpdateComponent<I extends BaseModel, S extends BaseService<I>> 
   }
 
   startUpdateProcess(itemID: ID){
+    this.form.reset();
     this.toggleModal();
 
     if(this.isModalVisible){

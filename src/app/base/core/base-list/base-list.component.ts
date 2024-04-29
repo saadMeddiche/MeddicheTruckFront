@@ -9,11 +9,11 @@ import {PaginatedResponse} from "@app/interfaces/PaginatedResponse";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
 import {of} from "rxjs";
 import {ID} from "@app/types/GeneralTypes";
-import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/utils/text";
 import {ColumnType} from "@app/base/enums/ColumnType";
 import {BasePaginationComponent} from "@app/base/core/base-pagination/base-pagination.component";
 import {Location} from "@angular/common";
 import {ListConfig} from "@app/base/models/ListConfig";
+import {RowButton} from "@app/base/models/RowButton";
 
 @Component({
   selector: 'app-base-list',
@@ -30,6 +30,8 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     showAddButton: true,
     showEditButton: true
   };
+
+  @Input() extraRowButtons : RowButton<I>[] = []
 
   items: I[] = [];
 
@@ -54,6 +56,12 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   @Output() deleteButtonIsClicked = new EventEmitter<ID>();
   alertParentThatDeleteButtonIsClicked(itemID: ID){
     this.deleteButtonIsClicked.emit(itemID);
+  }
+
+  @Output() extraButtonIsClicked = new EventEmitter<RowButton<I>>();
+
+  alertParentThatAnExtraButtonIsClicked(rowButton :RowButton<I>){
+    this.extraButtonIsClicked.emit(rowButton);
   }
 
 
@@ -100,6 +108,12 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   clearSearchTerm(){
     this.searchTerm = "";
     this.searchItems();
+  }
+
+  clickExtraButton(button :RowButton<I> , item: I){
+    button.item = item;
+    if(button.onClick) button.onClick();
+    this.alertParentThatAnExtraButtonIsClicked(button);
   }
 
   protected readonly ColumnType = ColumnType;

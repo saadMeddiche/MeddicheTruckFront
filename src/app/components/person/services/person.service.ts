@@ -12,4 +12,5 @@ export class PersonService extends BaseService<Person> {
   constructor(override http :HttpClient) {
     super(http);
   }
+
 }

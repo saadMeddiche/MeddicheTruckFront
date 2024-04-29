@@ -14,6 +14,9 @@ import {ValidationService} from "@app/base/services/validation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MyInput} from "@app/base/models/MyInput";
 import {ListConfig} from "@app/base/models/ListConfig";
+import {InputType} from "@app/base/enums/InputType";
+import {getErrorMessageForName} from "@app/base/validation/error-messages/error.messages";
+import {TransactionType} from "@app/components/piece-transaction/enums/TransactionType";
 
 @Component({
   selector: 'app-piece-transaction-list',
@@ -45,23 +48,52 @@ export class PieceTransactionListComponent extends ValidationService {
 
   override buildForm(): FormGroup {
     return new FormGroup({
-
       date: new FormControl('', [Validators.required]),
       time: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       type: new FormControl('', [Validators.required]),
-      pieceID: new FormControl('', [Validators.required]),
-      personID: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required])
     });
   }
 
   config : ListConfig = {
     showAddButton: false,
-    showEditButton: false
+    showEditButton: true
   }
 
-  inputs: MyInput<PieceTransaction>[] = []
+  inputs: MyInput<PieceTransaction>[] = [
+    {
+      name: 'date',
+      label: 'Date',
+      type: InputType.DATE,
+      validationMessage: () => this.getErrorName('date')
+    },
+    {
+      name: 'time',
+      label: 'Time',
+      type: InputType.TIME,
+      validationMessage: () => this.getErrorName('time')
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      type: InputType.TEXTAREA,
+      validationMessage: () => this.getErrorName('description')
+    },
+    {
+      name: 'type',
+      label: 'Type',
+      type: InputType.SELECT,
+      validationMessage: () => this.getErrorName('type'),
+      options: Object.values(TransactionType)
+    },
+    {
+      name: 'price',
+      label: 'Price',
+      type: InputType.NUMBER,
+      validationMessage: () => this.getErrorName('price')
+    }
+  ]
 
   columns : Column<PieceTransaction>[] = [
     {
@@ -79,7 +111,7 @@ export class PieceTransactionListComponent extends ValidationService {
     {
       name: 'description',
       label: 'Description' ,
-      type: ColumnType.TEXT,
+      type: ColumnType.TEXTAREA,
       value: (item: PieceTransaction) => item.description
     },
     {
@@ -89,16 +121,16 @@ export class PieceTransactionListComponent extends ValidationService {
       value: (item: PieceTransaction) => item.type
     },
     {
-      name: 'pieceID',
-      label: 'Piece ID' ,
+      name: 'pieceId',
+      label: 'Piece' ,
       type: ColumnType.TEXT,
-      value: (item: PieceTransaction) => item.pieceID
+      value: (item: PieceTransaction) => item.pieceId
     },
     {
-      name: 'personID',
-      label: 'Person ID',
+      name: 'personId',
+      label: 'Person',
       type: ColumnType.TEXT,
-      value: (item: PieceTransaction) => item.personID
+      value: (item: PieceTransaction) => item.personId
     },
     {
       name: 'price',
