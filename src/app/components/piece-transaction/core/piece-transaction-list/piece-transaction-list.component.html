@@ -1,0 +1,16 @@
+<app-base-list [itemService]="pieceTransactionService"
+               [columns]="columns"
+               [config]="config"
+               (editButtonIsClicked)="editPieceTransaction($event)"
+               (deleteButtonIsClicked)="deletePieceTransaction($event)"
+></app-base-list>
+
+<app-base-delete [service]="pieceTransactionService"
+                 (itemIsDeleted)="refreshList()"
+></app-base-delete>
+
+<app-base-update [service]="pieceTransactionService"
+                 [inputs]="inputs"
+                 [form]="form"
+                 (itemIsUpdated)="refreshList()"
+></app-base-update>

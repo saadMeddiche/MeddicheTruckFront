@@ -26,10 +26,15 @@ export class UserDashboardComponent extends NavigationService {
       imagePath: "assets/scrap.png",
       function: () => this.navigateToPiecesList()
     },
-    { title: 'Manage Transaction',
+    { title: 'Manage Piece Transaction',
       description: "Here you can store the transaction and necessary information about it",
       imagePath: "assets/transactions.png",
-      function: () => this.navigateToTransactionsList()
+      function: () => this.navigateToPieceTransactionsList()
+    },
+    { title: 'Manage Vehicle Transaction',
+      description: "Here you can store the transaction and necessary information about it",
+      imagePath: "assets/transactions.png",
+      function: () => this.navigateToVehicleTransactionsList()
     },
     { title: 'Manage vehicles',
       description: "Manage Vehicle and create your own history",

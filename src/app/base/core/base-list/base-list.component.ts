@@ -13,6 +13,7 @@ import {getSingularName, lowerCaseFirstLetter, upperCaseFirstLetter} from "@app/
 import {ColumnType} from "@app/base/enums/ColumnType";
 import {BasePaginationComponent} from "@app/base/core/base-pagination/base-pagination.component";
 import {Location} from "@angular/common";
+import {ListConfig} from "@app/base/models/ListConfig";
 
 @Component({
   selector: 'app-base-list',
@@ -24,6 +25,11 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
   @Input() columns!: Column<I>[] ;
 
   @Input() itemService!: S ;
+
+  @Input() config : ListConfig = {
+    showAddButton: true,
+    showEditButton: true
+  };
 
   items: I[] = [];
 

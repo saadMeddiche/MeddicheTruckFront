@@ -62,4 +62,12 @@ export abstract class NavigationService {
   async navigateToTransactionsList() {
     await this.navigateTo(Pages.TRANSACTIONS_LIST);
   }
+
+  async navigateToPieceTransactionsList() {
+    await this.navigateTo(Pages.PIECE_TRANSACTIONS_LIST);
+  }
+
+  async navigateToVehicleTransactionsList() {
+    await this.navigateTo(Pages.VEHICLE_TRANSACTIONS_LIST);
+  }
 }
