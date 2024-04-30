@@ -6,8 +6,28 @@ import {noSpaceValidator} from "@app/base/validation/costum-validators/costum.va
 import {TransactionType} from "@app/components/piece-transaction/enums/TransactionType";
 import {PieceTransaction} from "@app/components/piece-transaction/models/PieceTransaction";
 import {getErrorMessageForName} from "@app/base/validation/error-messages/error.messages";
+import {MyOption} from "@app/base/models/MyOption";
+import {PersonService} from "@app/components/person/services/person.service";
+import {Injectable} from "@angular/core";
+import {Person} from "@app/components/person/models/person";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class PieceForms {
+
+  personOptions: MyOption[] = [];
+
+  constructor(private personService : PersonService) {
+    this.personService.getAllItems().subscribe(
+      (persons : Person[]) => {
+        this.personOptions = persons.map(person => {
+          const fullName = `${person.firstName} ${person.middleName} ${person.lastName}`;
+          return new MyOption(person.id!.toString(), fullName)
+        });
+      }
+    )
+  }
 
   public pieceForm: FormGroup = this.buildPieceForm();
 
@@ -49,21 +69,22 @@ export class PieceForms {
       label: 'Type',
       type: InputType.SELECT,
       validationMessage: () => getErrorMessageForName('type', this.transactionForm),
-      options: Object.values(TransactionType)
+      options: () => Object.values(TransactionType).map(value => new MyOption(value, value))
     },
-    {
-      idPrefix: 'PT',
-      name: 'pieceId',
-      label: 'Piece ID',
-      type: InputType.NUMBER,
-      validationMessage: () => getErrorMessageForName('pieceId', this.transactionForm)
-    },
+    // {
+    //   idPrefix: 'PT',
+    //   name: 'pieceId',
+    //   label: 'Piece ID',
+    //   type: InputType.NUMBER,
+    //   validationMessage: () => getErrorMessageForName('pieceId', this.transactionForm)
+    // },
     {
       idPrefix: 'PT',
       name: 'personId',
-      label: 'Person ID',
-      type: InputType.NUMBER,
-      validationMessage: () => getErrorMessageForName('personId', this.transactionForm)
+      label: 'Persons',
+      type: InputType.SELECT,
+      validationMessage: () => getErrorMessageForName('personId', this.transactionForm),
+      options: () => {return this.personOptions}
     },
     {
       idPrefix: 'PT',

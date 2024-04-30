@@ -35,6 +35,10 @@ export abstract class BaseService<I extends BaseModel> {
     return this.http.get<I>(this.buildIdUrl(id));
   }
 
+  getAllItems() :Observable<I[]> {
+    return this.http.get<I[]>(this.buildSimpleUrl()+"/all");
+  }
+
   deleteItem(id: ID) :Observable<void> {
     return this.http.delete<void>(this.buildIdUrl(id));
   }

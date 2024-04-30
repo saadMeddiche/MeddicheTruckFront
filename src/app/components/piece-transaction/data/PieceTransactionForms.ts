@@ -4,7 +4,12 @@ import {InputType} from "@app/base/enums/InputType";
 import {TransactionType} from "@app/components/piece-transaction/enums/TransactionType";
 import {getErrorMessageForName} from "@app/base/validation/error-messages/error.messages";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MyOption} from "@app/base/models/MyOption";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class PieceTransactionForms {
 
   public readonly transactionInputs: MyInput<PieceTransaction>[] = [
@@ -31,7 +36,7 @@ export class PieceTransactionForms {
       label: 'Type',
       type: InputType.SELECT,
       validationMessage: () => getErrorMessageForName('type' , this.transactionForm),
-      options: Object.values(TransactionType)
+      options: () => Object.values(TransactionType).map(value => new MyOption(value, value))
     },
     {
       name: 'price',

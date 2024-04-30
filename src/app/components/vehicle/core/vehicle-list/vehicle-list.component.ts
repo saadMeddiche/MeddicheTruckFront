@@ -16,6 +16,7 @@ import {ID} from "@app/types/GeneralTypes";
 import {BaseListComponent} from "@app/base/core/base-list/base-list.component";
 import {BaseUpdateComponent} from "@app/base/core/base-update/base-update.component";
 import {Location} from "@angular/common";
+import {MyOption} from "@app/base/models/MyOption";
 
 @Component({
   selector: 'app-vehicle-list',
@@ -96,14 +97,14 @@ export class VehicleListComponent extends ValidationService
         name: 'type',
         label: 'Type',
         type: InputType.SELECT,
-        options: Object.values(VehicleType),
+        options: () => Object.values(VehicleType).map(value => new MyOption(value, value)),
         validationMessage: () => this.getErrorName('type')
       },
       {
         name: 'engineType',
         label: 'Engine Type',
         type: InputType.SELECT,
-        options: Object.values(EngineType),
+        options:() => Object.values(EngineType).map(value => new MyOption(value, value)),
         validationMessage: () => this.getErrorName('engineType')
       }
     ]

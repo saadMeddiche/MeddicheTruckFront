@@ -2,7 +2,11 @@ import {Column} from "@app/base/models/Column";
 import {PieceTransaction} from "@app/components/piece-transaction/models/PieceTransaction";
 import {ColumnType} from "@app/base/enums/ColumnType";
 import {ListConfig} from "@app/base/models/ListConfig";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class PieceTransactionList {
 
   transactionColumns : Column<PieceTransaction>[] = [

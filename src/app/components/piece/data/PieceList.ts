@@ -3,7 +3,11 @@ import {Column} from "@app/base/models/Column";
 import {Piece} from "@app/components/piece/models/piece";
 import {ColumnType} from "@app/base/enums/ColumnType";
 import {RowButton} from "@app/base/models/RowButton";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class PieceList extends NavigationService {
 
   public readonly columns :Column<Piece>[] = [

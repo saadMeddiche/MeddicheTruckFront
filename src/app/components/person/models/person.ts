@@ -25,6 +25,13 @@ export class Person extends BaseModel {
     this._description = person.description;
   }
 
+  public fullName(): string {
+    console.log(this._firstName);
+    console.log(this._middleName);
+    console.log(this._lastName);
+    return `${this._firstName} ${this._middleName} ${this._lastName}`;
+  }
+
   get firstName(): string {
     return this._firstName;
   }

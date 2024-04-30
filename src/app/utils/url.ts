@@ -14,3 +14,4 @@ export function buildSearchableUrl(searchTerm: string , page: number , size: num
 
   return url;
 }
+
