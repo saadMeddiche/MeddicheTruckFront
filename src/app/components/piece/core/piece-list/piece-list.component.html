@@ -1,15 +1,15 @@
 <app-base-list [itemService]="pieceService"
-               [columns]="columns"
-               [extraRowButtons]="extraRowButtons"
-               (addButtonIsClicked)="addPiece()"
-               (editButtonIsClicked)="editPiece($event)"
-               (deleteButtonIsClicked)="deletePiece($event)"
-               (extraButtonIsClicked)="extraButton($event)"
+               [columns]="pieceList.columns"
+               [extraRowButtons]="pieceList.extraRowButtons"
+               (addButtonIsClicked)="addButtonIsClicked()"
+               (editButtonIsClicked)="editButtonIsClicked($event)"
+               (deleteButtonIsClicked)="deleteButtonIsClicked($event)"
+               (extraButtonIsClicked)="extraButtonIsClicked($event)"
 ></app-base-list>
 
 <app-base-add [service]="pieceService"
-              [inputs]="inputs"
-              [form]="form"
+              [inputs]="pieceForms.pieceInputs"
+              [form]="pieceForms.pieceForm"
               (itemIsAdded)="refreshList()"
 ></app-base-add>
 
@@ -18,14 +18,14 @@
 ></app-base-delete>
 
 <app-base-update [service]="pieceService"
-                 [inputs]="inputs"
-                 [form]="form"
+                 [inputs]="pieceForms.pieceInputs"
+                 [form]="pieceForms.pieceForm"
                  (itemIsUpdated)="refreshList()"
 ></app-base-update>
 
 <app-base-add #Transactions [service]="pieceTransactionService"
-              [inputs]="transactionInputs"
-              [form]="transactionForm"
+              [inputs]="pieceForms.transactionInputs"
+              [form]="pieceForms.transactionForm"
               (itemIsAdded)="refreshList()"
 ></app-base-add>
 
