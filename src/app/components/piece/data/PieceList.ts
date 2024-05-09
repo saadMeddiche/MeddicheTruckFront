@@ -34,14 +34,21 @@ export class PieceList extends NavigationService {
 
   public readonly extraRowButtons :RowButton<Piece>[] = [
     {
-      id: PieceExtraRowButton.PIECE_TRANSACTION,
+      id: PieceExtraRowButton.PIECE_ADD_TRANSACTION,
       type: 'button',
       name: 'Transaction',
       class: 'inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-4 focus:ring-green-900',
+    },
+    {
+      id: PieceExtraRowButton.PIECE_TRANSACTIONS,
+      type: 'button',
+      name: 'Transactions',
+      class: 'inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-600 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-900',
     }
   ]
 }
 
 export enum PieceExtraRowButton {
-  PIECE_TRANSACTION = 'pieceTransaction'
+  PIECE_ADD_TRANSACTION = 'pieceAddTransaction',
+  PIECE_TRANSACTIONS = 'pieceTransactions'
 }

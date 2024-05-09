@@ -16,17 +16,10 @@ import {Person} from "@app/components/person/models/person";
 })
 export class PieceForms {
 
-  personOptions: MyOption[] = [];
+  private personOptions: MyOption[] = [];
 
   constructor(private personService : PersonService) {
-    this.personService.getAllItems().subscribe(
-      (persons : Person[]) => {
-        this.personOptions = persons.map(person => {
-          const fullName = `${person.firstName} ${person.middleName} ${person.lastName}`;
-          return new MyOption(person.id!.toString(), fullName)
-        });
-      }
-    )
+    this.buildPersonOptions();
   }
 
   public pieceForm: FormGroup = this.buildPieceForm();
@@ -84,7 +77,7 @@ export class PieceForms {
       label: 'Persons',
       type: InputType.SELECT,
       validationMessage: () => getErrorMessageForName('personId', this.transactionForm),
-      options: () => {return this.personOptions}
+      options: () =>  this.personOptions
     },
     {
       idPrefix: 'PT',
@@ -125,4 +118,16 @@ export class PieceForms {
       price: new FormControl('', [Validators.required])
     });
   }
+
+  private buildPersonOptions() {
+    this.personService.getAllItems().subscribe(
+      (persons : Person[]) => {
+        this.personOptions = persons.map(person => {
+          const fullName = `${person.firstName} ${person.middleName} ${person.lastName}`;
+          return new MyOption(person.id!.toString(), fullName)
+        });
+      }
+    )
+  }
+
 }

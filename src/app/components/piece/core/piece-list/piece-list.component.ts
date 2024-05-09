@@ -71,9 +71,12 @@ export class PieceListComponent  extends NavigationService {
     // Define the action for the clicked button
 
     switch (button.id) {
-      case PieceExtraRowButton.PIECE_TRANSACTION:
+      case PieceExtraRowButton.PIECE_ADD_TRANSACTION:
         this.pieceForms.transactionForm.get('pieceId')!.setValue(button.item?.id);
         this.baseAddTransactionComponent.toggleModal();
+        break;
+      case PieceExtraRowButton.PIECE_TRANSACTIONS:
+        alert("see transaction")
         break;
     }
 
