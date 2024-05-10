@@ -64,6 +64,11 @@ export class BaseListComponent<I extends BaseModel, S extends BaseService<I>> ex
     this.extraButtonIsClicked.emit(rowButton);
   }
 
+  @Output() rowIsClicked = new EventEmitter<I>();
+  alertParentThatRowIsClicked(item: I){
+    this.rowIsClicked.emit(item);
+  }
+
 
   @ViewChild(BasePaginationComponent)
   basePaginationComponent!: BasePaginationComponent;

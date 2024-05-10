@@ -15,6 +15,9 @@ import {BaseDeleteComponent} from "@app/base/core/base-delete/base-delete.compon
 import {BaseListComponent} from "@app/base/core/base-list/base-list.component";
 import {ID} from "@app/types/GeneralTypes";
 import {Location} from "@angular/common";
+import { Clipboard } from '@angular/cdk/clipboard';
+import {ToastService} from "@app/layouts/toast/services/toast.service";
+import {ToastType} from "@app/layouts/toast/enums/ToastType";
 
 @Component({
   selector: 'app-person-list',
@@ -38,7 +41,9 @@ export class PersonListComponent extends ValidationService {
   constructor(
     protected personService: PersonService,
     override router: Router,
-    override location: Location
+    override location: Location,
+    private clipboard: Clipboard,
+    private toastService: ToastService
   ) {
     super(router,location);
   }
@@ -171,6 +176,13 @@ export class PersonListComponent extends ValidationService {
 
   refreshList(){
     this.baseListComponent.searchItems();
+  }
+
+  rowIsClicked(vehicle: Person){
+    const middleName = vehicle.middleName != "" ? ` ${vehicle.middleName}` : "";
+    const personFullName = `${vehicle.firstName}${middleName} ${vehicle.lastName}`;
+    this.clipboard.copy(personFullName);
+    this.toastService.pushToToaster('Person full name copied to clipboard', ToastType.SUCCESS);
   }
 
 }

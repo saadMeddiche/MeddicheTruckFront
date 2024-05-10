@@ -61,10 +61,10 @@
               <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
               Add
             </button>
-            <a href="#" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center border  rounded-lg focus:ring-4 focus:ring-primary-300 sm:w-auto bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700 focus:ring-gray-700">
-              <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path></svg>
-              Export
-            </a>
+<!--            <a href="#" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center border  rounded-lg focus:ring-4 focus:ring-primary-300 sm:w-auto bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700 focus:ring-gray-700">-->
+<!--              <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path></svg>-->
+<!--              Export-->
+<!--            </a>-->
           </div>
         </div>
       </div>
@@ -85,17 +85,17 @@
                   </div>
                 </th>
 
-                <th scope="col" class="p-4 text-xs font-medium text-left uppercase text-gray-400">
+                <th scope="col" class="p-4 text-xs font-medium text-center uppercase text-gray-400">
                   ID
                 </th>
 
                 <ng-container *ngFor="let column of columns">
-                  <th scope="col" class="p-4 text-xs font-medium text-left uppercase text-gray-400">
+                  <th scope="col" class="p-4 text-xs font-medium text-center uppercase text-gray-400">
                     {{column.label}}
                   </th>
                 </ng-container>
 
-                <th scope="col" class="p-4 text-xs font-medium text-left uppercase text-gray-400">
+                <th scope="col" class="p-4 text-xs font-medium text-center uppercase text-gray-400">
                   Actions
                 </th>
               </tr>
@@ -103,7 +103,7 @@
               <tbody class="divide-y bg-gray-800 divide-gray-700">
 
               <ng-container *ngFor="let item of items">
-                <tr class="hover:bg-gray-700">
+                <tr class="hover:bg-gray-700" (click)="alertParentThatRowIsClicked(item)">
                   <td class="w-4 p-4">
                     <div class="flex items-center">
                       <input id="checkbox-{{ item.id }}" aria-describedby="checkbox-1" type="checkbox" class="w-4 h-4 rounded focus:ring-3 focus:ring-primary-300 focus:ring-primary-600 ring-offset-gray-800 bg-gray-700 border-gray-600">

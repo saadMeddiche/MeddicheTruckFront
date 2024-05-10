@@ -3,6 +3,7 @@
                (addButtonIsClicked)="addPerson()"
                (editButtonIsClicked)="editPerson($event)"
                (deleteButtonIsClicked)="deletePerson($event)"
+               (rowIsClicked)="rowIsClicked($event)"
 ></app-base-list>
 
 <app-base-add [service]="personService"

@@ -14,6 +14,9 @@ import {RowButton} from "@app/base/models/RowButton";
 import {VehicleTransaction} from "@app/components/vehicle-transaction/models/VehicleTransaction";
 import {VehicleForms} from "@app/components/vehicle/data/VehicleForms";
 import {VehicleExtraRowButton, VehicleList} from "@app/components/vehicle/data/VehicleList";
+import {ToastService} from "@app/layouts/toast/services/toast.service";
+import {ToastType} from "@app/layouts/toast/enums/ToastType";
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -44,7 +47,9 @@ export class VehicleListComponent extends NavigationService
     override location: Location,
     protected vehicleTransactionService: VehicleTransactionService,
     protected vehicleForms: VehicleForms,
-    protected vehicleList: VehicleList
+    protected vehicleList: VehicleList,
+    private clipboard: Clipboard,
+    private toastService: ToastService
   ) {
     super(router, location);
   }
@@ -63,6 +68,11 @@ export class VehicleListComponent extends NavigationService
 
   refreshList(){
     this.baseListComponent.searchItems();
+  }
+
+  rowIsClicked(vehicle: Vehicle){
+    this.clipboard.copy(vehicle.plate);
+    this.toastService.pushToToaster('Plate copied to clipboard', ToastType.SUCCESS);
   }
 
   extraButtonIsClicked(button: RowButton<Vehicle>){
