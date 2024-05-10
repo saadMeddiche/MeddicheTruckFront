@@ -114,7 +114,7 @@
                   <ng-container *ngFor="let column of columns">
 
                     <td *ngIf="column.type == ColumnType.TEXT"
-                        class="p-4 text-base font-medium whitespace-nowrap text-white">
+                        class="p-4 text-base font-medium whitespace-nowrap text-white text-center">
                       {{ column.value(item) }}
                     </td>
 
@@ -129,14 +129,18 @@
                       {{ column.value(item) }}
                     </td>
 
-                    <td *ngIf="column.type == ColumnType.BOOLEAN">
-                      <div
-                        *ngIf="column.value(item)"
-                        class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+                    <td  *ngIf="column.type == ColumnType.BOOLEAN">
 
-                      <div
-                        *ngIf="!column.value(item)"
-                        class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>
+                      <div class="h-full w-full flex justify-center items-center">
+                        <div
+                          *ngIf="column.value(item)"
+                          class="h-2.5 w-2.5 rounded-full bg-green-400"></div>
+
+                        <div
+                          *ngIf="!column.value(item)"
+                          class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                      </div>
+
                     </td>
 
                     <td *ngIf="column.type == ColumnType.LINK"
