@@ -15,8 +15,8 @@ const routes: Routes = [
   ...dashboardRoutes,
   ...vehicleRoutes,
   ...personRoutes,
-  ...pieceRoutes,
-  ...pieceTransactionRoutes,
+  // ...pieceRoutes,
+  // ...pieceTransactionRoutes,
   ...vehicleTransactionRoutes,
   { path: Pages.HOME, component: HomeComponent },
   { path: '**', redirectTo: Pages.HOME, pathMatch: 'full' }

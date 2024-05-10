@@ -22,12 +22,12 @@ export class VehicleTransactionList {
       type: ColumnType.TEXT,
       value: (item: VehicleTransaction) => item.time
     },
-    {
-      name: 'description',
-      label: 'Description' ,
-      type: ColumnType.TEXTAREA,
-      value: (item: VehicleTransaction) => item.description
-    },
+    // {
+    //   name: 'description',
+    //   label: 'Description' ,
+    //   type: ColumnType.TEXTAREA,
+    //   value: (item: VehicleTransaction) => item.description
+    // },
     {
       name: 'type',
       label: 'Type',
@@ -35,16 +35,16 @@ export class VehicleTransactionList {
       value: (item: VehicleTransaction) => item.type
     },
     {
-      name: 'vehicleId',
+      name: 'vehiclePlate',
       label: 'Vehicle',
       type: ColumnType.TEXT,
-      value: (item: VehicleTransaction) => item.vehicleId
+      value: (item: VehicleTransaction) => item.vehiclePlate
     },
     {
-      name: 'personId',
+      name: 'personFullName',
       label: 'Person',
       type: ColumnType.TEXT,
-      value: (item: VehicleTransaction) => item.personId
+      value: (item: VehicleTransaction) => item.personFullName
     },
     {
       name: 'price',

@@ -80,7 +80,12 @@ export class BaseUpdateComponent<I extends BaseModel, S extends BaseService<I>> 
           this.toastService.pushToToaster("Error: Please reload page or re-login", ToastType.DANGER);
         }
 
-        this.toastService.pushToToaster(`${this.service.getItemName()} didn't updated as expected`, ToastType.DANGER);
+        httpErrorResponse.error.forEach((error: string) => {
+          this.toastService.pushToToaster(error, ToastType.DANGER);
+        })
+
+        if(httpErrorResponse.error.length === 0)
+          this.toastService.pushToToaster(`${this.service.getItemName()} didn't updated as expected`, ToastType.DANGER);
       }
     );
   }

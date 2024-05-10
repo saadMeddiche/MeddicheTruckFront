@@ -14,7 +14,11 @@ export interface IVehicleTransaction extends IBaseModel {
 
   vehicleId: number;
 
+  vehiclePlate: string;
+
   personId: number;
+
+  personFullName: string;
 
   price: number;
 }
@@ -31,7 +35,11 @@ export class VehicleTransaction extends BaseModel {
 
   private _vehicleId: number;
 
+  private _vehiclePlate: string;
+
   private _personId: number;
+
+  private _personFullName: string;
 
   private _price: number;
 
@@ -42,7 +50,9 @@ export class VehicleTransaction extends BaseModel {
     this._description = vehicleTransaction.description;
     this._type = vehicleTransaction.type;
     this._vehicleId = vehicleTransaction.vehicleId;
+    this._vehiclePlate = vehicleTransaction.vehiclePlate;
     this._personId = vehicleTransaction.personId;
+    this._personFullName = vehicleTransaction.personFullName;
     this._price = vehicleTransaction.price;
   }
 
@@ -86,12 +96,28 @@ export class VehicleTransaction extends BaseModel {
     this._vehicleId = vehicleID;
   }
 
+  get vehiclePlate(): string {
+    return this._vehiclePlate;
+  }
+
+  set vehiclePlate(vehiclePlate: string) {
+    this._vehiclePlate = vehiclePlate;
+  }
+
   get personId(): number {
     return this._personId;
   }
 
   set personId(personID: number) {
     this._personId = personID;
+  }
+
+  get personFullName(): string {
+    return this._personFullName;
+  }
+
+  set personFullName(personFullName: string) {
+    this._personFullName = personFullName;
   }
 
   get price(): number {

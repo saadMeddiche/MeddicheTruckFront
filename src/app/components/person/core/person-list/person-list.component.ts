@@ -69,6 +69,18 @@ export class PersonListComponent extends ValidationService {
       value: (item: Person) => item.birthDate
     },
     {
+      name: 'mainPhoneNumber',
+      label: 'N¤1 Phone',
+      type: ColumnType.TEXT,
+      value: (item: Person) => item.mainPhoneNumber
+    },
+    {
+      name: 'secondaryPhoneNumber',
+      label: 'N¤2 Phone',
+      type: ColumnType.TEXT,
+      value: (item: Person) => item.secondaryPhoneNumber != "" ? item.secondaryPhoneNumber : "-"
+    },
+    {
       name: 'description',
       label: 'Description',
       type: ColumnType.TEXTAREA,
@@ -102,6 +114,18 @@ export class PersonListComponent extends ValidationService {
       validationMessage: () => this.getErrorBirthDate('birthDate')
     },
     {
+      name: 'mainPhoneNumber',
+      label: 'N¤1 Phone',
+      type: InputType.TEXT,
+      validationMessage: () => this.getErrorName('mainPhoneNumber')
+    },
+    {
+      name: 'secondaryPhoneNumber',
+      label: 'N¤2 Phone',
+      type: InputType.TEXT,
+      validationMessage: () => this.getErrorName('secondaryPhoneNumber')
+    },
+    {
       name: 'description',
       label: 'Description',
       type: InputType.TEXTAREA,
@@ -125,7 +149,11 @@ export class PersonListComponent extends ValidationService {
         Validators.required,
         birthDateValidator()
       ]),
-      description: new FormControl('', [])
+      description: new FormControl('', []),
+      mainPhoneNumber: new FormControl('', [
+        Validators.required
+      ]),
+      secondaryPhoneNumber: new FormControl('', [])
     });
   }
 

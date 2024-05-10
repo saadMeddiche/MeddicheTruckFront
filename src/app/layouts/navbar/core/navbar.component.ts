@@ -54,6 +54,21 @@ export class NavbarComponent extends NavigationService{
       isVisible: () => this.auth.isLoggedIn() && this.auth.haveUserDashboardAccess()
     },
     {
+      name: 'Transactions',
+      function: () => this.navigateToVehicleTransactionsList(),
+      isVisible: () => this.auth.isLoggedIn() && this.auth.haveUserDashboardAccess()
+    },
+    {
+      name: 'Vehicles',
+      function: () => this.navigateToVehiclesList(),
+      isVisible: () => this.auth.isLoggedIn() && this.auth.haveUserDashboardAccess()
+    },
+    {
+      name: 'Persons',
+      function: () => this.navigateToPersonsList(),
+      isVisible: () => this.auth.isLoggedIn() && this.auth.haveUserDashboardAccess()
+    },
+    {
       name: 'Logout',
       function: () => this.auth.logout(),
       isVisible: () => this.auth.isLoggedIn()

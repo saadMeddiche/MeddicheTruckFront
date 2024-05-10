@@ -47,12 +47,6 @@ export class VehicleTransactionForms {
       options: () =>  this.personOptions
     },
     {
-      name: 'description',
-      label: 'Description',
-      type: InputType.TEXTAREA,
-      validationMessage: () => getErrorMessageForName('description' , this.transactionForm)
-    },
-    {
       name: 'type',
       label: 'Type',
       type: InputType.SELECT,
@@ -64,7 +58,13 @@ export class VehicleTransactionForms {
       label: 'Price',
       type: InputType.NUMBER,
       validationMessage: () => getErrorMessageForName('price' , this.transactionForm)
-    }
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      type: InputType.TEXTAREA,
+      validationMessage: () => getErrorMessageForName('description' , this.transactionForm)
+    },
   ]
 
   public transactionForm: FormGroup = this.buildTransactionForm();

@@ -21,16 +21,16 @@ export class UserDashboardComponent extends NavigationService {
       imagePath: "assets/persons.png",
       function: () => this.navigateToPersonsList()
     },
-    { title: 'Manage Pieces',
-      description: "Manage Pieces like vehicle engine , wheels , parts of vehicle ...",
-      imagePath: "assets/scrap.png",
-      function: () => this.navigateToPiecesList()
-    },
-    { title: 'Manage Piece Transaction',
-      description: "Here you can store the transaction and necessary information about it",
-      imagePath: "assets/transactions.png",
-      function: () => this.navigateToPieceTransactionsList()
-    },
+    // { title: 'Manage Pieces',
+    //   description: "Manage Pieces like vehicle engine , wheels , parts of vehicle ...",
+    //   imagePath: "assets/scrap.png",
+    //   function: () => this.navigateToPiecesList()
+    // },
+    // { title: 'Manage Piece Transaction',
+    //   description: "Here you can store the transaction and necessary information about it",
+    //   imagePath: "assets/transactions.png",
+    //   function: () => this.navigateToPieceTransactionsList()
+    // },
     { title: 'Manage Vehicle Transaction',
       description: "Here you can store the transaction and necessary information about it",
       imagePath: "assets/transactions.png",

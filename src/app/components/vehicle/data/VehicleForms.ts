@@ -88,13 +88,13 @@ export class VehicleForms {
       validationMessage: () => getErrorMessageForName('type', this.transactionForm),
       options: () => Object.values(TransactionType).map(value => new MyOption(value, value))
     },
-    {
-      idPrefix: 'PT',
-      name: 'vehicleId',
-      label: 'Vehicle ID',
-      type: InputType.NUMBER,
-      validationMessage: () => getErrorMessageForName('vehicleId', this.transactionForm)
-    },
+    // {
+    //   idPrefix: 'PT',
+    //   name: 'vehicleId',
+    //   label: 'Vehicle ID',
+    //   type: InputType.NUMBER,
+    //   validationMessage: () => getErrorMessageForName('vehicleId', this.transactionForm)
+    // },
     {
       idPrefix: 'PT',
       name: 'personId',
