@@ -1,0 +1,17 @@
+<app-base-list [itemService]="vehicleTransactionService"
+               [columns]="vehicleTransactionList.transactionColumns"
+               [config]="vehicleTransactionList.configuration"
+               (editButtonIsClicked)="editButtonIsClicked($event)"
+               (deleteButtonIsClicked)="deleteButtonIsClicked($event)"
+></app-base-list>
+
+<app-base-delete [service]="vehicleTransactionService"
+                 (itemIsDeleted)="refreshList()"
+></app-base-delete>
+
+<app-base-update [service]="vehicleTransactionService"
+                 [inputs]="vehicleTransactionForm.transactionInputs"
+                 [form]="vehicleTransactionForm.transactionForm"
+                 (itemIsUpdated)="refreshList()"
+></app-base-update>
+

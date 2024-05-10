@@ -42,6 +42,7 @@ import { PersonListComponent } from '@app/components/person/core/person-list/per
 import { PieceListComponent } from '@app/components/piece/core/piece-list/piece-list.component';
 import { PieceImageComponent } from '@app/components/piece/core/piece-image/piece-image.component';
 import { PieceTransactionListComponent } from '@app/components/piece-transaction/core/piece-transaction-list/piece-transaction-list.component';
+import { VehicleTransactionListComponent } from '@app/components/vehicle-transaction/core/vehicle-transaction-list/vehicle-transaction-list.component';
 
 
 
@@ -67,6 +68,7 @@ import { PieceTransactionListComponent } from '@app/components/piece-transaction
     PieceListComponent,
     PieceImageComponent,
     PieceTransactionListComponent,
+    VehicleTransactionListComponent,
   ],
   imports: [
     BrowserModule,
