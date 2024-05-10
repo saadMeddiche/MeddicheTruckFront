@@ -60,7 +60,8 @@ export class VehicleForms {
     {
       name: 'inStock',
       label: 'In Stock',
-      type: InputType.CHECKBOX,
+      type: InputType.SELECT,
+      options: () => [new MyOption('true', 'Yes'), new MyOption('false', 'No')],
       validationMessage: () => getErrorMessageForName('inStock', this.vehicleForm)
     }
   ]

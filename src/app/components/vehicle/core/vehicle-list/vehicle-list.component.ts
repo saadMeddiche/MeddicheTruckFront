@@ -84,9 +84,6 @@ export class VehicleListComponent extends NavigationService
         this.vehicleForms.transactionForm.get('vehicleId')!.setValue(button.item?.id);
         this.baseAddTransactionComponent.toggleModal();
         break;
-      case VehicleExtraRowButton.VEHICLE_TRANSACTIONS:
-        alert("see transaction")
-        break;
     }
 
   }

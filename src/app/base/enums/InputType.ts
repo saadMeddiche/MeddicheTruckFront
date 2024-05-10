@@ -6,6 +6,5 @@ export enum InputType {
   DATETIME = 'datetime',
   TIME = 'time',
   NUMBER = 'number',
-  SELECT = 'select',
-  CHECKBOX = 'checkbox',
+  SELECT = 'select'
 }

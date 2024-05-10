@@ -108,16 +108,6 @@
                   </select>
                 </ng-container>
 
-                <ng-container *ngIf="input.type === InputType.CHECKBOX">
-
-                  <input type="checkbox"
-                         [name]="input.name"
-                         [id]="input.idPrefix +'field-'+input.name"
-                         [formControlName]="input.name"
-                         class="shadow-sm border sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
-
-                </ng-container>
-
                 <div class="text-red-500">{{ input.validationMessage ? input.validationMessage() : ''}}</div>
               </div>
 

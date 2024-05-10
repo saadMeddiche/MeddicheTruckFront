@@ -103,14 +103,16 @@
               <tbody class="divide-y bg-gray-800 divide-gray-700">
 
               <ng-container *ngFor="let item of items">
-                <tr class="hover:bg-gray-700" (click)="alertParentThatRowIsClicked(item)">
+                <tr class="hover:bg-gray-700" >
                   <td class="w-4 p-4">
                     <div class="flex items-center">
                       <input id="checkbox-{{ item.id }}" aria-describedby="checkbox-1" type="checkbox" class="w-4 h-4 rounded focus:ring-3 focus:ring-primary-300 focus:ring-primary-600 ring-offset-gray-800 bg-gray-700 border-gray-600">
                       <label for="checkbox-{{ item.id  }}" class="sr-only">checkbox</label>
                     </div>
                   </td>
-                  <td class="max-w-sm p-4 overflow-hidden text-base font-normal  truncate xl:max-w-xs text-gray-400">#{{ item.id }}</td>
+                  <td
+                    (click)="alertParentThatRowIsClicked(item)"
+                    class="max-w-sm p-4 overflow-hidden text-base font-normal  truncate xl:max-w-xs text-gray-400">#{{ item.id }}</td>
                   <ng-container *ngFor="let column of columns">
 
                     <td *ngIf="column.type == ColumnType.TEXT"
