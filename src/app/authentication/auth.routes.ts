@@ -1,16 +1,10 @@
 import {Routes} from "@angular/router";
-import {SigninComponent} from "./components/signin/signin.component";
-import {AccessAuthenticationPanelsGuard} from "./guards/access-authentication-panels.guard";
-import {SignupComponent} from "./components/signup/signup.component";
-import {UserDashboardComponent} from "../components/dashboards/user-dashboard/user-dashboard.component";
-import {AuthGuard} from "./guards/auth.guard";
-import {AccessUserDashboardGuard} from "./guards/access-user-dashboard.guard";
-import {AdminDashboardComponent} from "../components/dashboards/admin-dashboard/admin-dashboard.component";
-import {AccessAdminDashboardGuard} from "./guards/access-admin-dashboard.guard";
+import {AccessAuthenticationPanelsGuard} from "@app/authentication/guards/access-authentication-panels.guard";
+import {LogInComponent} from "@app/authentication/core/log-in/log-in.component";
+import {RegisterComponent} from "@app/authentication/core/register/register.component";
+import {Pages} from "@app/data/pages";
 
 export const authRoutes: Routes = [
-  { path: 'signin', component: SigninComponent , canActivate:[AccessAuthenticationPanelsGuard] },
-  { path: 'signup', component: SignupComponent ,canActivate:[AccessAuthenticationPanelsGuard]},
-  { path: 'userDashboard', component: UserDashboardComponent, canActivate: [AuthGuard , AccessUserDashboardGuard] },
-  { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [AuthGuard , AccessAdminDashboardGuard] },
+  { path: Pages.LOG_IN, component: LogInComponent , canActivate:[AccessAuthenticationPanelsGuard] },
+  { path: Pages.REGISTER, component: RegisterComponent ,canActivate:[AccessAuthenticationPanelsGuard]},
 ];

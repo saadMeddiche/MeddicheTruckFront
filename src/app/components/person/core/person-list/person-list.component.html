@@ -1,0 +1,23 @@
+<app-base-list [itemService]="personService"
+               [columns]="columns"
+               (addButtonIsClicked)="addPerson()"
+               (editButtonIsClicked)="editPerson($event)"
+               (deleteButtonIsClicked)="deletePerson($event)"
+               (rowIsClicked)="rowIsClicked($event)"
+></app-base-list>
+
+<app-base-add [service]="personService"
+              [inputs]="inputs"
+              [form]="form"
+              (itemIsAdded)="refreshList()"
+></app-base-add>
+
+<app-base-delete [service]="personService"
+                 (itemIsDeleted)="refreshList()"
+></app-base-delete>
+
+<app-base-update [service]="personService"
+                 [inputs]="inputs"
+                 [form]="form"
+                 (itemIsUpdated)="refreshList()"
+></app-base-update>

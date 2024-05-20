@@ -1,14 +1,19 @@
 import {Routes} from "@angular/router";
-import {VehicleComponent} from "./vehicle.component";
-import {AuthGuard} from "../../authentication/guards/auth.guard";
-import {VehicleAddComponent} from "./components/vehicle-add/vehicle-add.component";
-import {VehicleUpdateComponent} from "./components/vehicle-update/vehicle-update.component";
-import {VehicleListComponent} from "./components/vehicle-list/vehicle-list.component";
+import {VehicleListComponent} from "@app/components/vehicle/core/vehicle-list/vehicle-list.component";
+import {Pages} from "@app/data/pages";
+import {AuthGuard} from "@app/authentication/guards/auth.guard";
+import {VehicleImageComponent} from "@app/components/vehicle/core/vehicle-image/vehicle-image.component";
 
 
 export const vehicleRoutes: Routes = [
-  {path: 'vehicles' , component: VehicleComponent , canActivate: [AuthGuard]},
-  {path: 'vehicles/add' , component: VehicleAddComponent, canActivate: [AuthGuard]},
-  {path: 'vehicles/edit/:id' , component: VehicleUpdateComponent, canActivate: [AuthGuard]},
-  {path: 'vehicles/list' , component: VehicleListComponent, canActivate: [AuthGuard]}
-]
+  {
+    path: Pages.VEHICLES_LIST,
+    component: VehicleListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: Pages.VEHICLES_IMAGES,
+    component: VehicleImageComponent,
+    canActivate: [AuthGuard]
+  }
+];

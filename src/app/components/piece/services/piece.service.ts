@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
-import {Piece} from "../models/Piece";
-import {BaseService} from "../../base/services/base.service";
+import {Piece} from "@app/components/piece/models/piece";
+import {BaseService} from "@app/base/services/base.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PieceService extends BaseService<Piece, "pieces">{
-  override key: string = "pieces";
+export class PieceService extends BaseService<Piece>{
+
+  override key: string = 'pieces';
+  constructor(override http: HttpClient) {
+    super(http);
+  }
 }

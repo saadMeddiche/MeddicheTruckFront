@@ -1,77 +1,51 @@
 import { Component } from '@angular/core';
+import {NavigationService} from "@app/base/services/navigation.service";
 import {Router} from "@angular/router";
-import {Card} from "../../models/Card";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
   styleUrl: './user-dashboard.component.scss'
 })
+export class UserDashboardComponent extends NavigationService {
 
-export class UserDashboardComponent {
-  cards : Card[] = [
-    {
-      title: 'Pieces',
-      image: 'assets/scrap.png',
-      description: 'Manage your pieces',
-      url:'pieces',
-      flipped: false
+  constructor(override router: Router,
+              override location: Location ) {
+    super(router, location);
+  }
+
+  cards = [
+    { title: 'Manage Persons',
+      description: "Manage the persons that have been participated in transaction",
+      imagePath: "assets/persons.png",
+      function: () => this.navigateToPersonsList()
     },
-    {
-      title: 'Vehicles',
-      image: 'assets/vehicles.png',
-      description: 'Manage your vehicles',
-      url:'vehicles',
-      flipped: false
+    // { title: 'Manage Pieces',
+    //   description: "Manage Pieces like vehicle engine , wheels , parts of vehicle ...",
+    //   imagePath: "assets/scrap.png",
+    //   function: () => this.navigateToPiecesList()
+    // },
+    // { title: 'Manage Piece Transaction',
+    //   description: "Here you can store the transaction and necessary information about it",
+    //   imagePath: "assets/transactions.png",
+    //   function: () => this.navigateToPieceTransactionsList()
+    // },
+    { title: 'Manage Vehicle Transaction',
+      description: "Here you can store the transaction and necessary information about it",
+      imagePath: "assets/transactions.png",
+      function: () => this.navigateToVehicleTransactionsList()
     },
-    {
-      title: 'Transactions',
-      image: 'assets/transactions.png',
-      description: 'Manage your transactions',
-      url:'transactions',
-      flipped: false
+    { title: 'Manage vehicles',
+      description: "Manage Vehicle and create your own history",
+      imagePath: "assets/vehicles.png",
+      function: () => this.navigateToVehiclesList()
     },
-    {
-      title: 'Persons',
-      image: 'assets/persons.png',
-      description: 'Manage the persons you work with',
-      url:'persons',
-      flipped: false
-    },
-    {
-      title: 'Card 5',
-      image: 'assets/questionmark.png',
-      description: 'Description for Card 5',
-      url:'?card',
-      flipped: false
-    },
-    {
-      title: 'Card 6',
-      image: 'assets/questionmark.png',
-      description: 'Description for Card 6',
-      url:'?card',
-      flipped: false
-    },
-    {
-      title: 'Card 7',
-      image: 'assets/questionmark.png',
-      description: 'Description for Card 7',
-      url:'?card',
-      flipped: false
-    },
-    {
-      title: 'Card 8',
-      image: 'assets/questionmark.png',
-      description: 'Description for Card 8',
-      url:'?card',
-      flipped: false
+    { title: 'Manage Profile',
+      description: "Feel free to update your profile",
+      imagePath: "assets/questionmark.png",
+      function: () => this.navigateToVehiclesList()
     }
   ];
-
-  constructor(private router: Router) {}
-
-  navigateTo(url: string) {
-    this.router.navigateByUrl(url);
-  }
 
 }

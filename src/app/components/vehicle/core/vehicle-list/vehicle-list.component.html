@@ -1,0 +1,32 @@
+<app-base-list [itemService]="vehicleService"
+               [columns]="vehicleList.columns"
+               [extraRowButtons]="vehicleList.extraRowButtons"
+               (addButtonIsClicked)="addButtonIsClicked()"
+               (editButtonIsClicked)="editButtonIsClicked($event)"
+               (deleteButtonIsClicked)="deleteButtonIsClicked($event)"
+               (extraButtonIsClicked)="extraButtonIsClicked($event)"
+               (rowIsClicked)="rowIsClicked($event)"
+></app-base-list>
+
+<app-base-add [service]="vehicleService"
+              [inputs]="vehicleForms.vehicleInputs"
+              [form]="vehicleForms.vehicleForm"
+              (itemIsAdded)="refreshList()"
+></app-base-add>
+
+<app-base-delete [service]="vehicleService"
+                 (itemIsDeleted)="refreshList()"
+></app-base-delete>
+
+<app-base-update [service]="vehicleService"
+                 [inputs]="vehicleForms.vehicleInputs"
+                 [form]="vehicleForms.vehicleForm"
+                 (itemIsUpdated)="refreshList()"
+></app-base-update>
+
+<app-base-add #Transactions [service]="vehicleTransactionService"
+              [inputs]="vehicleForms.transactionInputs"
+              [form]="vehicleForms.transactionForm"
+              (itemIsAdded)="refreshList()"
+></app-base-add>
+
