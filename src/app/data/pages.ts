@@ -11,4 +11,5 @@ export enum Pages{
   PIECES_IMAGES = 'pieces/:id/images',
   PIECE_TRANSACTIONS_LIST = 'pieceTransactions',
   TRANSACTIONS_LIST = 'transactions',
+  PROFILE = 'profile',
 }

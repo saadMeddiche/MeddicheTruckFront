@@ -9,6 +9,7 @@ import {personRoutes} from "@app/components/person/person.routes";
 import {pieceRoutes} from "@app/components/piece/piece.routes";
 import {pieceTransactionRoutes} from "@app/components/piece-transaction/piece-transaction.routes";
 import {vehicleTransactionRoutes} from "@app/components/vehicle-transaction/vehicle-transaction.routes";
+import {profileRoutes} from "@app/components/profile/profile.routes";
 
 const routes: Routes = [
   ...authRoutes,
@@ -18,6 +19,7 @@ const routes: Routes = [
   // ...pieceRoutes,
   // ...pieceTransactionRoutes,
   ...vehicleTransactionRoutes,
+  ...profileRoutes,
   { path: Pages.HOME, component: HomeComponent },
   { path: '**', redirectTo: Pages.HOME, pathMatch: 'full' }
 ];

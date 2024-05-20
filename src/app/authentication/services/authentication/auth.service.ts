@@ -55,11 +55,12 @@ export class AuthService extends NavigationService{
         this.toastService.pushToToaster('You are now logged in', ToastType.SUCCESS);
 
         // Navigate to the user dashboard
-        await this.navigateToUserDashboard()
+        await this.navigateToVehicleTransactionsList()
 
         return response;
       }),
       catchError(httpErrorResponse => {
+        console.error("[AuthService](login) error while logging in ", httpErrorResponse)
         httpErrorResponse.error.forEach((error: string) => {
           this.toastService.pushToToaster(error, ToastType.DANGER);
         })
@@ -95,6 +96,7 @@ export class AuthService extends NavigationService{
         return response;
       }),
       catchError(httpErrorResponse => {
+        console.error("[AuthService](register) error while registration ", httpErrorResponse)
         httpErrorResponse.error.forEach((error: string) => {
           this.toastService.pushToToaster(error, ToastType.DANGER);
         })
@@ -110,6 +112,7 @@ export class AuthService extends NavigationService{
 
   hasPermission(permission: Permissions): boolean {
     const decodedToken = this.token.getDetails();
+    console.log("Token:" ,decodedToken)
     return decodedToken && decodedToken.authorities ? decodedToken.authorities.includes(permission) : false;
   }
 
