@@ -70,4 +70,8 @@ export abstract class NavigationService {
   async navigateToVehicleTransactionsList() {
     await this.navigateTo(Pages.VEHICLE_TRANSACTIONS_LIST);
   }
+
+  async navigateToProfile() {
+    await this.navigateTo(Pages.PROFILE);
+  }
 }

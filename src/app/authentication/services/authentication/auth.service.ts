@@ -55,7 +55,7 @@ export class AuthService extends NavigationService{
         this.toastService.pushToToaster('You are now logged in', ToastType.SUCCESS);
 
         // Navigate to the user dashboard
-        await this.navigateToVehicleTransactionsList()
+        await this.navigateToUserDashboard()
 
         return response;
       }),
@@ -112,7 +112,6 @@ export class AuthService extends NavigationService{
 
   hasPermission(permission: Permissions): boolean {
     const decodedToken = this.token.getDetails();
-    console.log("Token:" ,decodedToken)
     return decodedToken && decodedToken.authorities ? decodedToken.authorities.includes(permission) : false;
   }
 

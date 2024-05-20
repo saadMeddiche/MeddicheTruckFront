@@ -9,6 +9,11 @@ import {ProfileService} from "@app/components/profile/services/profile.service";
 import {Profile} from "@app/components/profile/models/profile";
 import {ToastService} from "@app/layouts/toast/services/toast.service";
 import {ToastType} from "@app/layouts/toast/enums/ToastType";
+import {
+  birthDateValidator, matchValidator,
+  noSpaceValidator,
+  passwordValidator
+} from "@app/base/validation/costum-validators/costum.validators";
 
 @Component({
   selector: 'app-profile',
@@ -46,26 +51,39 @@ export class ProfileComponent extends ValidationService {
     );
   }
 
-  override buildForm(): FormGroup {
+  override buildForm() {
     return new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      middleName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.email
-      ]),
-      birthDate: new FormControl('', [Validators.required])
-    });
+        firstName: new FormControl('', [
+          Validators.required,
+          noSpaceValidator()
+        ]),
+        middleName: new FormControl('', [
+          noSpaceValidator()
+        ]),
+        lastName: new FormControl('', [
+          Validators.required,
+          noSpaceValidator()
+        ]),
+        email: new FormControl('', [
+          Validators.required,
+          Validators.email
+        ]),
+        birthDate: new FormControl('', [
+          Validators.required,
+          birthDateValidator()
+        ]),
+      }
+    );
   }
 
   updateProfile(){
     this.profileService.updateProfileData(this.form.value).subscribe(() => {
       this.toaster.pushToToaster('Profile updated successfully', ToastType.SUCCESS);
     },
-      (error) =>{
-        console.error('\n[ProfileComponent](updateProfile) Error: ', error);
+      (httpErrorResponse) =>{
+        console.error('\n[ProfileComponent](updateProfile) Error: ', httpErrorResponse);
         this.toaster.pushToToaster('Error updating profile', ToastType.DANGER);
+        this.toaster.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
       }
     )
   }

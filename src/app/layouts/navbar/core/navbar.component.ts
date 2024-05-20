@@ -45,7 +45,7 @@ export class NavbarComponent extends NavigationService{
     },
     {
       name: 'Profile',
-      function: () => this.navigateTo('/?profile'),
+      function: () => this.navigateToProfile(),
       isVisible: () => this.auth.isLoggedIn()
     },
     {
