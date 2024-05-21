@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   apiKey: 'devKey',
-  domain: 'http://localhost:8080',
-  apiVersion: '/api/v1',
+  DOMAIN: 'http://localhost:8080',
+  API_VERSION: '/api/v1',
 };

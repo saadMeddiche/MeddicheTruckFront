@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiKey: 'prodKey'
+  apiKey: 'devKey',
+  DOMAIN: 'http://localhost:8080',
+  API_VERSION: '/api/v1',
 };

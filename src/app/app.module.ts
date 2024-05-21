@@ -5,22 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {
-  MatCard,
-  MatCardActions,
-  MatCardContent,
-  MatCardHeader,
-  MatCardImage, MatCardSubtitle,
-  MatCardTitle
-} from "@angular/material/card";
-import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
-import {MatInput, MatInputModule} from "@angular/material/input";
-import {MatButton, MatIconButton} from "@angular/material/button";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NavbarComponent } from '@app/layouts/navbar/core/navbar.component';
-import {MatToolbar} from "@angular/material/toolbar";
-import {MatIcon} from "@angular/material/icon";
 import {NgOptimizedImage} from "@angular/common";
 import { IntroTourComponent } from './components/intro-tour/intro-tour.component';
 import {AuthInterceptor} from "./authentication/interceptors/auth.interceptor";
@@ -77,23 +64,7 @@ import { ProfileComponent } from '@app/components/profile/core/profile.component
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatCardTitle,
-    MatCardSubtitle,
-    MatCardHeader,
-    MatCardContent,
-    MatFormField,
-    MatInput,
-    MatButton,
-    MatCard,
-    MatToolbar,
-    MatIcon,
     NgOptimizedImage,
-    MatCardActions,
-    MatCardImage,
-    MatIconButton,
-    MatLabel,
-    MatInputModule,
-    MatFormFieldModule,
     ReactiveFormsModule
   ],
   providers: [
