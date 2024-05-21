@@ -37,6 +37,8 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
 
   searchTerm: string = "";
 
+  isModalVisible: boolean = false;
+
   override buildForm(): FormGroup {
     return new FormGroup({
       name: new FormControl('', [
@@ -159,6 +161,10 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   clearSearchTerm(){
     this.searchTerm = "";
     this.searchItemImages();
+  }
+
+  toggleModal(){
+    this.isModalVisible = !this.isModalVisible;
   }
 
   protected readonly BACKEND = BACKEND;
