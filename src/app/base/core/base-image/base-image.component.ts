@@ -94,7 +94,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
     this.uploadImages.forEach((formData , index) => {
 
       if(this.form.get('name')?.value != null && this.form.get('name')?.value != "")
-        formData.append('name', this.form.get('name')?.value);
+        formData.set('name', this.form.get('name')?.value);
 
       this.itemService.uploadImage(formData).subscribe
       (
