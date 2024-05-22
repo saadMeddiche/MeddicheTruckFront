@@ -151,7 +151,8 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   readFile(file: File) {
     let formData = new FormData();
     formData.append('photo', file);
-    formData.append('name', this.form.get('name')?.value != null ? this.form.get('name')?.value : file.name);
+    formData.append('name', (this.form.get('name')?.value != null && this.form.get('name')?.value != "")
+      ? this.form.get('name')?.value : file.name);
     formData.append(this.itemName, this.itemId.toString());
     this.uploadImages.push(formData);
   }
