@@ -1,23 +1,23 @@
-
-import {SemiString} from "@app/types/GeneralTypes";
 import {BaseModel, IBaseModel} from "@app/base/models/BaseModel";
 
 export interface IBaseSentImage extends IBaseModel
 {
   name : string;
-  photoInBase64 : SemiString;
+  photo : File;
+  itemName: string;
 }
-
 
 export class BaseSentImage extends BaseModel{
 
   private _name: string;
-  private _photoInBase64: SemiString;
+  private _photo: File;
+  private _itemName: string;
 
   constructor(baseImage: IBaseSentImage) {
     super(baseImage);
     this._name = baseImage.name;
-    this._photoInBase64 = baseImage.photoInBase64
+    this._photo = baseImage.photo
+    this._itemName = baseImage.itemName;
   }
 
   get name(): string {
@@ -28,20 +28,20 @@ export class BaseSentImage extends BaseModel{
     this._name = name;
   }
 
-  get photoInBase64(): SemiString {
-    return this._photoInBase64
+  get photo(): File {
+    return this._photo
   }
 
-  set photoInBase64(photoInBase64: SemiString) {
-    this._photoInBase64 = photoInBase64
+  set photo(photo: File) {
+    this._photo = photo
   }
 
-  toJSON(): IBaseSentImage {
-    return {
-      id: this.id,
-      name: this.name,
-      photoInBase64: this.photoInBase64
-    }
+  get itemName(): string {
+    return this._itemName;
+  }
+
+  set itemName(itemName: string) {
+    this._itemName = itemName;
   }
 
 }

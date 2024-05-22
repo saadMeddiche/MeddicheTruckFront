@@ -21,13 +21,15 @@ import {Location} from "@angular/common";
 })
 export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSentImage, S extends BaseImageService<IR , IS>> extends ValidationService {
 
-  @Input() image!: IS ;
-
   @Input() itemService!: S ;
 
-  @Input() itemId: number = 0;
+  @Input() itemId!: number;
+
+  @Input() itemName!: string;
 
   images: IR[] = [];
+
+  uploadImages: FormData[] = [];
 
   page: number = 0;
 
@@ -44,7 +46,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
       name: new FormControl('', [
         noSpaceValidator()
       ]),
-      file: new FormControl('', [
+      files: new FormControl('', [
         Validators.required,
         fileTypeValidator(['png', 'jpeg', 'jpg'])
       ])
@@ -88,22 +90,28 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   }
 
   uploadImage() {
-    this.itemService.uploadImage(this.image).subscribe
+
+    this.uploadImages.forEach((formData , index) => {
+
+      this.itemService.uploadImage(formData).subscribe
       (
-      () => {
-        this.toastService.pushToToaster(`Image uploaded successfully`, ToastType.SUCCESS);
-        this.searchItemImages();
-      },
-  (httpErrorResponse) => {
-        console.error(httpErrorResponse);
+        () => {
+          this.toastService.pushToToaster(`Image ${index} uploaded successfully`, ToastType.SUCCESS);
+          this.searchItemImages();
+        },
+        (httpErrorResponse) => {
+          console.error(httpErrorResponse);
 
-        if(httpErrorResponse.status === 401){
-          this.toastService.pushToToaster("Error: Please reload page or re-login", ToastType.DANGER);
+          if (httpErrorResponse.status === 401) {
+            this.toastService.pushToToaster("Error: Please reload page or re-login", ToastType.DANGER);
+          }
+
+          this.toastService.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
         }
+      )
 
-        this.toastService.pushToToaster(httpErrorResponse.error, ToastType.DANGER);
-      }
-    )
+    })
+
   }
 
   deleteImage(imageID: ID){
@@ -141,16 +149,11 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   }
 
   readFile(file: File) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.image.id = null;
-      this.image.name =
-        this.form.get('name')?.value != ""
-        ? this.form.get('name')?.value : file.name.split('.')[0];
-      this.image.photoInBase64 = (reader.result as string).split(',')[1];
-    };
-    console.log(this.image);
+    let formData = new FormData();
+    formData.append('photo', file);
+    formData.append('name', this.form.get('name')?.value != null ? this.form.get('name')?.value : file.name);
+    formData.append(this.itemName, this.itemId.toString());
+    this.uploadImages.push(formData);
   }
 
   pageChanged(n: number) {

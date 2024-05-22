@@ -10,12 +10,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class VehicleImageComponent {
 
-  image: VehicleSentImage = new VehicleSentImage({
-    id:null,
-    name:"",
-    photoInBase64:"",
-    vehicleId: 0
-  })
+  itemName: string = "vehicleId";
+
+  itemId: number = 0;
 
   constructor(
     protected vehicleImageService: VehicleImageService,
@@ -26,7 +23,7 @@ export class VehicleImageComponent {
 
   getVehicleIdFromUrl(){
     this.activatedRoute.params.subscribe(params => {
-      this.image.vehicleId = params['id'];
+      this.itemId = params['id'];
     });
   }
 
