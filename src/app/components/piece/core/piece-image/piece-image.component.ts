@@ -12,12 +12,9 @@ import {PieceImageService} from "@app/components/piece/services/piece-image.serv
 })
 export class PieceImageComponent {
 
-  image: PieceSentImage = new PieceSentImage({
-    id:null,
-    name:"",
-    photoInBase64:"",
-    pieceId: 0
-  })
+  itemName: string = "pieceId";
+
+  itemId: number = 0;
 
   constructor(
     protected pieceImageService: PieceImageService,
@@ -28,7 +25,7 @@ export class PieceImageComponent {
 
   getPieceIdFromUrl(){
     this.activatedRoute.params.subscribe(params => {
-      this.image.pieceId = params['id'];
+      this.itemId = params['id'];
     });
   }
 }

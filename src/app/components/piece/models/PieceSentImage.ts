@@ -21,12 +21,4 @@ export class PieceSentImage extends BaseSentImage {
       this._pieceId = pieceId;
     }
 
-    override toJSON(): IPieceSentImage {
-      return {
-        id: this.id,
-        name: this.name,
-        photoInBase64: this.photoInBase64,
-        pieceId: this.pieceId
-      }
-    }
 }

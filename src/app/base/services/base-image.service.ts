@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PaginatedResponse} from "@app/interfaces/PaginatedResponse";
 import {ID} from "@app/types/GeneralTypes";
@@ -27,8 +27,8 @@ export abstract class BaseImageService<IR extends BaseReceivedImage , IS extends
     return this.http.get<PaginatedResponse<IR>>(this.buildSearchItemsByItemIdUrl(searchTerm , page , size , itemId));
   }
 
-  uploadImage(item: IS) :Observable<IR> {
-    return this.http.post<IR>(this.buildSimpleUrl(), item.toJSON());
+  uploadImage(item: FormData) :Observable<IR> {
+    return this.http.post<IR>(this.buildSimpleUrl(), item);
   }
 
   deleteImage(id: ID) :Observable<void> {

@@ -57,11 +57,12 @@ export function birthDateValidator(): ValidatorFn {
 export function fileTypeValidator(allowedTypes: string[]): ValidatorFn {
   return (control: AbstractControl) : ValidationErrors | null => {
 
-    const value = control.value;
+    const file = control.value ;
 
-    const extension = value.split('.').pop();
+    if(!file) return null;
 
-    return !allowedTypes.includes(extension) ? {fileType: true} : null;
+    const extension = file.split('.').pop();
+    return !allowedTypes.includes(extension!) ? {fileType: true} : null;
 
   }
 }
