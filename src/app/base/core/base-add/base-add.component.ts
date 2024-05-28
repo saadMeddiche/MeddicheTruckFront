@@ -65,6 +65,8 @@ export class BaseAddComponent<I extends BaseModel, S extends BaseService<I>> ext
 
   toggleModal(){
     this.isModalVisible = !this.isModalVisible;
+    this.form.get('plate')?.reset();
+    this.form.get('model')?.reset();
   }
 
   protected readonly InputType = InputType;
