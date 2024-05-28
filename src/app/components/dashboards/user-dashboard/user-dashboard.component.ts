@@ -44,7 +44,7 @@ export class UserDashboardComponent extends NavigationService {
     { title: 'Manage Profile',
       description: "Feel free to update your profile",
       imagePath: "assets/questionmark.png",
-      function: () => this.navigateToVehiclesList()
+      function: () => this.navigateToProfile()
     }
   ];
 
