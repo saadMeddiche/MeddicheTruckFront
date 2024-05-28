@@ -101,6 +101,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
         () => {
           this.toastService.pushToToaster(`Image ${index} uploaded successfully`, ToastType.SUCCESS);
           this.searchItemImages();
+          this.clearModel();
         },
         (httpErrorResponse) => {
           console.error(httpErrorResponse);
@@ -142,6 +143,7 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
   }
 
   onFileSelected(event: Event) {
+    this.uploadImages = [];
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length) {
       for (let i = 0; i < inputElement.files.length; i++) {
@@ -171,6 +173,12 @@ export class BaseImageComponent<IR extends BaseReceivedImage , IS extends BaseSe
 
   toggleModal(){
     this.isModalVisible = !this.isModalVisible;
+    this.clearModel();
+  }
+
+  clearModel(){
+    this.form.reset();
+    this.uploadImages = [];
   }
 
   protected readonly BACKEND = BACKEND;
